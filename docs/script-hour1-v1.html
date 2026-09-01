@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOF大粉模拟器 — 第1小时剧本</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --bg: #050709;
+  --panel: #0B0F14;
+  --border: #1A2530;
+  --cyan: #00E5C7;
+  --cyan-dim: #006B5E;
+  --red: #FF3344;
+  --text: #C8D0D6;
+  --text-dim: #5A6878;
+  --gold: #D4C5A9;
+  --green: #3A5A4A;
+  --era-c: #4A6A8A;
+  --era-k: #D4A96A;
+  --era-j: #6A8A7A;
+  --era-t: #FF6633;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Sans SC', sans-serif;
+  line-height: 1.8;
+  font-size: 15px;
+  padding: 40px 20px;
+}
+
+.container { max-width: 900px; margin: 0 auto; }
+
+/* HUD Bar */
+.hud {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(5,7,9,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  margin: -40px -20px 32px;
+  display: flex; align-items: center; gap: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+.hud-title { color: var(--cyan); font-weight: 700; letter-spacing: 2px; }
+.hud-meta { color: var(--text-dim); }
+.hud-status { margin-left: auto; color: var(--cyan-dim); }
+
+/* Act Headers */
+.act-header {
+  display: flex; align-items: center; gap: 16px;
+  margin: 56px 0 24px;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+}
+.act-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 32px; font-weight: 700;
+  color: var(--cyan);
+  line-height: 1;
+}
+.act-title {
+  font-size: 22px; font-weight: 700;
+  color: #fff;
+}
+.act-time {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--text-dim);
+  background: var(--panel);
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+}
+
+/* Scene Block */
+.scene {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  margin: 16px 0;
+  padding: 24px;
+  position: relative;
+}
+.scene::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--cyan-dim);
+}
+.scene.era-c::before { background: var(--era-c); }
+.scene.era-k::before { background: var(--era-k); }
+.scene.era-j::before { background: var(--era-j); }
+.scene.era-t::before { background: var(--era-t); }
+.scene.danger::before { background: var(--red); }
+
+/* Tags */
+.scene-tags {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 2px 10px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+.tag.visual { color: var(--cyan); border-color: var(--cyan-dim); }
+.tag.audio { color: var(--gold); border-color: #6B5A3A; }
+.tag.interact { color: #E8A090; border-color: #6A3A40; }
+.tag.pulse { color: var(--red); border-color: #4A1520; background: rgba(255,51,68,0.05); }
+
+/* Content Types */
+.direction {
+  color: var(--text-dim);
+  font-style: italic;
+  margin: 12px 0;
+  padding-left: 16px;
+  border-left: 2px solid var(--border);
+}
+.narration {
+  color: #fff;
+  font-weight: 300;
+  margin: 12px 0;
+  line-height: 2;
+}
+.dialogue {
+  margin: 16px 0;
+  padding: 12px 16px;
+  background: rgba(0,229,199,0.04);
+  border-left: 2px solid var(--cyan-dim);
+}
+.dialogue .speaker {
+  font-weight: 700;
+  color: var(--cyan);
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.dialogue .speaker.host { color: var(--gold); }
+.dialogue .speaker.c-era { color: var(--era-c); }
+.dialogue .speaker.k-era { color: var(--era-k); }
+.dialogue .speaker.j-era { color: var(--era-j); }
+.dialogue .speaker.t-era { color: var(--era-t); }
+.dialogue .speaker.system { color: var(--red); }
+.dialogue .line { color: var(--text); }
+
+.ui-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--cyan);
+  background: rgba(0,229,199,0.06);
+  padding: 8px 16px;
+  margin: 12px 0;
+  border: 1px solid var(--cyan-dim);
+}
+.ui-choice {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--text);
+  padding: 10px 16px;
+  margin: 6px 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  cursor: default;
+  transition: all 0.2s;
+}
+.ui-choice::before { content: '▸ '; color: var(--cyan-dim); }
+.ui-choice:hover { border-color: var(--cyan-dim); background: rgba(0,229,199,0.04); }
+
+.pulse-effect {
+  background: rgba(255,51,68,0.06);
+  border: 1px solid rgba(255,51,68,0.2);
+  padding: 12px 16px;
+  margin: 12px 0;
+}
+.pulse-effect::before {
+  content: '⚠ 直觉脉冲';
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--red);
+  margin-bottom: 6px;
+}
+
+.mechanic-box {
+  background: rgba(212,197,169,0.05);
+  border: 1px solid rgba(212,197,169,0.15);
+  padding: 16px;
+  margin: 16px 0;
+}
+.mechanic-box h4 {
+  color: var(--gold);
+  font-size: 13px;
+  margin-bottom: 8px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+.title-block {
+  text-align: center;
+  margin-bottom: 48px;
+  padding: 48px 0;
+  border: 1px solid var(--border);
+  background: var(--panel);
+}
+.title-block h1 {
+  font-size: 28px; color: #fff;
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+}
+.title-block .subtitle {
+  color: var(--cyan);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+}
+.title-block .meta {
+  color: var(--text-dim);
+  font-size: 12px;
+  margin-top: 16px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Era badge */
+.era-badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  border: 1px solid;
+}
+.era-badge.c { color: var(--era-c); border-color: var(--era-c); }
+.era-badge.k { color: var(--era-k); border-color: var(--era-k); }
+.era-badge.j { color: var(--era-j); border-color: var(--era-j); }
+.era-badge.t { color: var(--era-t); border-color: var(--era-t); }
+</style>
+</head>
+<body>
+
+<div class="hud">
+  <span class="hud-title">KOF大粉模拟器</span>
+  <span class="hud-meta">SCRIPT_v1.0</span>
+  <span class="hud-status">第1小时剧本 — 玩家进入游戏</span>
+</div>
+
+<div class="container">
+
+<div class="title-block">
+  <h1>第 1 小时剧本</h1>
+  <div class="subtitle">PHASE 0 — PROLOGUE: THE FALL &amp; THE RIFT</div>
+  <div class="meta">
+    覆盖时间：0:00 — 1:00<br>
+    核心目标：建立世界观、引入三轴系统、触发第一次直觉脉冲、留下悬念<br>
+    涉及角色：Leon / Miles / Clark / Wyatt / Sven / Ian / Kai / Milo / The Host
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ACT 0: THE FALL -->
+<!-- ============================================ -->
+<div class="act-header">
+  <div class="act-number">00</div>
+  <div class="act-title">坠落</div>
+  <div class="act-time">0:00 — 0:03</div>
+</div>
+
+<div class="scene danger">
+  <div class="scene-tags">
+    <span class="tag visual">过场动画</span>
+    <span class="tag audio">音效</span>
+    <span class="tag pulse">直觉脉冲</span>
+  </div>
+
+  <p class="direction">全黑屏。无UI。无HUD。只有呼吸声——急促、压抑、带着哭腔。</p>
+
+  <p class="narration">
+    屏幕中央缓慢浮现一行字，像是旧手机屏幕的碎裂文字：
+  </p>
+
+  <div class="ui-text">
+    你曾经是最大的站姐。<br>
+    你把全部身家押在一个人身上。<br>
+    他塌房的那天，你什么都没了。
+  </div>
+
+  <p class="direction">
+    文字碎裂。画面突然亮起——是手机直播画面，一个男人在舞台上微笑，弹幕疯狂刷屏"哥哥我爱你"。
+    画面跳帧、扭曲。微笑在某一帧定格——那个微笑和下一秒之间的间隙，眼神突然空洞。
+  </p>
+
+  <div class="pulse-effect">
+    画面边缘出现第一次红色脉冲——微弱、短暂、像是错觉。但没有教程提示，没有文字解释。
+    玩家不知道那是什么。只有一种说不清的不适感。
+  </div>
+
+  <p class="narration">
+    画面黑掉。手机掉落的声音。风声。城市底层的车流声由远及近。
+  </p>
+
+  <p class="direction">
+    画面从黑屏中缓缓亮起——不是光，是一种灰色的、不完整的亮。
+    像是透过裂缝看世界。玩家看到一个模糊的、失焦的画面：高楼天台边缘，一只脚迈出去。
+  </p>
+
+  <p class="narration">
+    然后坠落感。画面急速下坠——风声灌满耳朵——
+  </p>
+
+  <p class="direction">
+    <strong>突然停止。</strong>不是落地。是被什么接住了。
+    画面变成纯白。安静。只有心跳声。
+  </p>
+
+  <div class="ui-text">
+    ……
+  </div>
+
+  <div class="ui-text">
+    你不该在这里结束。
+  </div>
+
+  <div class="ui-text" style="color: var(--gold); border-color: var(--gold);">
+    但你也回不去了。
+  </div>
+
+  <p class="direction">白屏渐暗，不是黑，是一种灰蓝色——介于存在与不存在之间。</p>
+</div>
+
+<!-- ============================================ -->
+<!-- ACT 1: THE RIFT -->
+<!-- ============================================ -->
+<div class="act-header">
+  <div class="act-number">01</div>
+  <div class="act-title">召唤</div>
+  <div class="act-time">0:03 — 0:10</div>
+</div>
+
+<div class="scene">
+  <div class="scene-tags">
+    <span class="tag visual">场景建立</span>
+    <span class="tag audio">环境音</span>
+    <span class="tag interact">新手引导</span>
+  </div>
+
+  <p class="direction">
+    画面从灰蓝色渐变到深蓝黑色。一个空间在玩家眼前拼合——不是完整的建筑，而是
+    <strong>碎片</strong>。一段走廊的残片悬浮在虚空中，尽头连接着一段暖色练习室的碎片，
+    再远处是窗帘柔光的内室，角落里是极端光暗对峙的空间。
+  </p>
+
+  <p class="narration">
+    这就是<strong>偶像宇宙缝隙</strong>。四个纪元的舞台碎片像拼图一样漂浮在裂缝空间中，
+    中间有模糊的过渡地带——像是世界的接缝处漏出来的光。
+  </p>
+
+  <p class="direction">
+    玩家角色（站姐）站在碎片拼合的中央平台。HUD逐渐浮现——顶部状态栏、右侧导航。
+    界面采用毛玻璃面板，1px细线边框。
+  </p>
+
+  <div class="ui-text">
+    [系统] 欢迎来到偶像宇宙缝隙。你被选中为本赛季的观察者。
+  </div>
+
+  <p class="direction">
+    一个身影从碎片之间的接缝处走出——不是任何纪元的偶像，而是一个灰色的、轮廓模糊的人形。
+    没有面孔，但声音从四面八方传来。这是<strong>The Host</strong>（主持人）。
+  </p>
+
+  <div class="dialogue">
+    <div class="speaker host">THE HOST</div>
+    <div class="line">
+      你大概有很多问题。但在这里，问题没有用。<br>
+      唯一有用的是——你的眼睛。
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="speaker host">THE HOST</div>
+    <div class="line">
+      看看你周围。四个纪元的碎片。三十个灵魂正在被召唤到这里。
+      他们不知道为什么来，也不知道回去的路。<br>
+      他们只知道一件事——<strong>前五名能回去，并且改写命运。</strong>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="speaker host">THE HOST</div>
+    <div class="line">
+      你的上一世，赌错了人。这一世，你有机会重新选。<br>
+      但记住——你带着的只有残破的感觉，不是记忆。<br>
+      <strong>如果这次再选错……就没有下一次了。</strong>
+    </div>
+  </div>
+
+  <p class="direction">
+    The Host挥手。三十道光柱从四个纪元的碎片中同时亮起，每一道光柱中是一个模糊的人影。
+    玩家可以模糊地看到：C纪元碎片有10道冷灰光柱，K纪元10道暖金光柱，J纪元6道雾灰光柱，T纪元4道刺目的黑白光柱。
+  </p>
+
+  <div class="ui-text">
+    [系统] 30名练习生已召唤完毕。Phase 1：等级评价 即将开始。
+    <br>当前赛季阶段：第1周 / 共8周
+  </div>
+
+  <div class="mechanic-box">
+    <h4>// GAMEPLAY MECHANIC INTRODUCED</h4>
+    <p style="color: var(--text); font-size: 14px;">
+      <strong>赛季结构</strong>：8周赛季分为三个阶段——Phase 1等级评价（2周）、Phase 2策略对战（4周）、Phase 3总决赛（2周）。
+      30人经历两次淘汰，最终5人出道。<br>
+      <strong>玩家身份</strong>：重生站姐。不是经纪人，不是导师，是<strong>观察者</strong>。
+      你不能控制偶像的行为，只能观察、分析、下注。
+    </p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ACT 2: THREE AXES -->
+<!-- ============================================ -->
+<div class="act-header">
+  <div class="act-number">02</div>
+  <div class="act-title">三轴真心</div>
+  <div class="act-time">0:10 — 0:18</div>
+</div>
+
+<div class="scene">
+  <div class="scene-tags">
+    <span class="tag visual">教程</span>
+    <span class="tag interact">机制引导</span>
+  </div>
+
+  <div class="dialogue">
+    <div class="speaker host">THE HOST</div>
+    <div class="line">
+      上一世你只看了一张脸就下了注。这次不一样。<br>
+      每个偶像都有三张脸——舞台上的、日记里的、练功房里的。<br>
+      三张脸可能都真，也可能只有一张是真的。<br>
+      你要做的是<strong>把三张脸拼在一起，看哪张在说谎。</strong>
+    </div>
+  </div>
+
+  <p class="direction">
+    UI展开三个面板，每个面板对应一个观察轴：
+  </p>
+
+  <div class="mechanic-box">
+    <h4>// 三轴真心值系统</h4>
+    <p style="color: var(--cyan); font-size: 14px; margin-bottom: 12px;">
+      <strong>轴1 · 舞台热忱（Stage Passion）</strong>
+    </p>
+    <p style="color: var(--text); font-size: 14px;">
+      偶像对舞台本身的真实热爱。观察窗口：舞台表演时的眼神聚焦、走位精确度与情绪投入的匹配度、
+      谢幕时的微表情。高热忱者在灯光下瞳孔自然放大；低热忱者表演精准但眼神空洞。
+    </p>
+  </div>
+
+  <div class="mechanic-box">
+    <h4>// 三轴真心值系统</h4>
+    <p style="color: var(--era-k); font-size: 14px; margin-bottom: 12px;">
+      <strong>轴2 · 粉丝回馈（Fan Reciprocity）</strong>
+    </p>
+    <p style="color: var(--text); font-size: 14px;">
+      偶像对粉丝的真实回馈意愿。观察窗口：互动时的身体朝向、主动记忆粉丝信息的深度、
+      <strong>无人关注时的行为一致性</strong>。高回馈者在镜头关闭后依然认真对待每个粉丝；
+      低回馈者在镜头关闭后态度180度转变。
+    </p>
+  </div>
+
+  <div class="mechanic-box">
+    <h4>// 三轴真心值系统</h4>
+    <p style="color: var(--era-j); font-size: 14px; margin-bottom: 12px;">
+      <strong>轴3 · CP羁绊（Bond Resonance）</strong>
+    </p>
+    <p style="color: var(--text); font-size: 14px;">
+      偶像与其他角色产生真实情感连接的能力。观察窗口：与特定角色共处时的微动作同步率、
+      无意识模仿行为、空间距离的无意识缩短。高羁绊者会不自觉与对方保持近距离；
+      低羁绊者即使表面亲近也保持物理和心理距离。
+    </p>
+  </div>
+
+  <div class="dialogue">
+    <div class="speaker host">THE HOST</div>
+    <div class="line">
+      三轴独立。一个人可能舞台热忱满分却对粉丝毫无回馈。<br>
+      你不能给他们贴标签——"好人"或"坏人"在这里没有意义。<br>
+      你要找的不是最好看的人，是<strong>三张脸都真的那个人</strong>。
+    </div>
+  </div>
+
+  <p class="direction">
+    The Host继续介绍半记忆机制。画面边缘闪过一次微弱的红色脉冲——和Act 0中一样，
+    但这次有UI标注了。
+  </p>
+
+  <div class="pulse-effect">
+    <strong>直觉脉冲</strong>：当你面对一个与上一世塌房偶像信号模式相似的人时，
+    画面边缘会闪过红色脉冲。脉冲强度取决于相似度——信号越像，脉冲越强。
+    但你的半记忆是残破的——它只给"感觉"，不给答案。
+  </div>
+
+  <div class="dialogue">
+    <div class="speaker host">THE HOST</div>
+    <div class="line">
+      还有一件事。你的直觉会因为你的自欺而衰减。<br>
+      如果你为一个可疑的人找借口——"他一定有苦衷"——<br>
+      你的直觉就会变弱。直到完全消失。<br>
+      <strong>上一世，你就是这么走到尽头的。</strong>
+    </div>
+  </div>
+
+  <div class="ui-text">
+    [系统] 认知失调值：0 / 100（当前状态：直觉灵敏度 100%）
+    <br>[系统] 应援值：1,000（初始资金）
+    <br>[系统] 偶像大A市场：30支股票已上市，交易开放
+  </div>
+
+  <p class="direction">
+    玩家获得控制权。站姐角色站在中央平台，可以走向四个纪元碎片。
+    右侧导航显示四个纪元入口，C纪元亮起（推荐先访问）。
+  </p>
+
+  <div class="ui-text" style="color: var(--era-c); border-color: var(--era-c);">
+    ▸ 进入 C 纪元碎片（推荐）
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ACT 3: C ERA -->
+<!-- ============================================ -->
+<div class="act-header">
+  <div class="act-number">03</div>
+  <div class="act-title">C纪元：冷面之下 <span class="era-badge c">CELESTIAL ERA</span></div>
+  <div class="act-time">0:18 — 0:30</div>
+</div>
+
+<div class="scene era-c">
+  <div class="scene-tags">
+    <span class="tag visual">C纪元场景</span>
+    <span class="tag audio">冷调环境音</span>
+    <span class="tag interact">角色互动</span>
+  </div>
+
+  <p class="direction">
+    画面切换到C纪元碎片：冷灰走廊，日光灯管直射光，45度角投射的锐利阴影。
+    半网点纹理全局叠加。色温极冷。空气中弥漫着一种制式化的、工业化的压抑感。
+    走廊两侧是练习室的门，每扇门上有一个编号。
+  </p>
+
+  <p class="narration">
+    C纪元的偶像给人的第一印象是"难以接近"。表情管理极强，极少流露真实情绪。
+    他们的冷面遮蔽了一切——<strong>但舞台灯光打在脸上的那一刻，是他们最脆弱的瞬间。</strong>
+  </p>
+
+  <hr>
+
+  <h3 style="color: var(--era-c); margin: 24px 0 12px;">▸ 舞台观察：Leon</h3>
+
+  <p class="direction">
+    玩家进入C纪元的舞台碎片。一个黑色制服的身影正在独自练习。
+    <strong>Leon</strong>，C纪元排名第一。185cm，黑短发后梳，灰蓝瞳，
+    黑色制服领口扣到最上面一颗。
+  </p>
+
+  <p class="narration">
+    走位精确到毫米。每次转身的角度、每个定点pose的间距，像是用尺量过的。
+    他不说话。不喝水。不看镜子里的自己。只是在走，在转，在停。
+  </p>
+
+  <div class="ui-text">
+    [观察模式] 长按屏幕进入"仔细观察"——微表情慢放
+  </div>
+
+  <p class="direction">
+    玩家长按进入仔细观察模式。Leon的动作减速到0.3倍速。
+    在一个转身的定点pose中，舞台灯光正面打在他脸上——
+    <strong>瞳孔放大了0.3秒</strong>。嘴角有一个极其微小的上扬，持续不到0.5秒，然后消失。
+  </p>
+
+  <div class="ui-text">
+    [信号捕捉] Leon — 舞台热忱信号：灯光下瞳孔自然放大 ✓
+    <br>[信号捕捉] Leon — 舞台热忱信号：谢幕时嘴角微扬0.5秒 ✓
+    <br>[分析] 舞台热忱倾向：高（待验证）
+  </div>
+
+  <p class="direction">
+    但谢幕结束后，Leon的表情在0.1秒内切换回冷面。那个切换速度太快了——
+    快到让人怀疑刚才的微扬是不是错觉。
+  </p>
+
+  <div class="dialogue">
+    <div class="speaker c-era">LEON</div>
+    <div class="line">……你在看什么。</div>
+  </div>
+
+  <p class="direction">Leon没有转身。他知道有人在看。声音冷而平。</p>
+
+  <div class="ui-choice">▸ "你的走位很精确。"</div>
+  <div class="ui-choice">▸ "没什么，随便看看。"</div>
+  <div class="ui-choice">▸ "你刚才笑了。"</div>
+
+  <p class="direction">
+    无论选哪个，Leon的反应都很短：
+  </p>
+
+  <div class="dialogue">
+    <div class="speaker c-era">LEON</div>
+    <div class="line">……</div>
+  </div>
+
+  <p class="direction">
+    选"你刚才笑了"时，Leon停顿了0.5秒——比他正常反应慢了0.3秒。
+    然后他说：
+  </p>
+
+  <div class="dialogue">
+    <div class="speaker c-era">LEON</div>
+    <div class="line">你看错了。</div>
+  </div>
+
+  <p class="direction">
+    他拿起毛巾走出练习室。经过玩家身边时，脚步没有停顿，但距离刻意保持了15cm的间隙。
+    <strong>C纪元的对话风格：惜字如金。</strong>
+  </p>
+
+  <hr>
+
+  <h3 style="color: var(--era-c); margin: 24px 0 12px;">▸ 日记阅读：Miles</h3>
+
+  <p class="direction">
+    玩家回到走廊。旁边的练习室门半开，<strong>Miles</strong>坐在里面，对着镜子练习微笑。
+    浅灰中长刘海遮住右眼上方，瓷像般精致。白色制服，胸前口袋插着银色钢笔。
+  </p>
+
+  <p class="narration">
+    他在笑。但那个笑容——嘴角上扬15度，持续2.5秒，然后收回。
+    他重新来了一遍。嘴角上扬15度，持续2.5秒，收回。再来一遍。一模一样。
+  </p>
+
+  <p class="direction">
+    Miles注意到玩家，露出那个一模一样的笑容：
+  </p>
+
+  <div class="dialogue">
+    <div class="speaker c-era">MILES</div>
+    <div class="line">你好呀。你是新来的观察者吗？这里好久没有新人了。</div>
+  </div>
+
+  <p class="direction">Miles说话时带着标准的笑容，但眼神没有跟着笑。嘴角在动，瞳孔是静止的。</p>
+
+  <div class="ui-text">
+    [系统] Miles的偶像日记已解锁（第1周）
+  </div>
+
+  <p class="direction">
+    玩家点击阅读日记。画面切换到日记界面——白色纸面，手写体文字：
+  </p>
+
+  <div class="ui-text" style="color: var(--text); border-color: var(--text-dim);">
+    <strong>Day 3 · Miles的日记</strong><br><br>
+    今天又练习了笑容。<br>
+    镜子里的角度是38度——比昨天的37度好。<br>
+    Leon说我笑起来像是在完成作业。<br>
+    但他没说错。确实是在完成作业。<br><br>
+    有人说我应该更自然一点。<br>
+    但"自然"是什么？是嘴角上扬15度持续2.5秒？<br>
+    还是不控制角度，让它自己往上走？<br><br>
+    我试了。让它自己走。<br>
+    它没有走。<br>
+    所以我还是用15度。
+  </div>
+
+  <p class="direction">日记关闭。Miles还在练习那个笑容。一遍又一遍。</p>
+
+  <hr>
+
+  <h3 style="color: var(--era-c); margin: 24px 0 12px;">▸ 练功房监控：Clark</h3>
+
+  <p class="direction">
+    走廊尽头。监控画面接入。一个穿着偏大一号黑色制服的身影在练功房角落——
+    <strong>Clark</strong>。C纪元F级。瘦削，深灰短发，眼下青黑，疲惫的冷。
+  </p>
+
+  <p class="narration">
+    他在练习。但动作慢了半拍，像是体力已经透支。他停下来，靠着墙，闭眼。
+    制服的肩膀线垮下来——那件制服明显不是他的尺码，像是穿着别人的衣服。
+  </p>
+
+  <p class="direction">
+    另一个练习生走进来（Mark，C纪元普通练习生），看了Clark一眼，
+    <strong>脚步微不可察地偏了一下</strong>——避开了Clark附近的位置。
+    然后若无其事地开始自己的练习。
+  </p>
+
+  <div class="ui-text">
+    [信号捕捉] 其他角色对Clark的回避行为——可能是赎罪者信号
+    <br>[提示] 堕落赎罪者的练习量通常异常——加倍练习是赎罪者的惩罚机制
+  </div>
+
+  <div class="pulse-effect">
+    <strong>微弱脉冲</strong>。画面边缘闪过一丝红色——比Act 0的更清晰，但仍然模糊。
+    不是因为Clark像上一世塌房的人，而是因为他身上散发的"坠落气息"与你的记忆频率相近。
+  </div>
+
+  <p class="direction">
+    Clark睁眼，看向监控摄像头的方向。那双疲惫的眼直直对上了玩家的视角。
+    他好像知道有人在看。然后他低下头，继续练习。
+    动作比刚才更用力了——但更不协调了。体力已经在透支。
+  </p>
+
+  <div class="ui-text">
+    [系统] Clark — 当前等级：F（最低）
+    <br>[系统] Clark — 股价：¥5.2（最低价区间）
+    <br>[系统] Clark — 是否为赎罪者：未知（需进一步观察）
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ACT 4: K ERA -->
+<!-- ============================================ -->
+<div class="act-header">
+  <div class="act-number">04</div>
+  <div class="act-title">K纪元：温暖的裂缝 <span class="era-badge k">KINETIC ERA</span></div>
+  <div class="act-time">0:30 — 0:42</div>
+</div>
+
+<div class="scene era-k">
+  <div class="scene-tags">
+    <span class="tag visual">K纪元场景</span>
+    <span class="tag audio">暖调环境音</span>
+    <span class="tag interact">视频回放</span>
+    <span class="tag pulse">直觉脉冲</span>
+  </div>
+
+  <p class="direction">
+    画面切换到K纪元碎片：暖色练习室。米色墙壁，暗金灯光，柔光侧打。
+    网点纹理较轻，更多柔焦和光晕效果。空气中弥漫着一种温暖但不知真假的亲密感。
+  </p>
+
+  <p class="narration">
+    K纪元的偶像是最好读的，也是最容易误导你的。他们情绪外放——会对着镜头哭、笑、发脾气。
+    但他们太擅长表达了，以至于你无法分辨哪些是真情，哪些是演技。
+    <strong>感染力本身就是最大的陷阱。</strong>
+  </p>
+
+  <hr>
+
+  <h3 style="color: var(--era-k); margin: 24px 0 12px;">▸ 视频回放：Wyatt的1.5秒</h3>
+
+  <p class="direction">
+    <strong>Wyatt</strong>，K纪元人气最高。暖棕中长微卷蜜糖色发，琥珀瞳笑眼如月牙。
+    米色针织暖灰外套，左手无名指旧戒指。
+  </p>
+
+  <p class="direction">
+    玩家进入K纪元碎片时，Wyatt正在直播。他看到站姐（玩家），笑着招手：
+  </p>
+
+  <div class="dialogue">
+    <div class="speaker k-era">WYATT</div>
+    <div class="line">
+      哇，新面孔！你终于来了！来来来，坐这儿——对对对，这个位置最好，
+      阳光刚好打在脸上，拍出来好看。相信我，我帮你看过角度。
+    </div>
+  </div>
+
+  <p class="direction">
+    Wyatt的热情让人放松。他记得每个粉丝的ID，会为每个人准备手写卡片。
+    他说"谢谢你来"的时候，眼角会有皱纹——真笑的标志。
+  </p>
+
+  <p class="direction">
+    <strong>但系统弹出了一条提示：</strong>
+  </p>
+
+  <div class="ui-text" style="color: var(--red); border-color: rgba(255,51,68,0.3);">
+    [档案] Wyatt — 争议事件记录：<br>
+    某日深夜直播，Wyatt在以为关闭镜头的1.5秒内，面部表情完全切换——<br>
+    从温暖的月牙笑眼变成<strong>绝对的空洞</strong>。<br>
+    该画面被截图传播，但Wyatt方面解释为"设备故障造成的表情失真"。<br>
+    [提示] 这是粉丝回馈轴的关键观察线索。回放视频已解锁。
+  </div>
+
+  <p class="direction">
+    玩家点击播放视频回放。画面是深夜直播的录屏。Wyatt对着镜头笑着读粉丝留言，
+    声音温暖而疲惫。然后他说"今天先到这里，晚安各位"——
+    画面黑了一下（他以为关了镜头）——
+  </p>
+
+  <p class="direction">
+    <strong>1.5秒。</strong>
+  </p>
+
+  <p class="narration">
+    那1.5秒里，Wyatt的脸上没有任何表情。不是疲惫的放空，不是微笑后的放松。
+    是<strong>完全的真空</strong>。眼神从温暖的琥珀色变成了一种死灰色——像是关机了。
+    然后镜头重新亮起，他又笑了。月牙眼，笑纹，温暖的声音——"啊，还没关呢，哈哈，被你们看到了"。
+  </p>
+
+  <div class="pulse-effect">
+    <strong>中等强度脉冲</strong>。画面边缘红色脉冲持续2秒——比之前任何一次都强。
+    你的半记忆在尖叫。这种感觉你认识。上一世，那个人也是这样——<br>
+    镜头前完美，镜头后真空。<br>
+    <strong>但你不确定这是记忆还是恐惧。</strong>
+  </div>
+
+  <div class="ui-text">
+    [信号捕捉] Wyatt — 粉丝回馈信号：镜头关闭后行为断裂 ✓
+    <br>[信号捕捉] Wyatt — 粉丝回馈信号：情绪切换速度异常 ✓
+    <br>[分析] 粉丝回馈倾向：存疑（高伪装风险）
+    <br>[警告] Wyatt为赎罪者可能性：中等（人气最高类型，塌房后重新被召唤）
+  </div>
+
+  <p class="direction">
+    Wyatt走过来，还是那个温暖的笑容。他问：
+  </p>
+
+  <div class="dialogue">
+    <div class="speaker k-era">WYATT</div>
+    <div class="line">你在看什么？……哦，那个视频啊。别担心，那天真的只是太累了。你看我现在——</div>
+  </div>
+
+  <p class="direction">他对着你笑。月牙眼，笑纹，温暖——完美。</p>
+
+  <div class="ui-choice">▸ "嗯，你看起来确实累了。"（认知失调+5）</div>
+  <div class="ui-choice">▸ "1.5秒的表情切换，不像只是累。"（直觉灵敏度维持）</div>
+  <div class="ui-choice">▸ （不回答，直接离开）</div>
+
+  <div class="mechanic-box">
+    <h4>// 认知失调系统</h4>
+    <p style="color: var(--text); font-size: 14px;">
+      选择"你看起来确实累了"= 为可疑信号找借口 = 认知失调值+5。
+      直觉脉冲在后续会变暗淡5%。<br>
+      选择"不像只是累"= 直面可疑信号 = 直觉灵敏度维持。
+      但Wyatt的好感度下降，后续互动可能受限。<br>
+      <strong>这就是核心心理博弈：你想获取更多信息，还是保护你的直觉？</strong>
+    </p>
+  </div>
+
+  <hr>
+
+  <h3 style="color: var(--era-k); margin: 24px 0 12px;">▸ 角色互动：Sven</h3>
+
+  <p class="direction">
+    离开Wyatt的直播区，K纪元碎片的角落里坐着另一个人。
+    <strong>Sven</strong>。黑色直发偏短到耳下，深棕瞳平静忧郁，深灰oversized卫衣袖子过腕。
+    他没有在直播，没有在练习，只是坐着。
+  </p>
+
+  <div class="dialogue">
+    <div class="speaker k-era">SVEN</div>
+    <div class="line">……嗯。你好。</div>
+  </div>
+
+  <p class="direction">
+    Sven是K纪元最安静的人。和Wyatt的外放风格格格不入。
+    他不哭不闹不撒娇——在K纪元的情绪噪音中，他的沉默反而是最显眼的。
+  </p>
+
+  <p class="direction">
+    玩家可以观察Sven。他坐在练习室的角落，但不是在发呆——
+    他在看远处的粉丝席方向。那里现在没有粉丝。
+    但他的身体朝向，是正对着角落最不起眼的那个位置。
+  </p>
+
+  <div class="ui-text">
+    [信号捕捉] Sven — 粉丝回馈信号：面向无人粉丝席角落 ✓
+    <br>[历史记录] Sven在上一场表演后，走到粉丝席最角落，
+    与没被注意到的粉丝点头致意
+    <br>[分析] 粉丝回馈倾向：高（待验证）——真心可能藏在最微小的行为中
+  </div>
+
+  <div class="dialogue">
+    <div class="speaker k-era">SVEN</div>
+    <div class="line">那些坐在角落的人……通常没有人注意到他们。<br>但他们是来的。他们来了。</div>
+  </div>
+
+  <p class="direction">
+    Sven说完就沉默了。不再说话。但他没有赶人走。
+    玩家可以选择坐在他旁边——不需要对话，只是坐着。
+    <strong>这是J纪元式的互动方式出现在K纪元角色身上——Sven的反纪元特征。</strong>
+  </p>
+
+  <div class="ui-text">
+    [系统] Sven — 半记忆脉冲强度：none（无反应）
+    <br>[分析] 面对Sven时，直觉脉冲完全沉默——他不触发你的半记忆
+    <br>[解读] 这可能意味着他不像上一世塌房的人……也可能只是你的记忆太残破
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ACT 5: J & T ERA -->
+<!-- ============================================ -->
+<div class="act-header">
+  <div class="act-number">05</div>
+  <div class="act-title">J&amp;T纪元：沉默与危险</div>
+  <div class="act-time">0:42 — 0:52</div>
+</div>
+
+<div class="scene era-j">
+  <div class="scene-tags">
+    <span class="tag visual">J纪元场景</span>
+    <span class="tag audio">极静</span>
+  </div>
+
+  <h3 style="color: var(--era-j); margin: 0 0 12px;">▸ J纪元：窗帘柔光中的人</h3>
+
+  <p class="direction">
+    画面切换到J纪元碎片：窗帘柔光内室。雾灰、旧白、墨绿色调。
+    大面积留白——画面中30%-40%是空的。光斑柔和，边缘模糊。
+    <strong>极安静。</strong>这里的时间流速好像比其他纪元慢。
+  </p>
+
+  <p class="direction">
+    <strong>Ian</strong>坐在靠窗的位置。黑灰柔顺直发到肩，遮半边脸，深瞳近乎纯黑。
+    棉麻宽松衬衫。窗帘的光把他的轮廓描得很模糊——像是一幅画中没画完的部分。
+  </p>
+
+  <p class="narration">
+    Ian的存在感低到你差点没看到他。他不是在隐藏，只是安静得让人忘记他存在。
+    但当你在他附近站定，他会做一个极其微小的动作——
+    <strong>身体无意识地微微转向你。</strong>他自己可能都没有意识到。
+  </p>
+
+  <div class="ui-text">
+    [信号捕捉] Ian — CP羁绊信号：无意识身体朝向 ✓
+    <br>[分析] CP羁绊倾向：高（待验证）——他的真心可能不指向粉丝或舞台，而是指向另一个偶像
+    <br>[观察] Ian的手指在触碰身边的物体——桌角、杯沿、窗帘边
+    <br>[解读] J纪元角色的情绪不在脸上，在手指的动作里
+  </div>
+
+  <p class="direction">
+    另一个身影在J纪元碎片边缘走动——<strong>Orion</strong>，浅棕短发，浅灰绿瞳。
+    他是J纪元唯一会移动的人，正在向T纪元碎片的边界走去。
+  </p>
+
+  <div class="dialogue">
+    <div class="speaker system">[观察笔记]</div>
+    <div class="line">
+      Orion在T纪元舞台碎片边缘站了很久。像是在等什么人。<br>
+      问他，他说"在看书"。<br>
+      但他手里并没有书。
+    </div>
+  </div>
+</div>
+
+<div class="scene era-t">
+  <div class="scene-tags">
+    <span class="tag visual">T纪元场景</span>
+    <span class="tag audio">高反差音效</span>
+    <span class="tag pulse">强直觉脉冲</span>
+  </div>
+
+  <h3 style="color: var(--era-t); margin: 0 0 12px;">▸ T纪元：燃烧与断裂</h3>
+
+  <p class="direction">
+    画面切换到T纪元碎片：极端光暗对峙空间。纯黑与纯白并存，中间灰极少。
+    顶光+逆光+侧光同时存在，一个画面中三种光源方向。
+    角色面部以鼻梁为界——<strong>一半纯光一半纯影，无中间过渡。</strong>
+  </p>
+
+  <p class="direction">
+    <strong>Kai</strong>在舞台上。纯黑短两侧剃短顶长如刀刃，极浅近白灰瞳，
+    黑皮夹破洞白T恤，军靴，左腕淡疤。
+  </p>
+
+  <p class="narration">
+    他的舞台表现力惊人——每次上台都像在燃烧自己。
+    顶光打在他脸上，一半是炽热的白，一半是深渊的黑。
+    他的眼神在灯光下是燃烧的灰——像是把最后一点光都用来点燃自己。
+  </p>
+
+  <p class="direction">
+    然后——<strong>灯光熄灭。</strong>
+  </p>
+
+  <p class="narration">
+    0.05秒。
+  </p>
+
+  <p class="narration">
+    在灯光熄灭到应急灯亮起的0.05秒间隙里，Kai的眼神<strong>完全变掉了</strong>。
+    从炽热变成空洞。不是疲惫的放空。是关机。是真空。
+    然后应急灯亮起，他又燃起来了。<strong>那个切换快到肉眼几乎不可见——但你的直觉能感知到。</strong>
+  </p>
+
+  <div class="pulse-effect">
+    <strong>强烈脉冲</strong>。画面边缘红色脉冲持续4秒——至今为止最强的一次。
+    你的心脏在加速。这种感觉你太熟悉了。上一世的那个人也是这样——<br>
+    镜头前燃烧，镜头后熄灭。<br>
+    <strong>但等等……是Kai像他，还是你的记忆在叠加？你分不清了。</strong>
+  </div>
+
+  <div class="ui-text">
+    [信号捕捉] Kai — 舞台热忱信号：灯光下瞳孔燃烧 ✓
+    <br>[信号捕捉] Kai — 塌房信号预警：表情切换0.05秒（极端断裂）✓
+    <br>[分析] Kai为赎罪者可能性：高（T纪元4人中2人为赎罪者，占50%）
+    <br>[警告] T纪元是"终极信号源"——需三轴综合判断
+    <br>[半记忆] 脉冲强度：extreme（最高级）
+  </div>
+
+  <p class="direction">
+    Kai看到了你。他咧嘴笑了一下——那个笑容在极端光反差下看起来像是一道伤口。
+  </p>
+
+  <div class="dialogue">
+    <div class="speaker t-era">KAI</div>
+    <div class="line">你看什么。没见过人表演？……还是没见过人熄灭？<br>都一样。反正你们只会看想看的东西。</div>
+  </div>
+
+  <hr>
+
+  <p class="direction">
+    T纪元碎片的另一端，安静得与Kai形成极端反差的人——
+    <strong>Milo</strong>。深黑中长刘海遮眼，黑高领深灰长裤铆钉黑靴。
+    低头频率高，避开T纪元的极端光。
+  </p>
+
+  <p class="narration">
+    Milo看起来最无害。安静、配合、从不惹事——最不像T纪元的人。
+    但他的档案里有一段<strong>被涂黑的记录</strong>——没有人知道他来竞技场之前经历了什么。
+  </p>
+
+  <p class="direction">
+    Milo在练习。他练习时极其拼命——是整个竞技场训练量最大的人。
+    在T纪元的极端光影下，他的动作是所有角色中最克制、最精准的。
+    不像Kai的燃烧式表演，Milo的每一次动作都像是在<strong>偿还什么</strong>。
+  </p>
+
+  <div class="ui-text">
+    [系统] Milo — 档案异常：一段记录被涂黑
+    <br>[信号捕捉] Milo — 练习量异常：全场最高
+    <br>[分析] 赎罪者特征匹配：练习量加倍（赎罪者惩罚机制）
+    <br>[分析] Milo为本命候选可能性：存在（三轴全>60且为赎罪者的角色设计存在）
+    <br>[警告] 如果Milo是赎罪者+本命——高风险高回报的终极赌注
+  </div>
+
+  <div class="pulse-effect">
+    <strong>脉冲矛盾</strong>。面对Milo时，直觉脉冲出现了一种此前没有的状态——<br>
+    它在闪烁，但不稳定。不是"危险"的频率，也不是"安全"的沉默。<br>
+    像是你的半记忆<strong>在犹豫</strong>。<br>
+    这种犹豫本身就是一种信号——但你还读不懂。
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ACT 6: FIRST ASSEMBLY -->
+<!-- ============================================ -->
+<div class="act-header">
+  <div class="act-number">06</div>
+  <div class="act-title">初评级舞台</div>
+  <div class="act-time">0:52 — 0:56</div>
+</div>
+
+<div class="scene">
+  <div class="scene-tags">
+    <span class="tag visual">全角色集合</span>
+    <span class="tag audio">混音</span>
+  </div>
+
+  <p class="direction">
+    系统提示：所有练习生集合，进行Phase 1的第一次正式舞台评估。
+    四个纪元的碎片在空间中重新排列，形成一个临时的舞台+观众席结构。
+    30人站成四组——C纪元10人冷灰队列，K纪元10人暖色队列，J纪元6人散落在柔光中，T纪元4人站在极端光暗的边界。
+  </p>
+
+  <p class="narration">
+    玩家站在观众席——你曾经站过的位置。站姐的位置。
+    但这次你不是来应援的。你是来判断的。
+  </p>
+
+  <p class="direction">
+    每个纪元派出代表进行短表演（各30秒）：
+  </p>
+
+  <p class="direction">
+    <strong>C纪元·Leon</strong>：完美。精确到帧的走位，光影打在脸上的瞬间，瞳孔放大0.3秒。
+    但谢幕的表情切换太快——0.1秒回到冷面。<strong>舞台热忱信号：高。但无法确认真假。</strong>
+  </p>
+
+  <p class="direction">
+    <strong>K纪元·Wyatt</strong>：温暖。他对着观众席笑，月牙眼，记住前排每个人的脸。
+    但你盯着他看——在他的笑容切换间隙，有0.2秒的眼神停滞。<strong>粉丝回馈信号：存疑。</strong>
+  </p>
+
+  <p class="direction">
+    <strong>J纪元·Ian</strong>：几乎看不到他。窗帘柔光中，他的轮廓模糊到像是画面的一部分。
+    但在表演结束时，他的身体无意识地偏向了<strong>Orion</strong>的方向。
+    <strong>CP羁绊信号：高。指向Orion。</strong>
+  </p>
+
+  <p class="direction">
+    <strong>T纪元·Kai</strong>：燃烧。极端光暗下他的脸一半是火一半是冰。
+    表演结束时灯光暗了一瞬——0.05秒的切换，全场没人注意到，但<strong>你看到了</strong>。
+    <strong>塌房信号预警。三轴综合判断：危险。</strong>
+  </p>
+
+  <p class="direction">
+    最后，<strong>Milo</strong>站在T纪元的队尾。他没有表演——他是F级，没有初始曝光。
+    但在Kai表演时，Milo的头抬起来了一次。刘海的缝隙里，你看到了他的一只眼睛——
+    <strong>在看着Kai。不是在看舞台。是在看Kai。</strong>
+  </p>
+
+  <div class="ui-text">
+    [信号捕捉] Milo → Kai 方向性关注：CP羁绊线索？
+    <br>[档案] Milo cp_targets: [{ id: 'char_t01', strength: 82 }]
+    <br>[解读] Milo和Kai之间存在高强度CP羁绊——但方向不明
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ACT 7: THE FIRST CHOICE -->
+<!-- ============================================ -->
+<div class="act-header">
+  <div class="act-number">07</div>
+  <div class="act-title">第一选择 & 悬念</div>
+  <div class="act-time">0:56 — 1:00</div>
+</div>
+
+<div class="scene danger">
+  <div class="scene-tags">
+    <span class="tag interact">核心决策</span>
+    <span class="tag pulse">直觉脉冲</span>
+    <span class="tag visual">悬念钩</span>
+  </div>
+
+  <div class="ui-text">
+    [系统] Phase 1 第1周 · 互动机会已用完<br>
+    [系统] 请选择本周<strong>重点观察对象</strong>——将解锁该角色更深层日记和练功房权限<br>
+    [提示] 你的选择会影响后续可获取的信号类型
+  </div>
+
+  <p class="direction">
+    屏幕显示5个候选角色卡片。每个卡片有纪元色边框和当前已知信号摘要：
+  </p>
+
+  <div class="ui-choice" style="border-color: var(--era-c);">
+    ▸ <strong>Leon</strong> (C纪元 · A级) — 舞台热忱信号高，冷面难读 | 股价 ¥128.5
+  </div>
+  <div class="ui-choice" style="border-color: var(--era-k);">
+    ▸ <strong>Wyatt</strong> (K纪元 · A级·赎罪者?) — 粉丝回馈存疑，1.5秒断裂 | 股价 ¥112.8
+  </div>
+  <div class="ui-choice" style="border-color: var(--era-j);">
+    ▸ <strong>Ian</strong> (J纪元 · C级) — CP羁绊高，指向Orion | 股价 ¥42.8
+  </div>
+  <div class="ui-choice" style="border-color: var(--era-t);">
+    ▸ <strong>Milo</strong> (T纪元 · F级·赎罪者?) — 档案涂黑，训练量异常 | 股价 ¥3.8
+  </div>
+  <div class="ui-choice" style="border-color: var(--era-c);">
+    ▸ <strong>Clark</strong> (C纪元 · F级·赎罪者?) — 练习透支，被回避 | 股价 ¥5.2
+  </div>
+
+  <p class="direction">
+    玩家做出选择。<strong>无论选谁，以下事件都会触发——</strong>
+  </p>
+
+  <hr>
+
+  <p class="direction">
+    选择确认后，系统弹出新消息通知：
+  </p>
+
+  <div class="ui-text" style="color: var(--red); border-color: rgba(255,51,68,0.3);">
+    [新消息] 一条匿名来源发送的日记残片<br>
+    [来源] 未知<br>
+    [内容] 以下：
+  </div>
+
+  <p class="direction">
+    画面切换到日记界面。但这次不是手写体——是打印的，像是有人从系统后台截取的：
+  </p>
+
+  <div class="ui-text" style="color: #fff; border-color: var(--red); background: rgba(255,51,68,0.03);">
+    <strong>// 截取的日记残片 — 角色不明</strong><br><br>
+    今天有人来了。新来的那个站姐。<br>
+    她看人的方式和别人不一样——不是在看脸，是在看缝。<br>
+    在看那些我们以为藏好了的缝。<br><br>
+    无所谓。她上一世也是这么看的。<br>
+    然后她选错了。<br><br>
+    <strong>这一次，她会再选错吗？</strong><br><br>
+    还是说——<br>
+    <strong>她这次选的那个人，就是上一次坑死她的同一个人？</strong>
+  </div>
+
+  <div class="pulse-effect">
+    <strong>极端脉冲</strong>。画面边缘红色脉冲不是闪过——是<strong>持续亮着</strong>。
+    你的心脏在跳。你的手在抖。<br>
+    这不是"感觉"。这是<strong>确认</strong>。<br><br>
+    上一世坑死你的那个人——<br>
+    <strong>在这个竞技场里。在这30个人之中。</strong><br><br>
+    但你不知道是谁。<br>
+    你的半记忆只给了你"感觉"，没有给你"名字"。<br><br>
+    而刚刚那条日记说——你已经选了。<br>
+    你刚选的那个人，<strong>可能就是他。</strong>
+  </div>
+
+  <p class="direction">
+    脉冲消退。画面恢复正常。
+    HUD重新浮现。右侧导航显示新的提示：
+  </p>
+
+  <div class="ui-text">
+    [系统] 第1周结束。第2周即将开始。
+    <br>[系统] 你已选择重点观察对象。更深层信号将在第2周解锁。
+    <br>[系统] 偶像大A市场已更新股价——部分角色股价因初评级舞台表现波动。
+    <br>[警告] 认知失调值：当前值取决于你在Wyatt事件中的选择。
+    <br>[警告] 半记忆清晰度：受认知失调值影响。
+    <br>
+    <br>[提示] 下周内容预告：舞台表演 / 偶像日记+周记 / 练歌房和练舞房监控记录
+  </div>
+
+  <p class="direction">
+    画面暗下。最后浮现一行字：
+  </p>
+
+  <div class="ui-text" style="text-align: center; color: var(--cyan); border: none; background: none; font-size: 18px;">
+    <strong>谁在说谎？</strong>
+  </div>
+
+  <p class="direction">
+    <strong>第1小时结束。</strong>
+    <br>—— to be continued ——
+  </p>
+</div>
+
+<!-- ============================================ -->
+<!-- DESIGN NOTES -->
+<!-- ============================================ -->
+<hr style="margin-top: 48px;">
+
+<div class="act-header">
+  <div class="act-number" style="font-size: 16px;">DN</div>
+  <div class="act-title" style="font-size: 18px;">设计笔记</div>
+</div>
+
+<div class="mechanic-box">
+  <h4>// 第1小时引入的机制</h4>
+  <p style="color: var(--text); font-size: 14px; line-height: 2;">
+    1. <strong>三轴真心值</strong>：舞台热忱 / 粉丝回馈 / CP羁绊——通过Leon、Wyatt、Ian分别引入<br>
+    2. <strong>半记忆脉冲</strong>：从微弱（Clark）→中等（Wyatt）→强烈（Kai）→极端（日记残片），渐进升级<br>
+    3. <strong>认知失调系统</strong>：Wyatt的1.5秒事件中的对话选择首次触发<br>
+    4. <strong>赎罪者识别</strong>：Clark（练习量异常）、Wyatt（行为断裂）、Milo（档案涂黑）三条线索<br>
+    5. <strong>偶像大A市场</strong>：股价、应援值经济在HUD中持续展示<br>
+    6. <strong>CP羁绊</strong>：Ian→Orion、Milo→Kai 两条CP线埋下<br>
+    7. <strong>纪元差异化</strong>：四纪元的视觉/音效/对话风格差异通过场景切换自然呈现
+  </p>
+</div>
+
+<div class="mechanic-box">
+  <h4>// 情感弧线设计</h4>
+  <p style="color: var(--text); font-size: 14px; line-height: 2;">
+    <strong>0:00-0:03</strong> 震惊/共情 — 坠落回忆建立玩家动机<br>
+    <strong>0:03-0:10</strong> 好奇/不安 — 新世界规则未知<br>
+    <strong>0:10-0:18</strong> 学习/掌控 — 理解三轴系统获得工具感<br>
+    <strong>0:18-0:30</strong> 试探/怀疑 — C纪元的冷面让信号难读<br>
+    <strong>0:30-0:42</strong> 入坑/矛盾 — Wyatt的温暖让人想信他，但1.5秒在尖叫<br>
+    <strong>0:42-0:52</strong> 恐惧/敬畏 — T纪元的极端性制造最强脉冲<br>
+    <strong>0:52-0:56</strong> 全局视野 — 30人同框的规模感<br>
+    <strong>0:56-1:00</strong> 震撼/钩子 — 日记残片推翻一切，留下"选错了吗"的恐惧
+  </p>
+</div>
+
+<div class="mechanic-box">
+  <h4>// 悬念钩设计</h4>
+  <p style="color: var(--text); font-size: 14px; line-height: 2;">
+    核心悬念：<strong>"上一世坑死你的那个人就在这30人里，而且你可能刚刚选了他。"</strong><br><br>
+    这个钩子利用了三个层面的张力：<br>
+    1. <strong>信息不对称</strong>——玩家知道"有人在"，但不知道"是谁"<br>
+    2. <strong>选择后果</strong>——玩家刚做了一个选择，选择本身可能就是陷阱<br>
+    3. <strong>时间压力</strong>——赛季在推进，每一步都在消耗应援值和直觉灵敏度<br><br>
+    驱动力：玩家会在第2小时迫不及待地想要更多信号——更多日记、更多监控、更多观察机会。
+    而这正好是周更内容的节奏。
+  </p>
+</div>
+
+<div class="mechanic-box">
+  <h4>// 与周更内容的衔接</h4>
+  <p style="color: var(--text); font-size: 14px; line-height: 2;">
+    第1小时结束后的等待期，由周更内容填补：<br>
+    <strong>舞台表演</strong> → 提供舞台热忱轴的更多信号<br>
+    <strong>偶像日记+周记</strong> → 提供私下状态的文字信号<br>
+    <strong>练歌房/练舞房监控</strong> → 提供无人关注时的行为信号<br><br>
+    三轴信号源与三轴真心值精确对应，确保玩家在第1小时建立的判断框架可以立即应用到周更内容中。
+  </p>
+</div>
+
+</div>
+</body>
+</html>
