@@ -1318,9 +1318,9 @@ var LEVEL_STYLE={
 
 var PULSE_TXT={
 weak:["后颈微微发凉。","心跳漏了半拍。","胃部有一丝紧缩。"],
-medium:["后颈一阵发凉，指尖开始发麻。","心跳明显加速，有什么在记忆深处翻涌。","胃部紧缩，呼吸变得困难——这个画面好像见过。"],
-strong:["后颈冰冷如针扎，心跳剧烈加速。闪过一个画面——有人转过身，但看不清脸。","全身汗毛竖起，呼吸被攥住。碎片闪过：一只手、一句承诺、然后是一无所有。","胃部剧烈翻涌，膝盖发软。半记忆在挣扎着浮现——你被骗过，就在这样的光线下。"],
-extreme:["——脉冲。全身像是被电击。你看见了。只有一瞬间：一个笑容，和那个毁了你一切的笑容一模一样。然后碎片碎了，你什么都抓不住。但你的身体记得。你的身体在尖叫。","——脉冲。极强。你几乎看见了他的脸。光线、角度、那个转身的姿态——和上一世塌房前的最后一夜完全一致。你的手在抖。你不是在回忆，你是在重新经历。","——脉冲。无法忽视。这不是模糊的直觉，这是你的身体在用全身力气告诉你：就是他。你被烧成灰之前最后的画面正在和眼前这个人重合。"],
+medium:["后颈一阵发凉，指尖发麻。","心跳加速，记忆深处有什么在翻涌。","胃部紧缩——这个画面好像见过。"],
+strong:["后颈冰冷如针扎。闪过画面：有人转身，看不清脸。","汗毛竖起，呼吸被攥住。碎片闪过：一只手、一句承诺、然后一无所有。","胃部翻涌，膝盖发软。你被骗过，就在这样的光线下。"],
+extreme:["——脉冲。全身电击。一瞬间看见一个笑容，和毁了你一切的那个一模一样。身体在尖叫。","——脉冲。极强。光线、角度、转身的姿态——和塌房前最后一夜完全一致。你在重新经历。","——脉冲。无法忽视。身体在用全身力气告诉你：就是他。最后画面正在和眼前重合。"],
 };
 
 var BEHAVIOR={
@@ -1390,19 +1390,19 @@ function newGame(){
 // World Intro
 // ============================================================
 var INTRO_PAGES=[
-{title:"竞技场",html:'<p>你没有听说过来过这里。没有人听说过。</p><p>「竞技场」——一座没有窗户的灰色建筑，从外面看像一块墓碑。里面关着三十个年轻的男人，接受为期八周的训练和考核。</p><p>他们从四个不同的地方来——C、K、J、T。四个纪元，四种活法，四种面具。</p><p>八周之后，只有十一个人能站着走出去。剩下的十九个会被淘汰、退市、从这个世界上轻轻抹掉，像写错的字。</p><p>而你——你不是练习生。不是工作人员。不是观众。</p><p>你是一个阿飘。你还没投胎。你飘在竞技场的穹顶下面，像一团没有重量的灰雾。没有人抬起头看过你。</p>'},
-{title:"四纪元",html:'<p>三十个人被分成了四组。你飘在他们头顶，往下看——像看四口井。</p><p><span class="era-tag" style="background:'+ERA_C.C+';color:#000">C纪元·冷峻制服</span>灰蓝色调。十个人穿着统一的制服，扣子扣到最上面一颗。他们不笑。不哭。不犯错。走路像被尺量过，眼神像被刀切过。完美得像机器——但机器不会出汗。小赵的后颈有一滴汗。你看见了。</p><p><span class="era-tag" style="background:'+ERA_C.K+';color:#000">K纪元·情绪特写</span>暖色调。空气是甜的，发酸的。他们哭、笑、撒娇、打闹——情绪像颜料一样泼在空气里。泰烈笑起来的时候眼睛弯成月牙，但月牙底下是什么？你飘近了看——他谢幕时摸了一下耳后。那个动作太熟练了。熟练到像练过的。</p><p><span class="era-tag" style="background:'+ERA_C.J+';color:#000">J纪元·沉默氛围</span>柔光从窗帘缝隙渗入。六个人坐在一起，没有人说话。沉默有重量——压在你的雾上，让你变得更薄。悠真用手指在膝盖上画了一个圈。凪看了一眼窗外。莲把帽子压得更低。他们在交流。但你听不见内容。只有频率。</p><p><span class="era-tag" style="background:'+ERA_C.T+';color:#000">T纪元·极端光反差</span>极端的光。极端的暗。四个人站在光里，像四把刀。光灭掉的瞬间，你看见Ban在笑。灯亮起来的时候，他不笑了。0.05秒的切换。这里的人最危险——因为他们的真假切换得比灯还快。</p>'},
-{title:"阿飘",html:'<p>你死了。你不确定是怎么死的。你只记得那种感觉——像被人从身体里抽走了骨头，剩下一张皮，风一吹就散了。</p><p>上一世，你是304号练习生的站姐。你把全部积蓄换成了他的股份。你相信他会出道。你相信他值得。</p><p>他塌房了。一夜之间。股价归零。应援清空。你什么都没了。</p><p>然后你死了。</p><p>但你没有走。你的怨念太重了——重到把你钉在了这里。你飘在竞技场的穹顶下面，像一团不肯散的灰。</p><p><strong style="color:var(--danger)">三十个人从你身边走过。没有一个人转头。</strong></p><p>你对他们说话——他们听不见。你伸手碰他们的肩膀——你的手指穿过去了。你是一团空气。一个旁观者。只能看。只能听。不能碰。不能说话。不能被任何人确认存在。</p><p class="thought">但有极少数人——大约2%——天生有一双阴阳眼。他们能看见你。能听见你。能和你说话。</p><p class="thought">三十个人里，大约只有一个这样的人。ta是你唯一的嘴。你所有的窥忆、所有的指控、所有的复仇——都要通过ta的嘴说出来。</p><p class="thought">找到ta。在找到ta之前，你只是一个沉默的怨鬼。</p>'},
-{title:"半记忆脉冲",html:'<p>你的记忆是碎的。你不记得是谁害死了你——只记得那种被掏空的感觉。你知道那个人在这三十个人里。但不知道是哪一个。</p><p>你的怨念替你记着。当你飘到那个人附近的时候，你的雾会震荡、扭曲、变浓——这就是<strong style="color:var(--danger)">半记忆脉冲</strong>。</p><p>不是记忆。是感觉。是上一世最后那一刻的恐惧残留在你的雾里，像旧伤逢阴天就痛。</p><p>脉冲有五级：微弱、中等、强烈、极强。你在竞技场里飘来飘去，像一根天线的幽灵版本——不需要消耗任何东西，只需要靠近，然后感受。</p><p class="thought">但脉冲会骗你。有些人的信号和上一世害死你的人很像——但他们是无辜的。这叫「假阳性」。你的怨念分辨不了真假，它只会共振。</p><p class="thought">更危险的是：当你为可疑角色找理由辩护的时候——"他不可能这样做"、"他看起来不像那种人"——你的怨念会衰减。认知失调。你是鬼，但鬼也会骗自己。骗着骗着，脉冲就失灵了。</p>'},
-{title:"坑豆与C位",html:'<p>你有两个目标。一个先做。一个后做。</p><p style="font-size:18px;color:var(--danger);margin-top:12px"><strong>主线·清除坑豆</strong></p><p style="color:var(--text-dim)">「坑豆」——上一世坑了你、害死你的那个爱豆。他就在这三十个人里。六个人中的一个，是你的坑豆。你不知道是谁。</p><p>你是阿飘——你不能直接和他说话，不能直接指控他。你需要<strong>通灵者</strong>替你传话。找到通灵者后，你可以通过ta发起「窥忆」。</p><p>窥忆只有三次机会。命中=坑豆退赛，怨念消散，你可以投胎。三次全错=怨念失控，你永远困在竞技场，成为下一批练习生口中"闹鬼的穹顶"。</p><p style="font-size:18px;color:var(--gold);margin-top:20px"><strong>条件线·买股C位</strong></p><p style="color:var(--text-dim)">五个「本命候选」中有一个是本轮真正的C位——值得信任的人。</p><p>清除坑豆后，在最终投票中买股C位=金色结局——你带着答案投胎，下一世不再被骗。</p><p style="margin-top:16px;color:var(--text-dim);font-style:italic">怨念是骨头。信任是肉。没有骨头的肉是一滩烂泥。</p>'},
-{title:"投胎",html:'<p>清除坑豆之后，你的怨念会消散。你会获得一次投胎机会。</p><p>你的投胎身份由你的<strong>分数</strong>决定——分数越高，投胎的身份越好，买股C位的能力越强。</p><p style="color:var(--text-dim)">S级·营销号运营者——拥有一呼百应、颠倒黑白的煽动力。<br>A级·选管组长——能查阅档案、安排宿舍，拥有最高信息权限。<br>B级·唯一的姐——钞能力直接打钱，但也会让选手塌房。<br>C级·私生头子——被所有人厌恶，只能像苍蝇一样跟踪偷拍。</p><p class="thought">你前世是站姐。这一世你是阿飘。清除坑豆后，你会变成什么？取决于你这一世做了什么。</p>'},
-{title:"开始",html:'<p>好了。穹顶下面的风停了。三十个人在下面集合。</p><p>你是阿飘。没有人看得见你。你的眼睛是你唯一的武器。你的怨念是你唯一的指南针。</p><p class="thought">别信任何人。</p><p class="thought">但最后——你要学会信对一个人。</p><p style="margin-top:20px;color:var(--text-dim)">日记本翻开了第一页。第1周，第1天。</p><p style="color:var(--gold)">你开始飘。</p>'},
+{title:"竞技场",html:'<p>一座没有窗户的灰色建筑。里面关着三十个年轻男人，接受八周训练和考核。</p><p>他们来自四个纪元——C、K、J、T。四种活法，四种面具。</p><p>八周后，只有十一个人能站着走出去。剩下的会被淘汰、退市，像写错的字一样被抹掉。</p><p>你不是练习生。不是观众。你是一个阿飘——一团没有重量的灰雾，飘在穹顶下面。没有人抬头看过你。</p>'},
+{title:"四纪元",html:'<p><span class="era-tag" style="background:'+ERA_C.C+';color:#000">C纪元·冷峻制服</span>十人，灰蓝色调，制服扣到最上面一颗。不笑不哭不犯错，完美得像机器——但小赵后颈有一滴汗。</p><p><span class="era-tag" style="background:'+ERA_C.K+';color:#000">K纪元·情绪特写</span>暖色调，情绪像颜料泼在空气里。泰烈笑起来眼睛弯成月牙——但月牙底下是什么？他谢幕时摸了一下耳后，太熟练了。</p><p><span class="era-tag" style="background:'+ERA_C.J+';color:#000">J纪元·沉默氛围</span>六人坐着，没有人说话。悠真在膝盖上画圈，凪看窗外，莲压低帽子。他们在交流，但你只听见频率。</p><p><span class="era-tag" style="background:'+ERA_C.T+';color:#000">T纪元·极端光反差</span>四人站在光里，像四把刀。灯灭的瞬间你看见Ban在笑，灯亮时他不笑了。这里的人最危险——真假切换比灯还快。</p>'},
+{title:"阿飘",html:'<p>你死了。上一世是304号练习生的站姐，把全部积蓄换成了他的股份。他塌房了，你什么都没了。然后你死了。</p><p>但你的怨念太重，把你钉在这里。你飘在穹顶下面，像一团不肯散的灰。</p><p><strong style="color:var(--danger)">三十个人从你身边走过，没有一个人转头。</strong></p><p>你说话——没人听见。你伸手——手指穿过去了。你只能看，只能听。</p><p class="thought">但约2%的人有阴阳眼，能看见你、听见你。三十人里大概只有一个——ta是你唯一的嘴。找到ta之前，你只是沉默的怨鬼。</p>'},
+{title:"半记忆脉冲",html:'<p>你的记忆是碎的。你不知道谁害死了你——只知道那个人在这三十人里。</p><p>当你飘到那个人附近，你的雾会震荡、扭曲——这就是<strong style="color:var(--danger)">半记忆脉冲</strong>。不是记忆，是旧伤逢阴天就痛。</p><p>脉冲四级：微弱、中等、强烈、极强。不需要消耗任何东西，只需要靠近，感受。</p><p class="thought">脉冲会骗你。有些无辜者的信号和坑豆很像（假阳性）。更危险的是——当你为可疑者辩护时，怨念会衰减。你是鬼，但鬼也会骗自己。</p>'},
+{title:"坑豆与C位",html:'<p>两个目标。一个先做，一个后做。</p><p style="font-size:18px;color:var(--danger);margin-top:12px"><strong>主线·清除坑豆</strong></p><p style="color:var(--text-dim)">坑豆——上一世害死你的爱豆，就在这三十人中。你需要<strong>通灵者</strong>替你传话，发起「窥忆」。</p><p>三次机会。命中=坑豆退赛，怨念消散，可以投胎。三次全错=永远困在竞技场。</p><p style="font-size:18px;color:var(--gold);margin-top:20px"><strong>条件线·买股C位</strong></p><p style="color:var(--text-dim)">五个本命候选中有一个是真正的C位。清除坑豆后买股C位=金色结局——带着答案投胎，下一世不再被骗。</p>'},
+{title:"投胎",html:'<p>清除坑豆后，怨念消散，你获得一次投胎机会。投胎身份由<strong>分数</strong>决定。</p><p style="color:var(--text-dim)">S级·营销号运营者——颠倒黑白的煽动力。<br>A级·选管组长——最高信息权限。<br>B级·唯一的姐——钞能力打钱，也能塌房。<br>C级·私生头子——跟踪偷拍，被人厌恶。</p><p class="thought">前世站姐，这一世阿飘。清除坑豆后你会变成什么？取决于你做了什么。</p>'},
+{title:"开始",html:'<p>风停了。三十个人在下面集合。你是阿飘，没有人看得见你。</p><p class="thought">别信任何人。但最后——你要学会信对一个人。</p><p style="margin-top:16px;color:var(--text-dim)">第1周，第1天。</p><p style="color:var(--gold)">你开始飘。</p>'},
 ];
 
 var PROLOGUE=[
-'<p class="narrator">三年前。</p><p>你是304号练习生的站姐。</p><p>你记得那个夏天——蝉鸣，汗湿的灯牌，应援色染在手指上洗不掉。</p><p>你记得排队。记得举灯牌举到手抖。记得把全部积蓄换成了他的股份。你相信他会出道。你相信他值得。你相信他不会骗你。</p>',
-'<p>然后那天来了。</p><p>塌房。一夜之间。不是慢慢倒塌——是从顶上直接砸下来。股价归零。应援清空。你积攒的一切变成了一个负数。</p><p class="thought">你不记得那天晚上发生了什么。记忆在那个夜晚碎成了渣。你只记得那种感觉——像被人从身体里抽走了骨头。剩下一张皮。风一吹就散了。</p><p>你什么都没了。然后你死了。</p>',
-'<p class="narrator">现在。</p><p>你发现自己没有走。你没有投胎。你的怨念太重了——重到把你钉在这里。</p><p>你变成了一团雾。一个阿飘。你飘在竞技场的穹顶下面，往下看——三十个人在集合。他们年轻，鲜活，有体温。你什么都没有。</p><p>你喊了一声。没有人回头。你伸手去碰栏杆——你的手指穿过去了。你是一团空气。你不存在。</p><p class="thought">你是阿飘。没有人看得见你。你只能飘着。看着。记着。</p><p class="thought">但你的怨念在跳——三十个人里，有一个害死了你。你的雾在震荡。你知道是谁吗？</p><p style="color:var(--gold)">日记本翻开了第一页。第1周，第1天。你开始飘。</p>',
+'<p class="narrator">三年前。</p><p>你是304号练习生的站姐。蝉鸣，汗湿的灯牌，应援色染在手指上洗不掉。</p><p>你把全部积蓄换成了他的股份。你相信他会出道。你相信他不会骗你。</p>',
+'<p>然后那天来了。塌房。一夜之间。股价归零，应援清空，一切变成负数。</p><p class="thought">你不记得那天晚上发生了什么。只记得那种感觉——像被抽走了骨头，剩一张皮，风一吹就散了。</p><p>然后你死了。</p>',
+'<p class="narrator">现在。</p><p>你没有走。怨念太重，把你钉在这里。你变成了雾——一个阿飘，飘在穹顶下面。</p><p>三十个人在集合，年轻，鲜活。你喊了一声，没有人回头。你伸手碰栏杆，手指穿过去了。</p><p class="thought">三十个人里，有一个害死了你。你的雾在震荡。你知道是谁吗？</p><p style="color:var(--gold)">第1周，第1天。你开始飘。</p>',
 ];
 
 // ============================================================
@@ -3725,8 +3725,8 @@ function renderConfrontConfirm(){
       '<div>应激反应：'+eb.clues.filter(function(c){return c.type==='reaction';}).length+'条</div>'+
       '<div style="margin-top:4px">预估命中概率：约'+Math.round(hitChance)+'%</div>'+
     '</div>'+
-    '<div class="warning">⚠ 窥忆是不可逆的。一旦开始，你不能回到这一刻。<br>日记本将记录这一切，无法撕掉。</div>'+
-    '<div class="warning" style="border-color:var(--danger);margin-top:8px">⚠ 你只有3把记忆钥匙（当前剩余'+G.confrontationChances+'把）。3把全用完仍未命中坑豆=复仇失败，只能直接投胎进入买股C位。</div>'+
+    '<div class="warning">⚠ 窥忆不可逆。一旦开始无法回到此刻。</div>'+
+    '<div class="warning" style="border-color:var(--danger);margin-top:8px">⚠ 仅剩'+G.confrontationChances+'把钥匙。全用完未命中=复仇失败，只能直接投胎进入买股C位。</div>'+
     '</div>'+
     '<div class="choices">'+
       '<button class="btn btn-danger choice-btn" onclick="executeConfront('+S.confrontTarget+')">确认窥忆</button>'+
@@ -3783,23 +3783,20 @@ function renderConfrontResult(){
       return html;
     }
   } else if(r.result==="miss"){
-    html+='<p>你飘到'+r.char.name+'面前。</p>'+
-      '<p>「我知道你是谁。」</p>'+
-      '<p>他看着你。困惑。然后是受伤。然后是——什么都没有。因为他不是那个人。</p>'+
-      '<p>你的脉搏没有反应。你的半记忆没有觉醒。你找错人了。</p>'+
-      '<p class="thought" style="color:var(--danger)"><strong>未命中。'+r.char.name+'不是你的坑豆。</strong></p>'+
+    html+='<p>你飘到'+r.char.name+'面前。「我知道你是谁。」</p>'+
+      '<p>他困惑。受伤。然后什么都没有——他不是那个人。</p>'+
+      '<p class="thought" style="color:var(--danger)"><strong>未命中。'+r.char.name+'不是坑豆。</strong></p>'+
       '<p class="thought">记忆钥匙-1（剩余'+G.confrontationChances+'）· 认知失调+10</p>';
     if(G.confrontationChances>0){
-      html+='<p class="thought" style="color:var(--orange)">你还剩'+G.confrontationChances+'把钥匙。用完3把仍未命中=复仇失败，只能直接投胎进入买股C位。</p>';
+      html+='<p class="thought" style="color:var(--orange)">还剩'+G.confrontationChances+'把。全用完未命中=复仇失败，只能投胎进入买股C位。</p>';
     }
   } else {
-    html+='<p>你飘到'+r.char.name+'面前。</p>'+
-      '<p>「我知道你是谁。」</p>'+
-      '<p>他看着你。困惑。然后是愤怒。然后是——什么都没有。因为他不是那个人。你冤枉了一个无辜的人。</p>'+
-      '<p class="thought" style="color:var(--danger)"><strong>错杀。'+r.char.name+'不是你的坑豆。</strong></p>'+
+    html+='<p>你飘到'+r.char.name+'面前。「我知道你是谁。」</p>'+
+      '<p>他困惑。愤怒。你冤枉了一个无辜的人。</p>'+
+      '<p class="thought" style="color:var(--danger)"><strong>错杀。'+r.char.name+'不是坑豆。</strong></p>'+
       '<p class="thought">记忆钥匙-1（剩余'+G.confrontationChances+'）· 认知失调+15</p>';
     if(G.confrontationChances>0){
-      html+='<p class="thought" style="color:var(--orange)">你还剩'+G.confrontationChances+'把钥匙。用完3把仍未命中=复仇失败，只能直接投胎进入买股C位。</p>';
+      html+='<p class="thought" style="color:var(--orange)">还剩'+G.confrontationChances+'把。全用完未命中=复仇失败，只能投胎进入买股C位。</p>';
     }
   }
   if(G.confrontationChances<=0&&!G.nemesisConfronted){
@@ -4761,7 +4758,7 @@ function renderConfrontSelect(){
     '<p class="thought">用结城给的记忆钥匙窥忆你认定的坑豆。这是不可逆的。</p>'+
     (med?'<p class="thought" style="color:var(--gold)">'+medNote+'</p>':'<p class="thought" style="color:var(--danger)">你还没找到通灵者。没有他你无法窥忆。</p>')+
     '<p class="thought">剩余记忆钥匙：'+G.confrontationChances+'/3 · 彩头：'+G.supportPoints+'（需要'+cost+'）</p>'+
-    '<div class="warning" style="margin:10px 0">⚠ 你只有3把记忆钥匙。如果3把全用完仍未命中坑豆，复仇任务失败——你将无法再通过窥忆获胜，只能直接投胎进入买股C位。</div>'+
+    '<div class="warning" style="margin:10px 0">⚠ 3把钥匙全用完未命中坑豆=复仇失败，只能投胎进入买股C位。</div>'+
     '</div><div class="char-pick">';
   var suspects=G.suspectList.length>0?
     CHARACTERS.filter(function(c){return G.suspectList.includes(c.id)&&!G.eliminated.includes(c.id);}):
