@@ -1010,7 +1010,7 @@ var DM_PLAYER_MSGS=[];  // player-posted messages still in rotation
 
 var DM_POOL=[
   // fan reactions
-  {t:'fan',msg:'小赵今天的走位又稳又狠，不愧是C纪元第一'},
+  {t:'fan',msg:'小赵今天的走位又稳又狠，不愧是C组第一'},
   {t:'fan',msg:'胜宇的笑容好治愈啊，看一次被治愈一次'},
   {t:'fan',msg:'泰烈对粉丝太好了吧，又给签名又给合照'},
   {t:'fan',msg:'悠真的嗓音是神赐的吧，唱一句我就能哭'},
@@ -1063,13 +1063,13 @@ var DM_POOL=[
   // neutral / ambient
   {t:'fan',msg:'今天的灯光好好看'},
   {t:'fan',msg:'练习室的地板该换了，有人差点滑倒'},
-  {t:'fan',msg:'求节目组多给J纪元镜头！太少了！'},
-  {t:'fan',msg:'T纪元好危险但好好看，舞台张力拉满'},
+  {t:'fan',msg:'求节目组多给J组镜头！太少了！'},
+  {t:'fan',msg:'T组好危险但好好看，舞台张力拉满'},
   {t:'hype',msg:'这一季的选手水平比上一季高多了'},
   {t:'fan',msg:'钟元的眼神好锐利，像在观察所有人'},
   {t:'fan',msg:'阳翔今天又跟在莲后面了，好乖的小尾巴'},
   {t:'fan',msg:'结城的围巾到底是什么牌子的好好看'},
-  {t:'fan',msg:'阿雪的银色短发太酷了，C纪元唯一女相yyds'},
+  {t:'fan',msg:'阿雪的银色短发太酷了，C组唯一女相yyds'},
   {t:'hype',msg:'明天的公演分组抽签！求不要分到死亡之组'},
 ];
 
@@ -1199,95 +1199,95 @@ var S = {
 // --- Character Data ---
 var CHARACTERS=[
 {id:1,name:"小赵",era:"C",stage:92,fans:85,cp:78,level:"A",stock:128.5,bid:2,pulse:"none",
- desc:"C纪元排名第一。走位精确到毫米，表情管理无懈可击。冷面下藏着对舞台的真爱——但他的爱是沉默的。",
+ desc:"C组排名第一。走位精确到毫米，表情管理无懈可击。冷面下藏着对舞台的真爱——但他的爱是沉默的。",
  signals:["谢幕时多停留0.5秒扫视最后排","瞳孔在灯光下自然放大","签收信件后独自翻看"]},
 {id:2,name:"阿狗",era:"C",stage:70,fans:18,cp:35,level:"B",stock:64.0,bid:2,pulse:"medium",
- desc:"C纪元中上。他的笑容太标准了——每次弧度完全一样，像被编程过。",
+ desc:"C组中上。他的笑容太标准了——每次弧度完全一样，像被编程过。",
  signals:["笑容每次弧度完全相同","镜头关闭后0.2秒表情归零","签售时身体朝向镜头"]},
 {id:3,name:"小陈",era:"C",stage:58,fans:50,cp:28,level:"F",stock:5.2,nemesis:true,bid:1,pulse:"medium",
- desc:"C纪元赎罪者。私联争议塌房。制服偏大，存在感稀薄。训练量却是C纪元最大的。",
+ desc:"C组赎罪者。私联争议塌房。制服偏大，存在感稀薄。训练量却是C组最大的。",
  signals:["制服明显偏大一号","眼下有淡淡青黑","训练时长远超同级"]},
 {id:4,name:"泰烈",era:"K",stage:65,fans:88,cp:42,level:"A",stock:112.8,nemesis:true,bid:1,pulse:"extreme",
- desc:"K纪元人气最高。情绪表达精准到黄金比例——但太完美了。温暖人设完全是团队策划的。",
+ desc:"K组人气最高。情绪表达精准到黄金比例——但太完美了。温暖人设完全是团队策划的。",
  signals:["情绪表达精确到黄金比例","无镜头瞬间表情归零","手写卡片是团队批量生产"]},
 {id:5,name:"胜宇",era:"K",stage:80,fans:82,cp:76,level:"B",stock:86.2,bid:2,pulse:"none",
- desc:"K纪元最安静的人。表演后走到粉丝席最角落点头致意。走位有微小即兴变化。",
+ desc:"K组最安静的人。表演后走到粉丝席最角落点头致意。走位有微小即兴变化。",
  signals:["表演后走到粉丝席角落点头","走位有微小即兴变化","记住粉丝递信时的表情"]},
 {id:6,name:"柾佑",era:"K",stage:38,fans:62,cp:15,level:"F",stock:8.6,nemesis:true,bid:1,pulse:"weak",
- desc:"K纪元赎罪者。摆烂争议塌房。笑太用力——焦虑让他的外放看起来像在演。但笨拙是真的。外形柔美，常被误认为女生。",
+ desc:"K组赎罪者。摆烂争议塌房。笑太用力——焦虑让他的外放看起来像在演。但笨拙是真的。外形柔美，常被误认为女生。",
  signals:["笑的幅度偏大太用力","签售时眼神不自觉看向镜头","偶尔展现意外的柔韧度"]},
 {id:7,name:"悠真",era:"J",stage:75,fans:70,cp:88,level:"C",stock:42.8,bid:2,pulse:"none",
- desc:"J纪元存在感最低。有人靠近时身体无意识转向2-3度。走位有呼吸感。",
+ desc:"J组存在感最低。有人靠近时身体无意识转向2-3度。走位有呼吸感。",
  signals:["有人靠近时身体无意识转向","走位有呼吸感而非机械感","收到的信件仔细叠好保存"]},
 {id:8,name:"凪",era:"J",stage:48,fans:55,cp:68,level:"F",stock:6.4,nemesis:true,bid:1,pulse:"medium",
- desc:"J纪元赎罪者。消失事件塌房——演出前失联三天。在T纪元光暗边界站很久。说在看书，手里没有书。",
- signals:["在T纪元边缘长时间停留","给出不合逻辑的借口","灯光切换瞬间有一秒失神"]},
+ desc:"J组赎罪者。消失事件塌房——演出前失联三天。在T组光暗边界站很久。说在看书，手里没有书。",
+ signals:["在T组边缘长时间停留","给出不合逻辑的借口","灯光切换瞬间有一秒失神"]},
 {id:9,name:"Ban",era:"T",stage:90,fans:12,cp:20,level:"D",stock:28.5,nemesis:true,bid:1,pulse:"extreme",
- desc:"T纪元最危险。舞台表现惊人但粉丝回馈极低。灯光熄灭瞬间眼神从炽热变成完全空洞。暴力争议塌房。",
+ desc:"T组最危险。舞台表现惊人但粉丝回馈极低。灯光熄灭瞬间眼神从炽热变成完全空洞。暴力争议塌房。",
  signals:["灯光熄灭瞬间眼神归零","签售笑容不超0.3秒","无镜头时完全无视粉丝"]},
 {id:10,name:"Lin",era:"T",stage:85,fans:80,cp:82,level:"F",stock:3.8,nemesis:true,bid:2,pulse:"strong",
- desc:"T纪元赎罪者+本命候选。档案有涂黑记录。训练量全场最大。看起来最无害但出现在最危险的纪元。",
+ desc:"T组赎罪者+本命候选。档案有涂黑记录。训练量全场最大。看起来最无害但出现在最危险的组。",
  signals:["训练量全场最大","谢幕时认真鞠躬","面对攻击性粉丝时身体僵硬"]},
 {id:11,name:"小刘",era:"C",stage:88,fans:25,cp:55,level:"A",stock:84.0,bid:2,pulse:"medium",
- desc:"C纪元排名第二。走位精确到帧。对粉丝毫无感觉——签售动作持续时间完全相同。",
+ desc:"C组排名第二。走位精确到帧。对粉丝毫无感觉——签售动作持续时间完全相同。",
  signals:["签售动作完全标准化","无镜头时对粉丝无感知","只关注灯光角度和地板摩擦系数"]},
 {id:12,name:"阿猫",era:"C",stage:55,fans:60,cp:72,level:"B",stock:81.0,bid:2,pulse:"none",
- desc:"C纪元中等偏上。领口永远松开一颗——忘了扣。会注意到谁今天状态不好。",
+ desc:"C组中等偏上。领口永远松开一颗——忘了扣。会注意到谁今天状态不好。",
  signals:["签售握手力度比标准轻","注意到其他人的状态变化","领口永远松开一颗"]},
 {id:13,name:"小王",era:"C",stage:62,fans:45,cp:50,level:"C",stock:52.3,bid:2,pulse:"none",
- desc:"C纪元最普通。没有突出能力，没有明显缺陷。总用叠得整齐的白色手帕擦汗。",
+ desc:"C组最普通。没有突出能力，没有明显缺陷。总用叠得整齐的白色手帕擦汗。",
  signals:["练习间隙用叠好的手帕擦汗","走位精确但不会多付出","签售完成标准流程"]},
 {id:14,name:"小李",era:"C",stage:45,fans:75,cp:68,level:"B",stock:81.5,bid:2,pulse:"weak",
- desc:"C纪元唯一对粉丝好的人。记住粉丝的脸而非名字。签售时认真看着对方眼睛。",
+ desc:"C组唯一对粉丝好的人。记住粉丝的脸而非名字。签售时认真看着对方眼睛。",
  signals:["记住粉丝的脸而非名字","签售时真实眼神交流","走位偶尔出错"]},
 {id:15,name:"小孙",era:"C",stage:35,fans:35,cp:45,level:"C",stock:38.3,bid:2,pulse:"none",
- desc:"C纪元存在感最低。会在人群中后退半步。默默记录每个人的训练时间但不为任何目的。",
+ desc:"C组存在感最低。会在人群中后退半步。默默记录每个人的训练时间但不为任何目的。",
  signals:["人群中不自觉后退半步","默默记录每个人的训练时间","制服总显得空荡荡"]},
 {id:16,name:"小周",era:"C",stage:50,fans:30,cp:22,level:"D",stock:23.8,bid:2,pulse:"weak",
- desc:"C纪元下游。三个月前状态开始下滑，无人知原因。制服没有熨烫，领口松垮。曾经更好。",
+ desc:"C组下游。三个月前状态开始下滑，无人知原因。制服没有熨烫，领口松垮。曾经更好。",
  signals:["制服没有熨烫","练习时眼神涣散","签售时像行尸走肉"]},
 {id:17,name:"阿雪",era:"C",stage:68,fans:42,cp:55,level:"C",stock:55.0,bid:2,pulse:"weak",
- desc:"C纪元唯一女相。银色短发，五官精致到中性。追求效率——签售时间精确控制，多一秒都不给。",
+ desc:"C组唯一女相。银色短发，五官精致到中性。追求效率——签售时间精确控制，多一秒都不给。",
  signals:["签售时间精确控制","表演恰好卡在及格线","投入产出比思维"]},
 {id:18,name:"智勋",era:"K",stage:72,fans:58,cp:52,level:"B",stock:78.9,bid:2,pulse:"medium",
- desc:"K纪元舞台之王。镜头前光芒四射，下台后能量骤降60%。粉丝是观众不是连接。宽肩窄腰，舞台上的王者。",
+ desc:"K组舞台之王。镜头前光芒四射，下台后能量骤降60%。粉丝是观众不是连接。宽肩窄腰，舞台上的王者。",
  signals:["下台后能量骤降","公开场合热情私下不主动","不会记住粉丝细节"]},
 {id:19,name:"道英",era:"K",stage:50,fans:65,cp:38,level:"C",stock:51.0,bid:2,pulse:"none",
- desc:"K纪元最朴素。开心就笑一下，难过就沉默一下。原尺寸情绪在K纪元格格不入。高个子，总穿卫衣，存在感不强。",
+ desc:"K组最朴素。开心就笑一下，难过就沉默一下。原尺寸情绪在K组格格不入。高个子，总穿卫衣，存在感不强。",
  signals:["情绪幅度是真实的原尺寸","每个粉丝得到同等待遇","不会区别对待粉丝"]},
 {id:20,name:"宥彬",era:"K",stage:60,fans:85,cp:48,level:"A",stock:96.5,bid:2,pulse:"medium",
- desc:"K纪元人气第二。凌晨两点回复粉丝私信，生病坚持直播。真心过度了——焦虑驱动的真心。虎牙，笑起来很灿烂。",
+ desc:"K组人气第二。凌晨两点回复粉丝私信，生病坚持直播。真心过度了——焦虑驱动的真心。虎牙，笑起来很灿烂。",
  signals:["凌晨两点回复私信","生病坚持直播","无镜头时依然对粉丝好"]},
 {id:21,name:"恩杰",era:"K",stage:42,fans:48,cp:28,level:"D",stock:27.5,bid:2,pulse:"weak",
- desc:"K纪元下游。情绪失控——不该哭的时候哭。手指甲有咬过的痕迹。太真了以至于像假的。瘦高，咬指甲咬到出血。",
+ desc:"K组下游。情绪失控——不该哭的时候哭。手指甲有咬过的痕迹。太真了以至于像假的。瘦高，咬指甲咬到出血。",
  signals:["情绪来的时机永远不对","手指甲有咬过的痕迹","状态好时爆发力强但不稳定"]},
 {id:22,name:"钟元",era:"K",stage:65,fans:35,cp:70,level:"C",stock:56.7,bid:2,pulse:"none",
- desc:"K纪元最不像K纪元。冷、不互动、只关心同事。签售冷淡但会观察谁在帮谁。穿纯黑色高领，寸头，眼神如刀。",
- signals:["签售冷淡只完成最低限度","会观察其他角色的状态","穿纯黑色高领不像K纪元"]},
+ desc:"K组最不像K组。冷、不互动、只关心同事。签售冷淡但会观察谁在帮谁。穿纯黑色高领，寸头，眼神如刀。",
+ signals:["签售冷淡只完成最低限度","会观察其他角色的状态","穿纯黑色高领不像K组"]},
 {id:23,name:"俊辉",era:"K",stage:30,fans:40,cp:25,level:"E",stock:15.8,bid:2,pulse:"none",
- desc:"K纪元垫底。天生一张对不起的脸。不会演也不想演。每天坚持训练即使进步微乎其微。",
+ desc:"K组垫底。天生一张对不起的脸。不会演也不想演。每天坚持训练即使进步微乎其微。",
  signals:["脸上写着我不行","坚持训练但进步微乎其微","签售紧张但真诚"]},
 {id:24,name:"宰贤",era:"K",stage:78,fans:62,cp:48,level:"B",stock:81.5,bid:2,pulse:"none",
- desc:"K纪元唯一戴眼镜的。数据驱动——研究观众视线路径，计算最优走位。把情绪工程化了。",
+ desc:"K组唯一戴眼镜的。数据驱动——研究观众视线路径，计算最优走位。把情绪工程化了。",
  signals:["金丝边眼镜学者气质","表演有设计感","互动高效但标准化"]},
 {id:25,name:"莲",era:"J",stage:70,fans:62,cp:78,level:"C",stock:70.0,bid:2,pulse:"none",
- desc:"J纪元中上。沉默中最有目的性的。会对悠真说今天的光不错——其实在说我注意到你在这里。",
+ desc:"J组中上。沉默中最有目的性的。会对悠真说今天的光不错——其实在说我注意到你在这里。",
  signals:["偶尔主动说一句看似无关的话","认真读粉丝信后轻轻折好","手腕有旧烫伤疤"]},
 {id:26,name:"阳翔",era:"J",stage:40,fans:45,cp:60,level:"D",stock:33.8,bid:2,pulse:"none",
- desc:"J纪元下游。一个人时焦虑自言自语，有人在身边就安静。模仿莲的动作——延迟0.5秒的镜子。",
+ desc:"J组下游。一个人时焦虑自言自语，有人在身边就安静。模仿莲的动作——延迟0.5秒的镜子。",
  signals:["一个人时焦虑自言自语","不自觉模仿莲动作","莲同队时表现提升"]},
 {id:27,name:"雪绪",era:"J",stage:35,fans:50,cp:42,level:"E",stock:21.2,bid:2,pulse:"none",
- desc:"J纪元垫底。沉默是空的不是留白。眼神经常失焦——真的什么都没在想。一切在褪色。瘦到骨头可见，长发遮住半张脸。",
+ desc:"J组垫底。沉默是空的不是留白。眼神经常失焦——真的什么都没在想。一切在褪色。瘦到骨头可见，长发遮住半张脸。",
  signals:["眼神经常失焦","沉默让人想绕开","表演像执行程序"]},
 {id:28,name:"结城",era:"J",stage:55,fans:68,cp:45,level:"C",stock:56.0,bid:2,pulse:"weak",
- desc:"J纪元最高粉丝回馈。不说话但会听——听粉丝说话偶尔点一下头。围巾即使不冷也围着。天生阴阳眼——能看见阿飘。纤瘦，黑发及肩，气质空灵。",
+ desc:"J组最高粉丝回馈。不说话但会听——听粉丝说话偶尔点一下头。围巾即使不冷也围着。天生阴阳眼——能看见阿飘。纤瘦，黑发及肩，气质空灵。",
  signals:["签售时倾听多于说话","记住粉丝说话内容","围巾即使不冷也围着","有时会对着空气说话——别人以为他自言自语"],
  isMedium:true},
 {id:29,name:"New",era:"T",stage:82,fans:78,cp:75,level:"B",stock:101.8,bid:2,pulse:"strong",
- desc:"T纪元第5名本命。不极端、不断裂、不自毁。温和在极端环境中是倔强。所有人碎了，他没碎。",
- signals:["T纪元中最不极端的人","站在光暗交界处让两半融合","T纪元唯一不用危险形容的人"]},
+ desc:"T组第5名本命。不极端、不断裂、不自毁。温和在极端环境中是倔强。所有人碎了，他没碎。",
+ signals:["T组中最不极端的人","站在光暗交界处让两半融合","T组唯一不用危险形容的人"]},
 {id:30,name:"San",era:"T",stage:25,fans:72,cp:55,level:"E",stock:25.3,bid:2,pulse:"strong",
- desc:"T纪元垫底。舞台极差但粉丝回馈真心高。表演失误后跑到粉丝区道歉，签售时画简笔画。走错了纪元。",
+ desc:"T组垫底。舞台极差但粉丝回馈真心高。表演失误后跑到粉丝区道歉，签售时画简笔画。走错了组。",
  signals:["表演失误后主动道歉","签售时画简笔画","灯光切换时会愣住"]},
 ];
 
@@ -1317,16 +1317,16 @@ var LEVEL_STYLE={
 };
 
 var PULSE_TXT={
-weak:["后颈微微发凉。","心跳漏了半拍。","胃部有一丝紧缩。"],
-medium:["后颈一阵发凉，指尖发麻。","心跳加速，记忆深处有什么在翻涌。","胃部紧缩——这个画面好像见过。"],
-strong:["后颈冰冷如针扎。闪过画面：有人转身，看不清脸。","汗毛竖起，呼吸被攥住。碎片闪过：一只手、一句承诺、然后一无所有。","胃部翻涌，膝盖发软。你被骗过，就在这样的光线下。"],
-extreme:["全身电击。一瞬间看见一个笑容，和毁了你一切的那个一模一样。身体在尖叫。","极强。光线、角度、转身的姿态——和塌房前最后一夜完全一致。你在重新经历。","无法忽视。身体在用全身力气告诉你：就是他。最后画面正在和眼前重合。"],
+weak:["脖子后面有点凉。","心跳漏了一拍。","肚子有点紧。"],
+medium:["脖子发凉，手指发麻。","心跳变快了。脑子里有什么东西在动。","肚子紧了一下——这个画面好像见过。"],
+strong:["脖子像被针扎。脑子里闪过一个画面：有人转过身，但看不清脸。","全身汗毛竖起来了。闪过一些碎片：一只手、一句话、然后什么都没了。","肚子翻涌，腿有点软。你被骗过。就在这样的灯光下。"],
+extreme:["全身像被电击了一下。你看见了一个笑容。跟害你的那个人一模一样。你的身体在尖叫。","极强。灯光、角度、转身的姿势——跟那天晚上一模一样。你不只是在回忆，你是在重新经历一次。","没法忽视。你的身体在用全力告诉你：就是他。最后的画面正在和眼前的人重合。"],
 };
 var PULSE_LABELS={
-weak:{icon:'○',label:'微弱',color:'var(--text-dim)'},
-medium:{icon:'◐',label:'中等',color:'var(--orange)'},
-strong:{icon:'●',label:'强烈',color:'var(--danger)'},
-extreme:{icon:'◉',label:'极强',color:'var(--danger)'},
+weak:{icon:'○',label:'有点感觉',color:'var(--text-dim)'},
+medium:{icon:'◐',label:'明显反应',color:'var(--orange)'},
+strong:{icon:'●',label:'很强',color:'var(--danger)'},
+extreme:{icon:'◉',label:'非常强',color:'var(--danger)'},
 };
 
 var BEHAVIOR={
@@ -1357,7 +1357,7 @@ var CPOS_SIG={
 5:"表演后走到粉丝席最角落点头——他在和被忽略的人打招呼",
 7:"有人靠近时身体无意识转向——他在等一个人但他自己不知道",
 10:"训练量全场最大但看起来最无害——他在赎不属于他的罪",
-29:"T纪元唯一不极端的人——所有人碎了，他没碎",
+29:"T组唯一不极端的人——所有人碎了，他没碎",
 };
 
 // --- Navigation helpers (all go through these, always set S.page then render) ---
@@ -1396,19 +1396,19 @@ function newGame(){
 // World Intro
 // ============================================================
 var INTRO_PAGES=[
-{title:"竞技场",html:'<div style="text-align:center;font-size:32px;margin-bottom:12px;opacity:.5"> 建筑 </div><p>一座没有窗户的灰色建筑。里面关着三十个年轻男人，接受八周训练和考核。</p><p>他们来自四个纪元——C、K、J、T。四种活法，四种面具。</p><p>八周后，只有<span style="color:var(--green);font-weight:700">11人</span>能站着走出去。剩下的会被淘汰、退市，像写错的字一样被抹掉。</p><p>你不是练习生。不是观众。你是一个<strong style="color:var(--accent)">阿飘</strong>——一团没有重量的灰雾，飘在穹顶下面。没有人抬头看过你。</p>'},
-{title:"四纪元",html:'<p><span class="era-tag" style="background:'+ERA_C.C+';color:#000">C纪元·冷峻制服</span> <span style="color:var(--text-dim);font-size:12px">10人</span>　灰蓝色调，制服扣到最上面一颗。不笑不哭不犯错，完美得像机器——但小赵后颈有一滴汗。</p><p><span class="era-tag" style="background:'+ERA_C.K+';color:#000">K纪元·情绪特写</span> <span style="color:var(--text-dim);font-size:12px">10人</span>　暖色调，情绪像颜料泼在空气里。泰烈笑起来眼睛弯成月牙——但月牙底下是什么？他谢幕时摸了一下耳后，太熟练了。</p><p><span class="era-tag" style="background:'+ERA_C.J+';color:#000">J纪元·沉默氛围</span> <span style="color:var(--text-dim);font-size:12px">6人</span>　六人坐着，没有人说话。悠真在膝盖上画圈，凪看窗外，莲压低帽子。他们在交流，但你只听见频率。</p><p><span class="era-tag" style="background:'+ERA_C.T+';color:#000">T纪元·极端光反差</span> <span style="color:var(--text-dim);font-size:12px">4人</span>　四人站在光里，像四把刀。灯灭的瞬间你看见Ban在笑，灯亮时他不笑了。这里的人最危险——真假切换比灯还快。</p>'},
-{title:"阿飘",html:'<div style="text-align:center;font-size:32px;margin-bottom:12px;opacity:.5"> 雾 </div><p>你死了。上一世是304号练习生的站姐，把全部积蓄换成了他的股份。他塌房了，你什么都没了。然后你死了。</p><p>但你的怨念太重，把你钉在这里。你飘在穹顶下面，像一团不肯散的灰。</p><p><strong style="color:var(--danger)">三十个人从你身边走过，没有一个人转头。</strong></p><p>你说话——没人听见。你伸手——手指穿过去了。你只能看，只能听。</p><p class="thought">但约2%的人有<strong style="color:var(--gold)">阴阳眼</strong>，能看见你、听见你。三十人里大概只有一个——ta是你唯一的嘴。找到ta之前，你只是沉默的怨鬼。</p>'},
-{title:"半记忆脉冲",html:'<div style="text-align:center;font-size:28px;margin-bottom:8px;opacity:.5">○ ◐ ● ◉</div><p>你的记忆是碎的。你不知道谁害死了你——只知道那个人在这三十人里。</p><p>当你飘到那个人附近，你的雾会震荡、扭曲——这就是<strong style="color:var(--danger)">半记忆脉冲</strong>。不是记忆，是旧伤逢阴天就痛。</p><p style="display:flex;gap:8px;margin:8px 0"><span style="color:var(--text-dim)">○ 微弱</span><span style="color:var(--orange)">◐ 中等</span><span style="color:var(--danger)">● 强烈</span><span style="color:var(--danger);font-weight:700">◉ 极强</span></p><p class="thought">脉冲会骗你。有些无辜者的信号和坑豆很像（<span style="color:var(--orange)">假阳性</span>）。更危险的是——当你为可疑者辩护时，怨念会衰减。你是鬼，但鬼也会骗自己。</p>'},
-{title:"坑豆与C位",html:'<p>两个目标。一个先做，一个后做。</p><div style="border:1px solid var(--danger);border-radius:4px;padding:12px;margin:12px 0;background:rgba(255,68,102,.04)"><p style="font-size:16px;color:var(--danger);margin:0 0 4px"><strong>① 主线·清除坑豆</strong></p><p style="color:var(--text-dim);margin:0;font-size:14px">坑豆——上一世害死你的爱豆。需要<strong style="color:var(--accent)">通灵者</strong>替你传话，发起「窥忆」。</p><p style="margin:6px 0 0;font-size:14px"><span style="color:var(--green)">3次机会</span> · 命中=投胎 · 全错=永远困住</p></div><div style="border:1px solid var(--gold);border-radius:4px;padding:12px;margin:12px 0;background:rgba(255,215,0,.04)"><p style="font-size:16px;color:var(--gold);margin:0 0 4px"><strong>② 条件线·买股C位</strong></p><p style="color:var(--text-dim);margin:0;font-size:14px">五个本命候选中有一个是真正的C位。清除坑豆后买股C位=<span style="color:var(--gold)">金色结局</span>。</p></div>'},
-{title:"投胎",html:'<div style="text-align:center;font-size:32px;margin-bottom:12px;opacity:.5"> 投胎 </div><p>清除坑豆后，怨念消散，你获得一次投胎机会。投胎身份由<strong>分数</strong>决定。</p><div style="margin:12px 0;padding:12px;background:var(--bg);border-radius:4px;font-size:14px"><div style="color:#ffd700;margin-bottom:4px">S级·营销号运营者 — 颠倒黑白的煽动力</div><div style="color:#5b9bd5;margin-bottom:4px">A级·选管组长 — 最高信息权限</div><div style="color:#4ec9b0;margin-bottom:4px">B级·唯一的姐 — 钞能力打钱，也能塌房</div><div style="color:#777">C级·私生头子 — 跟踪偷拍，被人厌恶</div></div><p class="thought">前世站姐，这一世阿飘。清除坑豆后你会变成什么？取决于你做了什么。</p>'},
-{title:"开始",html:'<div style="text-align:center;font-size:32px;margin-bottom:12px;opacity:.3"> ↓ </div><p>风停了。三十个人在下面集合。你是阿飘，没有人看得见你。</p><p class="thought">别信任何人。但最后——你要学会信对一个人。</p><p style="margin-top:16px;color:var(--text-dim);font-size:14px;letter-spacing:2px">第1周 · 第1天</p><p style="color:var(--gold);font-size:18px">你开始飘。</p>'},
+{title:"录影棚",html:'<p>有一座很大的录影棚。没有窗户。</p><p>里面有30个男生。他们要在这里待8个星期。</p><p>8个星期后，只有<span style="color:var(--green);font-weight:700">11个人</span>能留下来。其他19个会被淘汰。</p><p>你不是选手。你不是观众。你是一个<strong style="color:var(--accent)">阿飘</strong>——就是鬼魂。你飘在录影棚的天花板下面。没有人能看见你。</p>'},
+{title:"阿飘",html:'<p>你死了。</p><p>你上一辈子是一个选手的粉丝。你把所有的钱都花在他身上了。结果他翻车了。你的钱全没了。然后你就死了。</p><p>但是你不想走。你心里有太多气。你就一直飘在录影棚里。</p><p><strong style="color:var(--danger)">30个人从你身边走过。没有人回头看你。</strong></p><p>你说话——没人听见。你伸手——手直接穿过去了。你只能看。只能听。</p><p class="thought">但是！大约100个人里有2个人天生能看见鬼。30个人里面可能有一个这样的人。ta能帮你说话。在找到ta之前，你什么都做不了。</p>'},
+{title:"半记忆脉冲",html:'<p>你的记忆是碎的。你不记得是谁害死了你。你只知道那个人就在这30个人里面。</p><p>当你飘到那个人附近，你的身体会有反应——会发抖，会变冷。这叫<strong style="color:var(--danger)">半记忆脉冲</strong>。</p><p style="display:flex;gap:8px;margin:8px 0"><span style="color:var(--text-dim)">○ 有点感觉</span><span style="color:var(--orange)">◐ 明显反应</span><span style="color:var(--danger)">● 很强</span><span style="color:var(--danger);font-weight:700">◉ 非常强</span></p><p class="thought">但是脉冲有时候会骗你。有些人明明不是害你的人，你的身体也会有反应。还有——当你替坏人找借口的时候，你的感觉会变弱。你是鬼，但鬼也会骗自己。</p>'},
+{title:"坑豆与C位",html:'<p>你有两件事要做。一件先做，一件后做。</p><div style="border:1px solid var(--danger);border-radius:4px;padding:12px;margin:12px 0;background:rgba(255,68,102,.04)"><p style="font-size:16px;color:var(--danger);margin:0 0 4px"><strong>① 找出坑你的那个人</strong></p><p style="color:var(--text-dim);margin:0;font-size:14px">他就在这30人里面。你需要找到能看见鬼的人，让ta帮你指认。</p><p style="margin:6px 0 0;font-size:14px"><span style="color:var(--green)">只有3次机会</span> · 猜对=可以投胎 · 3次全错=永远困在这里</p></div><div style="border:1px solid var(--gold);border-radius:4px;padding:12px;margin:12px 0;background:rgba(255,215,0,.04)"><p style="font-size:16px;color:var(--gold);margin:0 0 4px"><strong>② 找到真正的C位</strong></p><p style="color:var(--text-dim);margin:0;font-size:14px">5个人里面有一个是真正值得信的人。找出坑你的人之后，再选对C位=<span style="color:var(--gold)">最好结局</span>。</p></div>'},
+{title:"投胎",html:'<p>找出害你的人之后，你就可以投胎了。你投胎变成什么，看你的<strong>分数</strong>。</p><div style="margin:12px 0;padding:12px;background:var(--bg);border-radius:4px;font-size:14px"><div style="color:#ffd700;margin-bottom:4px">S级·营销号 — 说什么都有人信</div><div style="color:#5b9bd5;margin-bottom:4px">A级·选管组长 — 什么档案都能看</div><div style="color:#4ec9b0;margin-bottom:4px">B级·唯一的姐 — 有钱，能打钱也能搞塌房</div><div style="color:#777">C级·私生 — 只能跟踪偷拍，被所有人讨厌</div></div><p class="thought">你上辈子是粉丝。这辈子是鬼。找出坏人之后你会变成什么？看你这8周做了什么。</p>'},
+{title:"开始",html:'<p>好了。30个人在下面集合了。你是鬼，没有人看得见你。</p><p class="thought">不要相信任何人。但是最后——你要学会相信对的那个人。</p><p style="margin-top:16px;color:var(--text-dim);font-size:14px;letter-spacing:2px">第1周 · 第1天</p><p style="color:var(--gold);font-size:18px">你开始飘。</p>'},
 ];
+var ERA_INTRO_PAGE={title:"四组人",html:'<p>这30个人分成了4组。</p><p><span class="era-tag" style="background:'+ERA_C.C+';color:#000">C组</span> <span style="color:var(--text-dim);font-size:12px">10人</span>　穿一样的衣服，扣子扣到最上面。不笑不哭。看着像机器人——但小赵脖子后面有一滴汗。</p><p><span class="era-tag" style="background:'+ERA_C.K+';color:#000">K组</span> <span style="color:var(--text-dim);font-size:12px">10人</span>　很爱笑，很爱哭。泰烈笑起来眼睛弯弯的——但他谢幕的时候摸了一下耳朵后面。太熟练了。</p><p><span class="era-tag" style="background:'+ERA_C.J+';color:#000">J组</span> <span style="color:var(--text-dim);font-size:12px">6人</span>　坐在一起，不说话。悠真在膝盖上画圈，凪看窗外，莲把帽子压低。他们在交流，但你听不到。</p><p><span class="era-tag" style="background:'+ERA_C.T+';color:#000">T组</span> <span style="color:var(--text-dim);font-size:12px">4人</span>　站在灯光里。灯一灭，你看见Ban在笑。灯一亮，他就不笑了。这组人最危险——真假切换比灯还快。</p>'};
 
 var PROLOGUE=[
-'<p class="narrator" style="color:var(--blue)">三年前</p><p>你是304号练习生的站姐。蝉鸣，汗湿的灯牌，应援色染在手指上洗不掉。</p><p>你把全部积蓄换成了他的股份。你相信他会出道。你相信他不会骗你。</p>',
-'<p style="color:var(--danger);font-weight:700">塌房。一夜之间。</p><p>股价归零，应援清空，一切变成负数。</p><p class="thought">你不记得那天晚上发生了什么。只记得那种感觉——像被抽走了骨头，剩一张皮，风一吹就散了。</p><p style="color:var(--danger)">你死了。</p>',
-'<p class="narrator" style="color:var(--accent)">现在</p><p>你没有走。怨念太重，把你钉在这里。你变成了雾——一个阿飘，飘在穹顶下面。</p><p>三十个人在集合，年轻，鲜活。你喊了一声，没有人回头。你伸手碰栏杆，手指穿过去了。</p><p class="thought">三十个人里，有一个害死了你。你的雾在震荡。你知道是谁吗？</p><p style="color:var(--gold)">第1周 · 第1天 · 你开始飘。</p>',
+'<p class="narrator" style="color:var(--blue)">三年前</p><p>你是一个选手的粉丝。你把所有的钱都花在他身上了。</p><p>你相信他会出道。你相信他不会骗你。</p>',
+'<p style="color:var(--danger);font-weight:700">他翻车了。一夜之间。</p><p>你花在他身上的钱全没了。</p><p class="thought">你不记得那天晚上发生了什么。只记得很难受，像被人掏空了一样。</p><p style="color:var(--danger)">然后你死了。</p>',
+'<p class="narrator" style="color:var(--accent)">现在</p><p>你没有走。你心里有太多气，走不掉。你变成了鬼——一个阿飘，飘在录影棚里。</p><p>30个人在集合。你喊了一声，没有人回头。你伸手碰栏杆，手直接穿过去了。</p><p class="thought">30个人里，有一个害死了你。你的身体在发抖。你知道是谁吗？</p><p style="color:var(--gold)">第1周 · 第1天 · 你开始飘。</p>',
 ];
 
 // ============================================================
@@ -1416,11 +1416,11 @@ var PROLOGUE=[
 // ============================================================
 var SCHEDULE=[
   {w:1,d:1,type:'start',label:'入营日',icon:'◉',desc:'30名练习生入营。无公演。',phase:1},
-  {w:1,d:2,type:'practice',label:'分组训练',icon:'○',desc:'C/K/J/T四纪元分别训练。'},
+  {w:1,d:2,type:'practice',label:'分组训练',icon:'○',desc:'C/K/J/T四组分别训练。'},
   {w:1,d:5,type:'practice',label:'首次评级测试',icon:'○',desc:'内部评级，不公开结果。'},
   {w:2,d:3,type:'practice',label:'自由练习',icon:'○',desc:'自由组队练习。'},
-  {w:2,d:7,type:'performance',label:'【第1次公演】等级评价战',icon:'★',desc:'30人按纪元出场。评级A-F正式公布。淘汰末位E/F级部分选手。',phase:1},
-  {w:3,d:1,type:'practice',label:'P2开启·分组抽签',icon:'◉',desc:'Phase 2开始。跨纪元混合分组。'},
+  {w:2,d:7,type:'performance',label:'【第1次公演】等级评价战',icon:'★',desc:'30人按组出场。评级A-F正式公布。淘汰末位E/F级部分选手。',phase:1},
+  {w:3,d:1,type:'practice',label:'P2开启·分组抽签',icon:'◉',desc:'Phase 2开始。跨组混合分组。'},
   {w:3,d:4,type:'performance',label:'【第2次公演】分组对战',icon:'★',desc:'混合组对抗。输的组全员危险区。'},
   {w:4,d:2,type:'practice',label:'CP主题训练',icon:'○',desc:'CP羁绊值影响公演加分。'},
   {w:4,d:7,type:'performance',label:'【第3次公演】CP主题战',icon:'★',desc:'双人舞台。CP默契度决定排名。'},
@@ -1453,11 +1453,11 @@ var PERFORMANCES={
     label:'第1次公演·等级评价战',
     stage:'stage_perf1',
     narrative:[
-      '竞技场的穹顶灯全亮了。你飘在看台的角落，看着练习生们站上真正的舞台——不是练习室的地板，是有灯光、有镜头、有观众席的正式舞台。',
-      'C纪元率先登场。十个人穿着统一的黑色制服，走位精确到毫米。小赵站在中央，他的冷不是表演——是骨子里的。你从看台上飘过，凑近了看他的瞳孔——在灯光下没有变化。对舞台的热忱是真的，对观众的漠然也是真的。',
-      'K纪元的出场让全场温度升了五度。泰烈第一个开口，他的声音像蜂蜜浇在热面包上——你知道这种声音会让多少人沦陷。你飘到他正前方，没有人察觉。你的注意力在他的手：他谢幕时摸了一下耳后。那个动作……你的雾在震荡。',
-      'J纪元安静得像一幅画。悠真只唱了一句，但那一句让整个观众席屏住了呼吸。凪站在角落，几乎隐形——但你在他转身的瞬间看到了一个不该出现的笑容。你飘到他身边，想看清——他打了个寒颤，像感觉到了什么。但他只是裹紧了外套。',
-      'T纪元最后登场。光和暗的切割像刀。Ban的爆发力让前排尖叫，但他的眼神扫过观众时像在看猎物。Lin站在他旁边，稳得像一座桥。San在最后排，但他的存在感不输给任何人。',
+      '录影棚的穹顶灯全亮了。你飘在看台的角落，看着练习生们站上真正的舞台——不是练习室的地板，是有灯光、有镜头、有观众席的正式舞台。',
+      'C组率先登场。十个人穿着统一的黑色制服，走位精确到毫米。小赵站在中央，他的冷不是表演——是骨子里的。你从看台上飘过，凑近了看他的瞳孔——在灯光下没有变化。对舞台的热忱是真的，对观众的漠然也是真的。',
+      'K组的出场让全场温度升了五度。泰烈第一个开口，他的声音像蜂蜜浇在热面包上——你知道这种声音会让多少人沦陷。你飘到他正前方，没有人察觉。你的注意力在他的手：他谢幕时摸了一下耳后。那个动作……你的雾在震荡。',
+      'J组安静得像一幅画。悠真只唱了一句，但那一句让整个观众席屏住了呼吸。凪站在角落，几乎隐形——但你在他转身的瞬间看到了一个不该出现的笑容。你飘到他身边，想看清——他打了个寒颤，像感觉到了什么。但他只是裹紧了外套。',
+      'T组最后登场。光和暗的切割像刀。Ban的爆发力让前排尖叫，但他的眼神扫过观众时像在看猎物。Lin站在他旁边，稳得像一座桥。San在最后排，但他的存在感不输给任何人。',
       '评级结果出来了。A级3人、B级5人、C级9人、D级6人、E级3人、F级4人。F级的四人站在淘汰线上。你飘到小陈身边——他的嘴角抽了一下，只有0.2秒。他不知道你在。你看着他的脸，你的雾在浓。'
     ],
     observationHint:'公演中你可以专注观察一个人的舞台表现，获得平时看不到的线索。',
@@ -1469,9 +1469,9 @@ var PERFORMANCES={
     label:'第2次公演·分组对战',
     stage:'stage_perf2',
     narrative:[
-      '跨纪元混合分组。舞台被分成了三个区域——红、蓝、白。每组占据一区，对抗开始。',
+      '跨组混合分组。舞台被分成了三个区域——红、蓝、白。每组占据一区，对抗开始。',
       '第一组的表现中规中矩，但你能看到有人在做"安全表演"——不犯错也不出彩。小刘的走位依然完美，但他的队友跟不上他的节奏。差距太明显了。',
-      '第二组让全场沸腾。小赵被分到了和宥彬一组——C纪元和K纪元的碰撞。小赵的冷和宥彬的热形成了一种奇妙的张力。但你的视线被另一个人抓住了：阿狗在另一组，他的笑容在舞台上格外灿烂——灿烂到不真实。',
+      '第二组让全场沸腾。小赵被分到了和宥彬一组——C组和K组的碰撞。小赵的冷和宥彬的热形成了一种奇妙的张力。但你的视线被另一个人抓住了：阿狗在另一组，他的笑容在舞台上格外灿烂——灿烂到不真实。',
       '第三组出了意外。San在表演中失误了，掉了道具。但他没有停，直接即兴接上，反而比原编排更好。你在他眼里看到了真正的火焰——不是愤怒，是求生欲。',
       '输的那组全员进入危险区。你注意到有人在那组的表情——不是沮丧，是计算。在算自己还有多少筹码可以翻盘。'
     ],
@@ -1484,7 +1484,7 @@ var PERFORMANCES={
     label:'第3次公演·CP主题战',
     stage:'stage_perf3',
     narrative:[
-      '今晚的主题是"双人舞台"。CP组合站在一起，灯光只打在他们两个人身上。整个竞技场像一座巨大的暗室，只有舞台中央是亮的。',
+      '今晚的主题是"双人舞台"。CP组合站在一起，灯光只打在他们两个人身上。整个录影棚像一座巨大的暗室，只有舞台中央是亮的。',
       '小赵和阿狗第一个上场。小赵的表演依然完美，但你注意到阿狗在努力跟上——他的笑容在Leo转身时碎了一瞬，又在Leo回头的瞬间拼回来。那个碎裂和拼接的速度，让你想起了一件事：面具。',
       '悠真和凪的表演让全场安静。悠真的歌声像潮水，凪在旁边用舞蹈回应。他们的默契不像练出来的——像是天生的。你的脉搏对这种"默契"有反应，但分不清是感应还是共鸣。',
       'Lin和Ban上场了。这是你最期待的组合。Lin在舞台上像另一个完全不同的人——他替Ban挡住了所有高光，把自己缩在暗处。但Ban的眼里没有Lin。Ban的眼里只有镜头。你的半记忆在尖叫：这种"替别人挡"的行为，你在上一世见过。',
@@ -1515,7 +1515,7 @@ var PERFORMANCES={
     label:'第5次公演·半决赛',
     stage:'stage_perf5',
     narrative:[
-      '练习生只剩15人了。竞技场的观众席坐满了。灯光从暖色变成了冷色——节目组在暗示：从这里开始，不再温柔。',
+      '练习生只剩15人了。录影棚的观众席坐满了。灯光从暖色变成了冷色——节目组在暗示：从这里开始，不再温柔。',
       '半决赛的规则很简单：每人一首歌，观众投票。票数前11出道，后4淘汰。没有组队，没有CP，只有你和舞台。',
       '你已经在看台上坐了六周了。你见过这些人在练习室里的样子、在走廊里的样子、在镜头前的样子、在镜头后的样子。今晚，你要看他们在"一切都要结束"面前的样子。',
       '小赵上台时，你注意到他多看了一眼阿狗的方向。阿狗已经被淘汰了——但他还是看了。那个方向是空的。他的歌是唱给不在的人的。舞台热忱是真的。但他的眼睛——你在上一世见过那种眼睛。不，不是小赵。是另一个人。',
@@ -1684,6 +1684,7 @@ function chooseDailyEvent(choiceIdx){
     goConfront:choice.effect.go_confront,
     goStock:choice.effect.go_stock,
     goCard:choice.effect.go_card,
+    eraIntro:choice.effect.eraIntro,
   };
   S.page='daily_event_result';
   autoSave();
@@ -2715,7 +2716,7 @@ function renderDayMorning(){
   var morningDescs=[
     "天还没亮。练习室的灯已经亮了——总有人比你更早。",
     "走廊里飘着咖啡和汗水混合的气味。新的一天开始了。",
-    "窗外的天色还没变。你飘在半空，等待这座竞技场苏醒。",
+    "窗外的天色还没变。你飘在半空，等待这座录影棚苏醒。",
     "有人在隔壁练嗓子。声音穿过墙壁，模糊不清。",
     "今天的风从练习室尽头吹来。你感觉到了什么——说不清。",
     "闹钟响了三遍。没人能关掉它，也没人能真正醒来。"
@@ -2783,7 +2784,7 @@ function renderDayMorning(){
   return '<p class="narrator">第'+G.week+'周·第'+G.day+'天</p>'+
     '<p>'+morningDesc+'</p>'+
     schedNote+
-    '<p class="thought">你翻开日记本。今天有'+(30-G.eliminated.length)+'个人在这座竞技场里。其中一个人毁了你上一世的一切，另一个人值得你这一世的全部信任。</p>'+
+    '<p class="thought">你翻开日记本。今天有'+(30-G.eliminated.length)+'个人在这座录影棚里。其中一个人毁了你上一世的一切，另一个人值得你这一世的全部信任。</p>'+
     '<p class="thought">你不知道他们是谁。但你的脉搏记得。</p>'+
     phaseNote+
     '<p class="thought">今天你可以做'+(G.maxActions-G.actionsToday)+'件事。</p>'+
@@ -2838,7 +2839,7 @@ function renderDiaryNight(){
   var nightDescs=[
     "练习室的灯灭了。黑暗中没有人感觉到多了一团雾。",
     "走廊的灯熄了一半。有人在哪个房间里小声哭。你帮不上忙，你是阿飘。",
-    "深夜的竞技场很安静。你的雾在暗处更浓了。",
+    "深夜的录影棚很安静。你的雾在暗处更浓了。",
     "灯全关了。黑暗是完整的。在黑暗里，你和活人没有区别。",
     "凌晨两点。有人在翻来覆去。有人在梦话。你飘在走廊里，听着。",
     "夜风从没关好的窗户吹进来。你什么都感觉不到——阿飘没有体温。"
@@ -2921,7 +2922,7 @@ function renderDiaryNight(){
   html+='<p class="thought">你合上日记本。熄灯。闭上眼。</p>';
 
   if(G.week<7){
-    html+='<p class="thought">明天又是新的一天。竞技场不会等你。</p>';
+    html+='<p class="thought">明天又是新的一天。录影棚不会等你。</p>';
   } else {
     html+='<p class="thought" style="color:var(--danger)">明天越来越近了。你必须准备好了。</p>';
   }
@@ -2940,11 +2941,11 @@ var DAILY_EVENTS=[
   {text:"回去翻翻排名表的照片",effect:{support:-50,result:"你回到看台翻出手机里的照片。放大——你看到了那个让你停顿的名字，但照片太模糊了。你记住了大概的位置：中游偏下。",pulse_hint:true}},
   {text:"不管了，先去练习室看看",effect:{support:0,result:"你决定不纠结。直觉会再来的。"}},
 ]},
-{week:1,day:2,text:"午餐时间。餐厅里三十个人分成几桌。你注意到C纪元和K纪元的人坐得很远——像两种动物在同一个笼子里。有人在你旁边的位置坐下了。",choices:[
+{week:1,day:2,text:"午餐时间。餐厅里三十个人分成几桌。你注意到C组和K组的人坐得很远——像两种动物在同一个笼子里。有人在你旁边的位置坐下了。",choices:[
   {text:"看一眼是谁",effect:{support:0,result:"是小李。他朝你点了点头，然后低头吃饭。他没有说话——但你注意到他的餐盘里多了一份水果，是食堂标准之外的东西。有人给他额外的好处。",observe:14}},
   {text:"低头假装没看到",effect:{support:0,result:"你低头扒饭。那个人的脚步声走远了。你没有看清是谁。"}},
 ]},
-{week:1,day:3,text:"深夜。竞技场安静下来后，你听到走廊尽头传来钢琴声。不像是练习——更像是在弹给自己听。旋律很慢，有点悲伤。你飘过去，看到一个人坐在黑暗的琴房里。",choices:[
+{week:1,day:3,text:"深夜。录影棚安静下来后，你听到走廊尽头传来钢琴声。不像是练习——更像是在弹给自己听。旋律很慢，有点悲伤。你飘过去，看到一个人坐在黑暗的琴房里。",choices:[
   {text:"站在门口听一会儿",effect:{support:0,result:"是悠真。他没有开灯。你站在门口听了三分钟，他始终没有发现你。他的手指在琴键上很轻，像怕吵醒什么人。你记住了这个画面。",observe:7}},
   {text:"走开，不该偷看",effect:{support:0,result:"你转身离开。钢琴声在你身后继续。"}},
 ]},
@@ -2956,39 +2957,40 @@ var DAILY_EVENTS=[
   {text:"继续盯着看",effect:{support:0,result:"你死死盯着那几张卡片。泰烈的笑容温暖、标准、完美。每一个粉丝得到同样的温暖——一模一样的弧度，一模一样的力度。你的脉搏开始跳了。",pulse_char:4}},
   {text:"强迫自己移开目光",effect:{support:0,result:"你闭上眼。不是他。不能这么快下结论。上一世的人太多了。"}},
 ]},
-{week:1,day:6,text:"今天的训练结束后，你看到Lin一个人在练习室加练。T纪元的人很少主动加练——他们更倾向于即兴和破坏。但Lin在重复同一组动作，一遍又一遍。像是在赎罪。",choices:[
+{week:1,day:6,text:"今天的训练结束后，你看到Lin一个人在练习室加练。T组的人很少主动加练——他们更倾向于即兴和破坏。但Lin在重复同一组动作，一遍又一遍。像是在赎罪。",choices:[
   {text:"留下来观察他",effect:{support:0,result:"他练了很久。汗水浸透了T恤。在灯光熄灭的间隙——你看到了——他的眼神从专注变成了空洞。0.1秒。然后恢复。这个眼神你见过。在上一世的最后。",pulse_char:10}},
-  {text:"他去T纪元的，跟你无关",effect:{support:0,result:"你离开了。但那个重复练习的身影在脑中挥之不去。"}},
+  {text:"他去T组的，跟你无关",effect:{support:0,result:"你离开了。但那个重复练习的身影在脑中挥之不去。"}},
 ]},
-{week:1,day:7,text:"第一周结束了。你在日记本上写下：「七天了。我还是不知道是谁。但我确定了三件事：1 有人在我面前会伪装 2 我的脉搏不会无缘无故跳 3 这一次我不会再被骗。」你翻回第一页，看了看日期。还剩七周。",choices:[
-  {text:"继续写",effect:{support:0,result:"你写了很多。关于C纪元的冷漠、K纪元的过度温暖、J纪元的沉默、T纪元的危险。关于谁让你心跳加速，谁让你平静。你合上日记本。明天是新的一周。"}},
+{week:1,day:7,text:"第一周结束了。你在日记本上写下：「7天了。我还是不知道是谁。但我确定了三件事：1 有人在我面前会装 2 我的身体不会无缘无故发抖 3 这一次我不会再被骗了。」还剩7周。",choices:[
+  {text:"继续写",effect:{support:0,result:"你开始写这30个人分成4组的事。"}},
+  {text:"看看4组人的特点",effect:{support:0,result:"你仔细想了想这4组人。",eraIntro:true}},
 ]},
 // Week 2 events
 {week:2,day:1,text:"第二周开始。你在公告栏上看到了新的排名。有人上升了，有人下降了。你注意到小周的排名从D级跌到了E级——他最近状态很差。三个月前发生了什么？",choices:[
   {text:"去观察小周",effect:{support:0,result:"你飘到小周。他坐在角落里发呆。制服皱巴巴的，领口松垮。你飘近的时候他抬头看了你一眼——眼神空洞。他在自言自语。「还好。」「还好」。但他没有看你。",observe:16}},
   {text:"不管他",effect:{support:0,result:"每个赛季都有掉队的人。你没有时间同情所有人。"}},
 ]},
-{week:2,day:2,text:"你在休息室听到San在和人争论。他的声音很大：「我不需要你们的设计！我要自己来！」T纪元的人很少这么激动——通常他们用沉默和断裂表达情绪。San的愤怒是热的，不像T纪元。",choices:[
-  {text:"走近看看",effect:{support:0,result:"San在和编导争执。他的走位设计被否决了。编导说他「不够极端」。San的眼睛红了——他不是在发脾气，他是在保护自己的东西。你注意到他的粉丝回馈极高，但舞台评分很低。走错了纪元的人。",observe:30}},
-  {text:"不掺和",effect:{support:0,result:"你飘开了。T纪元的事情和你无关——至少现在。"}},
+{week:2,day:2,text:"你在休息室听到San在和人争论。他的声音很大：「我不需要你们的设计！我要自己来！」T组的人很少这么激动——通常他们用沉默和断裂表达情绪。San的愤怒是热的，不像T组。",choices:[
+  {text:"走近看看",effect:{support:0,result:"San在和编导争执。他的走位设计被否决了。编导说他「不够极端」。San的眼睛红了——他不是在发脾气，他是在保护自己的东西。你注意到他的粉丝回馈极高，但舞台评分很低。走错了组的人。",observe:30}},
+  {text:"不掺和",effect:{support:0,result:"你飘开了。T组的事情和你无关——至少现在。"}},
 ]},
 {week:2,day:3,text:"今天的直播环节。宥彬又在凌晨回复粉丝私信了。你在看台上看直播——他的黑眼圈很明显，但笑容完美。弹幕在刷「哥哥太辛苦了」。你在想：他是真的爱粉丝，还是怕被遗忘？",choices:[
   {text:"去观察宥彬",effect:{support:0,result:"直播结束后你飘到了他。他在后台吃胃药。看到你来，他把药藏到了身后。「没事！吃维生素而已！」他的笑容切换得太快了——0.1秒从疲惫到元气。这种切换速度让你想起上一世的某个人。",pulse_char:20}},
   {text:"记下，不去接近",effect:{support:0,result:"你在日记本上记了一笔：宥彬，过度真心，可能是焦虑驱动。"}},
 ]},
-{week:2,day:4,text:"今天发生了一件大事。Ban在训练中突然停下，走到角落，面壁站了三分钟。没有人敢问他怎么了。T纪元的人本来就让人害怕——但Ban不是在发怒。他像是在——等待什么。",choices:[
+{week:2,day:4,text:"今天发生了一件大事。Ban在训练中突然停下，走到角落，面壁站了三分钟。没有人敢问他怎么了。T组的人本来就让人害怕——但Ban不是在发怒。他像是在——等待什么。",choices:[
   {text:"趁这个机会观察Ban",effect:{support:0,result:"你远远看着Ban。他面壁站着，双手握拳。灯光切换的瞬间——他的背影轮廓和记忆碎片里那个画面重合了。那个毁了你一切的人，也曾经这样站着。你的脉搏剧烈跳动。",pulse_char:9}},
-  {text:"远离他",effect:{support:0,result:"你转身离开。T纪元的人太危险了。你不想靠近Ban。"}},
+  {text:"远离他",effect:{support:0,result:"你转身离开。T组的人太危险了。你不想靠近Ban。"}},
 ]},
 {week:2,day:5,text:"午饭时智勋坐到了你旁边。他下台后的样子和舞台上完全不一样——没有光环，没有能量，像一个被拔掉电源的灯。他问你要不要一起去便利店买水。",choices:[
   {text:"跟他去",effect:{support:-30,result:"便利店的灯很亮。智勋在货架前站了很久，最后只买了一瓶矿泉水。他说：「舞台上的智勋是假的。但这个是真的。」你不知道该怎么回答。花了30彩头请他喝水。",observe:18}},
   {text:"婉拒",effect:{support:0,result:"你飘在旁边。智勋自言自语「在忙啊」，走了。他的背影看起来比舞台上小了两号。"}},
 ]},
-{week:2,day:6,text:"你在走廊里第一次看到Lin和Ban站在一起。CP关系——T纪元的赎罪者和最危险的人。他们在说什么。Lin的表情很紧张，Ban背对着你。",choices:[
+{week:2,day:6,text:"你在走廊里第一次看到Lin和Ban站在一起。CP关系——T组的赎罪者和最危险的人。他们在说什么。Lin的表情很紧张，Ban背对着你。",choices:[
   {text:"偷偷靠近听",effect:{support:0,result:"你贴近墙壁。「你不用替我背。」Ban的声音。「我说了我愿意。」Lin的声音。然后他们发现了你。Ban的眼神在0.05秒内从正常变成——冰冷的空白。你转身跑了。",pulse_char:9}},
-  {text:"走开",effect:{support:0,result:"你绕道走了。T纪元的CP关系太复杂了。你不想卷进去。"}},
+  {text:"走开",effect:{support:0,result:"你绕道走了。T组的CP关系太复杂了。你不想卷进去。"}},
 ]},
-{week:2,day:7,text:"第二周结束。你在日记本上写：「两周了。我开始能分辨一些东西了。有些人的温暖是计算过的，有些人的冷漠是保护壳。但那个人——那个人毁了我一切的人——他的伪装比我以为的更深。我需要更多证据。」",choices:[
+{week:2,day:7,text:"第二周结束了。你在日记本上写：「两周了。我开始能看出一些东西了。有些人的笑是假的，有些人的冷漠是保护自己。但害我的那个人——他装得比我想的更深。我需要更多证据。」",choices:[
   {text:"继续写",effect:{support:0,result:"你写了很久。关于谁是真心的，谁在演。关于你的脉搏为谁跳过。下周开始，观察的成本会降低。你要加快速度了。"}},
 ]},
 // Week 3 events - Phase 2 transition
@@ -3001,63 +3003,63 @@ var DAILY_EVENTS=[
 ]},
 {week:3,day:3,text:"你在练习室走廊飘过。胜宇靠在墙上，看到你路过——不，他看的是你身后的镜子。但他说了一句：「新来的站姐？你看起来很累。」他是对着镜子说的。但你觉得他在说你。",choices:[
   {text:"和他聊聊",effect:{support:0,result:"胜宇带你在走廊的长椅上坐下。他说：「这里的人大多在演。但你能分辨的。对吧？」你听着。他说。他说：「因为你的眼神和我不一样。你在找一个人。」他没有再说了。你记住了胜宇。",observe:5}},
-  {text:"谢过他，走开",effect:{support:0,result:"你点了点头，走了。你不知道该不该信他。K纪元的人也许都在演。"}},
+  {text:"谢过他，走开",effect:{support:0,result:"你点了点头，走了。你不知道该不该信他。K组的人也许都在演。"}},
 ]},
 {week:3,day:4,text:"今天你做了一个梦。梦里你回到了上一世塌房的那一夜。你看到了一只手——很长——递给你一杯水。然后那只手收回了。灯光暗下来。你听到了一个声音说：「对不起。」但你看不到脸。",choices:[
   {text:"努力看清脸",effect:{support:0,result:"你在梦里拼命睁大眼。脸的轮廓浮上来——但只有一瞬间。然后你醒了。枕头湿了。你在日记本上写下：「长手指。对不起。灯光暗下来。」这是到目前为止最清晰的碎片。"}},
   {text:"强迫自己醒来",effect:{support:0,result:"你睁开眼。太痛了。你不想看那张脸。至少现在不想。"}},
 ]},
-{week:3,day:5,text:"你在公告栏看到排名变动。小刘的排名超过了小赵，成为C纪元第一。你翻看小刘的签售记录——动作标准化，时间精确，对粉丝零感知。他完美，但完美得像个机器。",choices:[
+{week:3,day:5,text:"你在公告栏看到排名变动。小刘的排名超过了小赵，成为C组第一。你翻看小刘的签售记录——动作标准化，时间精确，对粉丝零感知。他完美，但完美得像个机器。",choices:[
   {text:"去观察小刘",effect:{support:0,result:"你飘到练习室，看到小刘。他正在对着镜子调整走位——精确到帧。你飘近的时候他没有回头。你站在他身后看了三分钟。他没有动过。你怀疑他是否知道你在。然后他突然说：「你的呼吸声打乱了我的节奏。」你退后了。",observe:11}},
-  {text:"记下，以后再看",effect:{support:0,result:"你在日记本上记了一笔。小刘。C纪元。完美但冰冷。"}},
+  {text:"记下，以后再看",effect:{support:0,result:"你在日记本上记了一笔。小刘。C组。完美但冰冷。"}},
 ]},
-{week:3,day:6,text:"你在一个无人的角落翻看笔记本。突然发现有一个名字你一直忽略了——钟元。他穿纯黑色高领，不像K纪元。他签售冷淡但会观察别人。他到底在做什么？",choices:[
+{week:3,day:6,text:"你在一个无人的角落翻看笔记本。突然发现有一个名字你一直忽略了——钟元。他穿纯黑色高领，不像K组。他签售冷淡但会观察别人。他到底在做什么？",choices:[
   {text:"去找钟元",effect:{support:0,result:"你飘到了钟元。他坐在休息室的角落，手里拿着一本笔记本——和你一样。你在他身边坐下。他看了你一眼说：「你也在找人。」不是问句。你想问，但你说不出话。他没有回答。",observe:22}},
   {text:"以后再说",effect:{support:0,result:"你合上了日记本。太多人了。你不能同时追所有人。"}},
 ]},
-{week:3,day:7,text:"第三周结束。Phase 2过了一半了。你在日记本上写：「记忆越来越清晰了。我知道那个人的手很长。他在灯光暗下来之前说了对不起。也许他不是故意的？不——不能这么想。不要为任何人找借口。你的直觉是对的。」",choices:[
+{week:3,day:7,text:"第三周结束了。你在日记本上写：「记忆越来越清楚了。我知道那个人的手很长。他在灯暗下来之前说了对不起。也许他不是故意的？不——不能这么想。不要替坏人找借口。你的直觉是对的。」",choices:[
   {text:"继续写",effect:{support:0,result:"你翻看证据板。有些人的信心值在上升。有些人的脉冲在变强。你在靠近真相了。"}},
 ]},
 // Week 4 events
-{week:4,day:1,text:"第四周。你在训练间隙看到莲走到悠真身边，说了一句什么。悠真的身体无意识地转向了莲——2-3度。莲没有看悠真，但他在悠真身边坐下了。J纪元的交流方式。",choices:[
+{week:4,day:1,text:"第四周。你在训练间隙看到莲走到悠真身边，说了一句什么。悠真的身体无意识地转向了莲——2-3度。莲没有看悠真，但他在悠真身边坐下了。J组的交流方式。",choices:[
   {text:"观察他们的互动",effect:{support:0,result:"莲和悠真坐在一起，没有说话。但你能感觉到他们之间有什么——一种沉默的共鸣。莲的手腕露出来了，有一道旧疤。悠真看到了，没有问。你记住了这一幕。",observe:25}},
-  {text:"不打扰他们",effect:{support:0,result:"你飘开了。J纪元的关系太安静了，你读不懂。"}},
+  {text:"不打扰他们",effect:{support:0,result:"你飘开了。J组的关系太安静了，你读不懂。"}},
 ]},
 {week:4,day:2,text:"今天有人在你的看台座位上放了一封信。没有署名。信上写：「我知道你是谁。你也在找谁。小心。」你猛地抬头四处看——没有人在。",choices:[
   {text:"分析这封信",effect:{support:0,result:"你飘在信旁边看了又看。字迹工整但用力不均——写字的人手在抖。纸张是练习室的标准用纸。有人在监视你。但谁？为什么？"}},
   {text:"收好信，假装没收到",effect:{support:0,result:"信夹进了日记本。你知道有人在看你。但你不知道是敌是友。"}},
 ]},
-{week:4,day:3,text:"你决定在训练结束后多留一会儿。灯光全部关闭——只剩下应急灯的微光。你听到练习室里有声音。有人在黑暗中训练。T纪元的人。",choices:[
-  {text:"飘进去看",effect:{support:0,result:"你飘到开练习室的门。New站在极端的光暗交界处——他没有在训练。他在站着。看着黑暗。你飘近的时候他转过身——他的表情是温和的。在T纪元。极端的环境中。他是温和的。这让你困惑。",observe:29}},
-  {text:"关上门离开",effect:{support:0,result:"你不想在黑暗中面对T纪元的人。你关上了门。"}},
+{week:4,day:3,text:"你决定在训练结束后多留一会儿。灯光全部关闭——只剩下应急灯的微光。你听到练习室里有声音。有人在黑暗中训练。T组的人。",choices:[
+  {text:"飘进去看",effect:{support:0,result:"你飘到开练习室的门。New站在极端的光暗交界处——他没有在训练。他在站着。看着黑暗。你飘近的时候他转过身——他的表情是温和的。在T组。极端的环境中。他是温和的。这让你困惑。",observe:29}},
+  {text:"关上门离开",effect:{support:0,result:"你不想在黑暗中面对T组的人。你关上了门。"}},
 ]},
-{week:4,day:4,text:"今天智勋在直播中突然哭了。弹幕炸了——「哥哥怎么了」「是不是太累了」。你看着直播画面，你不确定——那泪水是真的还是设计好的。K纪元的人太擅长这个了。",choices:[
+{week:4,day:4,text:"今天智勋在直播中突然哭了。弹幕炸了——「哥哥怎么了」「是不是太累了」。你看着直播画面，你不确定——那泪水是真的还是设计好的。K组的人太擅长这个了。",choices:[
   {text:"去后台找智勋",effect:{support:0,result:"你飘到后台，看到智勋。他已经不哭了。在看手机。屏幕上是自己的直播回放。他在回看自己的哭泣画面。他在自言自语。「还好。」：「我刚才哭得好看吗？」你说不出话。",observe:18}},
-  {text:"在直播间看",effect:{support:0,result:"你在看台上继续看。智勋的哭泣持续了2分47秒。然后他笑了。切换的速度是0.3秒。K纪元标准。"}},
+  {text:"在直播间看",effect:{support:0,result:"你在看台上继续看。智勋的哭泣持续了2分47秒。然后他笑了。切换的速度是0.3秒。K组标准。"}},
 ]},
 {week:4,day:5,text:"你在走廊遇到泰烈。他停下来对你笑了笑——温暖的、标准的那种。然后他说：「站姐，你最近是不是在调查什么？」你的心跳停了一拍。",choices:[
   {text:"反问他什么意思",effect:{support:0,result:"泰烈的笑容不变。「没什么。只是注意到你看人的眼神不一样。」他拍了拍你的肩膀走了。那个触碰让你浑身发冷。他知道。他知道你在找人。",pulse_char:4}},
   {text:"装傻",effect:{support:0,result:"你飘在旁边。泰烈自言自语「随便看看啊」。泰烈笑了。「那就好。」他走了。但他的笑容在你脑子里挥之不去。"}},
 ]},
-{week:4,day:6,text:"你发现San在签售会上给每个粉丝画简笔画——不同的人画不同的东西。有一个粉丝收到了一只猫，另一个收到了一朵花。他认真地画，像这是世界上最重要的事。T纪元垫底的人，在做最温柔的事。",choices:[
+{week:4,day:6,text:"你发现San在签售会上给每个粉丝画简笔画——不同的人画不同的东西。有一个粉丝收到了一只猫，另一个收到了一朵花。他认真地画，像这是世界上最重要的事。T组垫底的人，在做最温柔的事。",choices:[
   {text:"排队要一张",effect:{support:-50,result:"你排在队伍最后。轮到你的时候San抬头看了你一眼——然后他画了一只鸟。展翅飞的鸟。他说：「你看起来像需要飞的人。」花了50彩头。但你觉得值。",observe:30}},
-  {text:"远远看着",effect:{support:0,result:"你看着San画了二十多张简笔画。每个粉丝离开时都在笑。T纪元垫底的人给了最多人快乐。"}},
+  {text:"远远看着",effect:{support:0,result:"你看着San画了二十多张简笔画。每个粉丝离开时都在笑。T组垫底的人给了最多人快乐。"}},
 ]},
-{week:4,day:7,text:"第四周结束。你在日记本上写：「有人知道我在做什么了。泰烈——他一定是感觉到了什么。或者他就是那个人。我不能再犹豫了。下周我要开始窥忆了。三把钥匙。我不能浪费。」",choices:[
+{week:4,day:7,text:"第四周结束了。你在日记本上写：「有人知道我在干什么了。泰烈——他一定感觉到了什么。或者他就是那个人。我不能再犹豫了。下周我要开始用钥匙了。3把。不能浪费。」",choices:[
   {text:"继续写",effect:{support:0,result:"你看了眼证据板。信心值最高的人——那可能就是你的坑豆。也可能是假阳性。但你现在必须做出判断了。"}},
 ]},
 // Week 5-6 events - intensifying
-{week:5,day:1,text:"第五周。你发现竞技场里多了一些你以前没注意到的东西——有人在练习室的角落贴了便签。上面写着各种信息：「泰烈的训练时间比公布的少30%」「Lin的档案有涂黑」「小陈的私联对象从未被公布」。谁在收集这些？",choices:[
+{week:5,day:1,text:"第五周。你发现录影棚里多了一些你以前没注意到的东西——有人在练习室的角落贴了便签。上面写着各种信息：「泰烈的训练时间比公布的少30%」「Lin的档案有涂黑」「小陈的私联对象从未被公布」。谁在收集这些？",choices:[
   {text:"撕下来收好",effect:{support:0,result:"便签被夹进了日记本。这些信息可能是线索——也可能是陷阱。有人在帮你？还是在引导你怀疑错误的人？"}},
   {text:"不动它们",effect:{support:0,result:"你不能信任匿名信息。谁知道是谁贴的。"}},
 ]},
 {week:5,day:2,text:"今天你在练习室走廊看到了一个你不想看到的画面。Ban在训斥Lin。Lin低着头不说话。Ban说：「你以为替我背了就能改变什么？」Lin说：「至少你的出道不会因为我受影响。」",choices:[
-  {text:"偷听",effect:{support:0,result:"Ban转身走了。Lin还站在原地。你看到了他的手——在抖。T纪元最危险的人在对一个替他背罪的人发火。你不知道该同情谁。",pulse_char:9,observe:10}},
-  {text:"走开",effect:{support:0,result:"你不想卷入T纪元的恩怨。转身走了。"}},
+  {text:"偷听",effect:{support:0,result:"Ban转身走了。Lin还站在原地。你看到了他的手——在抖。T组最危险的人在对一个替他背罪的人发火。你不知道该同情谁。",pulse_char:9,observe:10}},
+  {text:"走开",effect:{support:0,result:"你不想卷入T组的恩怨。转身走了。"}},
 ]},
 {week:5,day:3,text:"你在休息室飘过，遇到了钟元。他主动坐到你旁边，说：「我观察了你五周。你不是普通站姐。」你没有问。他自己说了下去。他说：「你和我一样。你在找一个人。我也在找。但我找的人不是你的坑豆。」",choices:[
   {text:"问他在找谁",effect:{support:0,result:"钟元犹豫了一下，说：「我在找这一轮真正的C位。不是排名最高的人——是三轴真心值都最高的人。我在找值得我押全部应援的人。」他看了你一眼：「你在找的，是毁了你的人。」",observe:22}},
-  {text:"不信任他",effect:{support:0,result:"你站起来走了。K纪元的人说的话你能信几分？"}},
+  {text:"不信任他",effect:{support:0,result:"你站起来走了。K组的人说的话你能信几分？"}},
 ]},
 {week:5,day:4,text:"你在整理证据板的时候突然意识到一件事。你触发过脉冲的几个人——他们的脉冲模式有相似之处，但也有细微差别。坑豆的脉冲应该是最强的、最持久的。而假阳性的脉冲是短暂的、一次性的。",choices:[
   {text:"重新分析脉冲记录",effect:{support:0,result:"你翻看所有脉冲记录。最强的几次脉冲——那些让你的手在抖、膝盖发软的——集中在两三个人身上。其他人只是微弱的波动。你缩小了范围。"}},
@@ -3071,15 +3073,15 @@ var DAILY_EVENTS=[
   {text:"去走廊找他",effect:{support:0,result:"你在走廊拐角找到了他。他挂了电话，看到你——笑容0.1秒切换到脸上。「站姐！身体不舒服，先回去了。」他的声音完美。但你在挂断前听到了电话那头的声音：「方案已确认，明天执行。」方案？什么方案？",pulse_char:4}},
   {text:"记下，不接近",effect:{support:0,result:"你不想打草惊蛇。记下了。"}},
 ]},
-{week:5,day:7,text:"第五周结束。日记本越来越厚了。你写：「我越来越接近了。那个人——不管他是谁——他也知道我在接近了。我收到了匿名信，泰烈在策划什么，有人在暗中帮我。时间不多了。我必须在Phase 3结束前找到他。」",choices:[
+{week:5,day:7,text:"第五周结束了。日记本越来越厚了。你写：「我越来越接近了。那个人——不管他是谁——他也知道我在接近他了。有人给我送了匿名信，泰烈在搞什么，有人在暗中帮我。时间不多了。」",choices:[
   {text:"继续写",effect:{support:0,result:"你合上日记本。还剩三周。三把记忆钥匙。你必须做对了。"}},
 ]},
 // Week 6
 {week:6,day:1,text:"第六周。你在公告栏上看到了新的排名。大洗牌。有人升了，有人降了。你注意到你的C位候选人的排名——还不错，但不在第一。你需要更多的彩头来推他上去。",choices:[
   {text:"看看排名",effect:{support:0,result:"你仔细看了排名。前十一名的竞争很激烈。你的C位候选人在中游。如果不加大投入，他可能进不了出道位。"}},
 ]},
-{week:6,day:2,text:"今天你飘到练习室。New站在窗边——T纪元里唯一不极端的人。他掏出一个旧MP3，自言自语：「要不要听听音乐？……算了，没人听。」他把一只耳机塞进耳朵，另一只悬在空中。你飘到他旁边。",choices:[
-  {text:"接过耳机",effect:{support:0,result:"耳机里是一首很老的歌。你不知道名字，但旋律让你平静。New说：「T纪元的人用极端的光来掩盖真相。但音乐不需要光。」你看着他——在极端的环境中，他是唯一没有碎的人。",observe:29}},
+{week:6,day:2,text:"今天你飘到练习室。New站在窗边——T组里唯一不极端的人。他掏出一个旧MP3，自言自语：「要不要听听音乐？……算了，没人听。」他把一只耳机塞进耳朵，另一只悬在空中。你飘到他旁边。",choices:[
+  {text:"接过耳机",effect:{support:0,result:"耳机里是一首很老的歌。你不知道名字，但旋律让你平静。New说：「T组的人用极端的光来掩盖真相。但音乐不需要光。」你看着他——在极端的环境中，他是唯一没有碎的人。",observe:29}},
   {text:"谢过他",effect:{support:0,result:"你飘在旁边。New点了点头，收起MP3走了。"}},
 ]},
 {week:6,day:3,text:"今天你在走廊收到了第二封匿名信。这次信上写着：「他知道了你在找他。小心泰烈。他在安排退路。」你的手在抖。泰烈？还是有人在引导你怀疑泰烈？",choices:[
@@ -3121,7 +3123,7 @@ var DAILY_EVENTS=[
   {text:"查看证据板",effect:{support:0,result:"你翻开证据板。时间到了。",go_evidence:true}},
   {text:"去小卡交易所管理收藏",effect:{support:0,result:"你翻了翻你的小卡收藏。该卖掉一些换彩头了。",go_stock:true}},
 ]},
-{week:7,day:6,text:"倒数第二天。竞技场的气氛变了。每个人都在做最后的准备。你在走廊里遇到了几个人——他们的眼神和你一样疲惫。你翻开日记本最后一页。",choices:[
+{week:7,day:6,text:"倒数第二天。录影棚的气氛变了。每个人都在做最后的准备。你在走廊里遇到了几个人——他们的眼神和你一样疲惫。你翻开日记本最后一页。",choices:[
   {text:"写最后的话",effect:{support:0,result:"你写：「不管结局是什么。我来过。我找过。我没有放弃。这就够了。」你合上日记本。明天是最后一天。"}},
 ]},
 {week:7,day:7,text:"第七周最后一天。明天就是最终投票。你的C位——你选好了吗？",choices:[
@@ -3307,6 +3309,9 @@ function renderDailyEventResult(){
   var html='<p class="narrator">结果</p>';
   html+='<p><strong>'+r.choiceText+'</strong></p>';
   html+='<p>'+r.resultText+'</p>';
+  if(r.eraIntro){
+    html+=ERA_INTRO_PAGE.html;
+  }
   if(r.pulse){
     var pl=PULSE_LABELS[r.pulse.level]||PULSE_LABELS.medium;
     html+='<div class="pulse"><span style="display:inline-block;font-size:14px;font-weight:700;color:'+pl.color+';background:rgba(255,68,102,.08);padding:2px 8px;border-radius:3px;margin-bottom:6px">'+pl.icon+' '+pl.label+'</span>\n'+r.pulse.text+'</div>';
@@ -3754,13 +3759,13 @@ function renderConfrontResult(){
   var html='<p class="narrator">窥忆</p>';
   if(r.result==="hit"){
     html+='<p>结城走到'+r.char.name+'面前。</p>'+
-      '<p>他开口了——但说的不是他的话。是你的。你的怨念穿过他的嘴，变成了一句话。</p>'+
+      '<p>他开口了——但说的不是他自己的话。是你的。你的怨念穿过他的嘴，变成了这句话：</p>'+
       '<p>「我知道你是谁。」</p>'+
-      '<p>'+r.char.name+'的表情变了。只有0.3秒——但你看见了。那不是惊讶，是<strong style="color:var(--danger)">被认出来</strong>。</p>'+
-      '<p>你的雾在尖叫。你的半记忆在这一刻完全觉醒——你看见了。那个笑容，那个转身，那双在你面前许下承诺然后亲手撕碎的手。</p>'+
+      '<p>'+r.char.name+'的表情变了。只有0.3秒——但你看见了。那不是惊讶。那是<strong style="color:var(--danger)">被人认出来了</strong>。</p>'+
+      '<p>你全想起来了。那个笑容，那个转身，那双在你面前许下承诺然后亲手撕碎的手。</p>'+
       '<p>就是他。</p>'+
-      '<div style="border:1px solid var(--green);border-radius:4px;padding:12px;margin:12px 0;background:rgba(76,217,100,.06)"><p style="color:var(--green);font-size:16px;margin:0"><strong>✓ 命中。'+r.char.name+'就是坑豆。</strong></p><p class="thought" style="margin:4px 0 0">彩头返还+奖励（+3000）· 怨念消散</p></div>'+
-      '<p class="thought">怨念消散。你快可以投胎了。但在那之前——你要找到你的C位。</p>';
+      '<div style="border:1px solid var(--green);border-radius:4px;padding:12px;margin:12px 0;background:rgba(76,217,100,.06)"><p style="color:var(--green);font-size:16px;margin:0"><strong>✓ 猜对了！'+r.char.name+'就是害你的人。</strong></p><p class="thought" style="margin:4px 0 0">彩头返还+奖励（+3000）· 怨念消散</p></div>'+
+      '<p class="thought">你的怨念散了。你快要可以投胎了。但在那之前——你要找到真正值得信的人。</p>';
     if(!G.sparedNemesis){
       html+='<div class="pulse" style="border-color:var(--gold);margin-top:16px">'+
         '<p style="color:var(--gold);font-size:15px"><strong>'+r.char.name+'退赛</strong></p>'+
@@ -3795,23 +3800,23 @@ function renderConfrontResult(){
     }
   } else if(r.result==="miss"){
     html+='<p>你飘到'+r.char.name+'面前。「我知道你是谁。」</p>'+
-      '<p>他困惑。受伤。然后什么都没有——他不是那个人。</p>'+
-      '<div style="border:1px solid var(--danger);border-radius:4px;padding:10px;margin:10px 0;background:rgba(255,68,102,.06)"><p style="color:var(--danger);font-size:15px;margin:0"><strong>✗ 未命中</strong> · '+r.char.name+'不是坑豆</p><p class="thought" style="margin:4px 0 0">记忆钥匙-1（剩余'+G.confrontationChances+'）· 认知失调+10</p></div>';
+      '<p>他看起来很困惑。然后什么都没有。他不是那个人。</p>'+
+      '<div style="border:1px solid var(--danger);border-radius:4px;padding:10px;margin:10px 0;background:rgba(255,68,102,.06)"><p style="color:var(--danger);font-size:15px;margin:0"><strong>✗ 猜错了</strong> · '+r.char.name+'不是害你的人</p><p class="thought" style="margin:4px 0 0">记忆钥匙-1（剩余'+G.confrontationChances+'）· 认知失调+10</p></div>';
     if(G.confrontationChances>0){
-      html+='<p class="thought" style="color:var(--orange)">还剩'+G.confrontationChances+'把。全用完未命中=复仇失败，只能投胎进入买股C位。</p>';
+      html+='<p class="thought" style="color:var(--orange)">还剩'+G.confrontationChances+'把。全用完还没猜对=复仇失败，只能投胎。</p>';
     }
   } else {
     html+='<p>你飘到'+r.char.name+'面前。「我知道你是谁。」</p>'+
-      '<p>他困惑。愤怒。你冤枉了一个无辜的人。</p>'+
-      '<div style="border:1px solid var(--danger);border-radius:4px;padding:10px;margin:10px 0;background:rgba(255,68,102,.06)"><p style="color:var(--danger);font-size:15px;margin:0"><strong>⚠ 错杀</strong> · '+r.char.name+'不是坑豆</p><p class="thought" style="margin:4px 0 0">记忆钥匙-1（剩余'+G.confrontationChances+'）· 认知失调+15</p></div>';
+      '<p>他困惑，然后生气了。你冤枉了一个好人。</p>'+
+      '<div style="border:1px solid var(--danger);border-radius:4px;padding:10px;margin:10px 0;background:rgba(255,68,102,.06)"><p style="color:var(--danger);font-size:15px;margin:0"><strong>⚠ 错杀好人</strong> · '+r.char.name+'不是害你的人</p><p class="thought" style="margin:4px 0 0">记忆钥匙-1（剩余'+G.confrontationChances+'）· 认知失调+15</p></div>';
     if(G.confrontationChances>0){
-      html+='<p class="thought" style="color:var(--orange)">还剩'+G.confrontationChances+'把。全用完未命中=复仇失败，只能投胎进入买股C位。</p>';
+      html+='<p class="thought" style="color:var(--orange)">还剩'+G.confrontationChances+'把。全用完还没猜对=复仇失败，只能投胎。</p>';
     }
   }
   if(G.confrontationChances<=0&&!G.nemesisConfronted){
-    html+='<div style="border:1px solid var(--danger);border-radius:4px;padding:10px;margin:10px 0;background:rgba(255,68,102,.06)"><p style="color:var(--danger);margin:0"><strong>🔒 三把记忆钥匙已用完。主线失败。</strong></p></div>';
+    html+='<div style="border:1px solid var(--danger);border-radius:4px;padding:10px;margin:10px 0;background:rgba(255,68,102,.06)"><p style="color:var(--danger);margin:0"><strong>🔒 3把钥匙全用完了。复仇失败。</strong></p></div>';
     if(G.eliminated.includes(G.nemesisId)){
-      html+='<div style="border:1px solid var(--gold);border-radius:4px;padding:10px;margin:10px 0;background:rgba(255,215,0,.06)"><p style="color:var(--gold);margin:0"><strong>但坑豆已被赛制淘汰——被动胜利。</strong></p></div>';
+      html+='<div style="border:1px solid var(--gold);border-radius:4px;padding:10px;margin:10px 0;background:rgba(255,215,0,.06)"><p style="color:var(--gold);margin:0"><strong>但是！害你的人已经被节目淘汰了——你赢了。</strong></p></div>';
     }
   }
   html+='</div><div class="choices"><button class="btn btn-primary choice-btn" onclick="afterConfront()">继续 →</button></div>';
@@ -3946,7 +3951,7 @@ function useAbilityOn(charId){
     resultText='你调取了'+c.name+'的内部档案。';
     resultType='reveal';
     var secrets=[
-      c.stage>=80?'档案显示：'+c.name+'在原纪元就是顶级舞台担当。舞台热忱'+c.stage+'，真实。':'档案显示：'+c.name+'的舞台热忱仅'+c.stage+'，低于预期。',
+      c.stage>=80?'档案显示：'+c.name+'在原组就是顶级舞台担当。舞台热忱'+c.stage+'，真实。':'档案显示：'+c.name+'的舞台热忱仅'+c.stage+'，低于预期。',
       c.fans>=70?'档案显示：'+c.name+'记住了每一个粉丝的名字。粉丝回馈'+c.fans+'，真实。':'档案显示：'+c.name+'的粉丝回馈仅'+c.fans+'，有备忘录记录嫌疑。',
       c.cp>=70?'档案显示：'+c.name+'与搭档有真实情感连接。CP羁绊'+c.cp+'。':'档案显示：'+c.name+'的CP羁绊仅'+c.cp+'，合作性质偏重。',
     ];
@@ -4063,7 +4068,7 @@ function renderFindMedium(){
   var scenes=[
     '<p class="narrator">练习室走廊</p>'+
     '<p>你飘过练习室走廊。一个人从你身边走过——穿过去了。没有人感觉到你。你是空气。你是虚无。</p>'+
-    '<p>走廊尽头有一个人坐在地上。J纪元的练习生。他围着围巾，即使走廊并不冷。他在看手机。</p>'+
+    '<p>走廊尽头有一个人坐在地上。J组的练习生。他围着围巾，即使走廊并不冷。他在看手机。</p>'+
     '<p class="thought">你从他身边飘过。不抱希望。没有人看得见你。</p>'+
     '<p>然后他抬头了。</p>'+
     '<p>他看着你。</p>'+
@@ -4075,7 +4080,7 @@ function renderFindMedium(){
     '<p>"别走。"他站起来。围巾松了一截。"我叫结城。我能看见你。从小就能。"</p>'+
     '<p class="thought">他看着你的方式不是看空气。是看一个人。你不知道多久没有被人这样看过了。</p>'+
 
-    '<p>"你死在这里的，对不对？"结城说。他的声音没有恐惧，只有一种安静的确认。"竞技场。很多人不知道。但我知道。"</p>'+
+    '<p>"你死在这里的，对不对？"结城说。他的声音没有恐惧，只有一种安静的确认。"录影棚。很多人不知道。但我知道。"</p>'+
     '<p>"我能帮你。"他说。"但我不能替你做什么——我只能替你传话。你是阿飘，你没有嘴。我有嘴。"</p>'+
     '<p class="thought">你突然意识到——你有了嘴。不是你的。是他的。</p>'+
     '<p>"找到害你的那个人了吗？"结城问。"如果你飘到了……我可以替你说话。但只有三次机会。"</p>'+
@@ -4470,7 +4475,7 @@ function renderPerformanceResult(){
   html+=S.perfElimNote||'';
 
   var alive=30-G.eliminated.length;
-  html+='<p class="thought" style="margin-top:8px">竞技场剩余'+alive+'人。</p>';
+  html+='<p class="thought" style="margin-top:8px">录影棚剩余'+alive+'人。</p>';
 
   // Check if nemesis was eliminated passively
   if(!G.nemesisConfronted&&G.eliminated.includes(G.nemesisId)){
