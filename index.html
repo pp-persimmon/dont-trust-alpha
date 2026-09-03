@@ -2323,8 +2323,8 @@ function deserializeGame(str){
   if(!S.G.evidenceBoard) S.G.evidenceBoard={};
   if(!S.G.suspectList) S.G.suspectList=[];
   if(S.G.sparedNemesis===undefined) S.G.sparedNemesis=null;
-  if(S.G.maxActions===undefined) S.G.maxActions=5;
-  if(S.3===undefined) S.3=3;
+  if(S.G.maxActions===undefined) S.G.maxActions=3;
+  if(S.G.maxActions>3) S.G.maxActions=3;
   if(S.G.performanceSeen===undefined) S.G.performanceSeen=false;
   if(S.G.mediumId===undefined) S.G.mediumId=28;
   if(S.G.mediumFound===undefined) S.G.mediumFound=false;
