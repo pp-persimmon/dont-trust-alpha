@@ -2514,12 +2514,6 @@ function render(){
     return;
   }
 
-
-
-    app.innerHTML=html;
-    return;
-  }
-
   if(S.page==='confront_confirm'){
     html+=renderConfrontConfirm();
     app.innerHTML=html;
@@ -3979,7 +3973,7 @@ function useAbilityOn(charId){
       G.evidenceBoard[charId].clues.push({type:'ability',text:'舆论曝光'+axisNames[axis]+'='+axisVals[axis],day:'W'+G.week+'D'+G.day});
     } else {
       resultText='你发了一条推送。但风向没变——反而有人开始质疑你。你制造的假象反弹回来了。';
-      0+=5;
+      c.stock-=5;
       resultType='backfire';
     }
   } else if(abName==='控评'){
@@ -4023,7 +4017,7 @@ function useAbilityOn(charId){
     if(collapse){
       resultText='你给'+c.name+'打了一大笔钱。股价+15。但三天后——塌房信号泄露了。有人开始查他的账。';
       resultType='risk';
-      0+=5;
+      c.stock-=5;
     } else {
       resultText='你给'+c.name+'打了一大笔钱。股价+15。他似乎没有受到太大影响——也许他是真的。';
       resultType='boost';
