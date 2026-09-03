@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -1010,7 +1010,7 @@ var DM_PLAYER_MSGS=[];  // player-posted messages still in rotation
 
 var DM_POOL=[
   // fan reactions
-  {t:'fan',msg:'小赵今天的走位又稳又狠，不愧是C组第一'},
+  {t:'fan',msg:'小赵今天的走位又稳又狠，不愧是国际娱乐集团第一'},
   {t:'fan',msg:'胜宇的笑容好治愈啊，看一次被治愈一次'},
   {t:'fan',msg:'泰烈对粉丝太好了吧，又给签名又给合照'},
   {t:'fan',msg:'悠真的嗓音是神赐的吧，唱一句我就能哭'},
@@ -1063,13 +1063,13 @@ var DM_POOL=[
   // neutral / ambient
   {t:'fan',msg:'今天的灯光好好看'},
   {t:'fan',msg:'练习室的地板该换了，有人差点滑倒'},
-  {t:'fan',msg:'求节目组多给J组镜头！太少了！'},
-  {t:'fan',msg:'T组好危险但好好看，舞台张力拉满'},
+  {t:'fan',msg:'求节目组多给草台初创娱乐公司镜头！太少了！'},
+  {t:'fan',msg:'妈妈是经纪人的那种公司好危险但好好看，舞台张力拉满'},
   {t:'hype',msg:'这一季的选手水平比上一季高多了'},
   {t:'fan',msg:'钟元的眼神好锐利，像在观察所有人'},
   {t:'fan',msg:'阳翔今天又跟在莲后面了，好乖的小尾巴'},
   {t:'fan',msg:'结城的围巾到底是什么牌子的好好看'},
-  {t:'fan',msg:'阿雪的银色短发太酷了，C组唯一女相yyds'},
+  {t:'fan',msg:'阿雪的银色短发太酷了，国际娱乐集团唯一女相yyds'},
   {t:'hype',msg:'明天的公演分组抽签！求不要分到死亡之组'},
 ];
 
@@ -1139,6 +1139,17 @@ function postDanmaku(){
   var input=document.getElementById('danmaku-input');
   var txt=input.value.trim();
   if(!txt) return;
+  if(S.G && S.G.danmakuSentToday>=3){
+    input.value='';
+    var hint=document.createElement('div');
+    hint.className='danmaku-item player';
+    hint.textContent='今天已发了3条！明天再来！';
+    hint.style.top=(Math.floor(Math.random()*80)+5)+'%';
+    hint.style.animationDuration='4s';
+    var layer=document.getElementById('danmaku-layer');
+    if(layer){layer.appendChild(hint);setTimeout(function(){hint.remove();},4200);}
+    return;
+  }
   DM_PLAYER_MSGS.push(txt);
   if(DM_PLAYER_MSGS.length>15) DM_PLAYER_MSGS.shift();
   // spawn immediately
@@ -1151,6 +1162,10 @@ function postDanmaku(){
   layer.appendChild(el);
   setTimeout(function(){ el.remove(); },9200);
   input.value='';
+  if(S.G){
+    S.G.danmakuSentToday=(S.G.danmakuSentToday||0)+1;
+    autoSave();
+  }
 }
 
 // Show/hide danmaku toggle based on game state
@@ -1199,95 +1214,95 @@ var S = {
 // --- Character Data ---
 var CHARACTERS=[
 {id:1,name:"小赵",era:"C",stage:92,fans:85,cp:78,level:"A",stock:128.5,bid:2,pulse:"none",
- desc:"C组排名第一。走位精确到毫米，表情管理无懈可击。冷面下藏着对舞台的真爱——但他的爱是沉默的。",
+ desc:"国际娱乐集团ace。走位精确到毫米，表情管理无懈可击。冷面下藏着对舞台的真爱——但他的爱是沉默的。",
  signals:["谢幕时多停留0.5秒扫视最后排","瞳孔在灯光下自然放大","签收信件后独自翻看"]},
-{id:2,name:"阿狗",era:"C",stage:70,fans:18,cp:35,level:"B",stock:64.0,bid:2,pulse:"medium",
- desc:"C组中上。他的笑容太标准了——每次弧度完全一样，像被编程过。",
+{id:2,name:"阿狗",era:"C",stage:70,fans:18,cp:35,level:"B",stock:64.0,bid:2,pulse:"none",
+ desc:"国际娱乐集团程式化偶像。笑容太标准了——每次弧度完全一样，像被编程过。粉丝极低但公司硬撑。",
  signals:["笑容每次弧度完全相同","镜头关闭后0.2秒表情归零","签售时身体朝向镜头"]},
-{id:3,name:"小陈",era:"C",stage:58,fans:50,cp:28,level:"F",stock:5.2,nemesis:true,bid:1,pulse:"medium",
- desc:"C组赎罪者。私联争议塌房。制服偏大，存在感稀薄。训练量却是C组最大的。",
+{id:3,name:"小陈",era:"J",stage:58,fans:50,cp:28,level:"F",stock:5.2,nemesis:true,bid:1,pulse:"medium",
+ desc:"草台初创娱乐公司练习生。私联争议塌房。制服偏大，存在感稀薄。训练量却是同组最大的。",
  signals:["制服明显偏大一号","眼下有淡淡青黑","训练时长远超同级"]},
-{id:4,name:"泰烈",era:"K",stage:65,fans:88,cp:42,level:"A",stock:112.8,nemesis:true,bid:1,pulse:"extreme",
- desc:"K组人气最高。情绪表达精准到黄金比例——但太完美了。温暖人设完全是团队策划的。",
+{id:4,name:"泰烈",era:"C",stage:65,fans:88,cp:42,level:"A",stock:112.8,nemesis:true,bid:1,pulse:"extreme",
+ desc:"国际娱乐集团人气王。情绪表达精准到黄金比例——但太完美了。温暖人设完全是团队策划的。",
  signals:["情绪表达精确到黄金比例","无镜头瞬间表情归零","手写卡片是团队批量生产"]},
-{id:5,name:"胜宇",era:"K",stage:80,fans:82,cp:76,level:"B",stock:86.2,bid:2,pulse:"none",
- desc:"K组最安静的人。表演后走到粉丝席最角落点头致意。走位有微小即兴变化。",
+{id:5,name:"胜宇",era:"C",stage:80,fans:82,cp:76,level:"B",stock:86.2,bid:2,pulse:"none",
+ desc:"国际娱乐集团稳定型。表演后走到粉丝席最角落点头致意。走位有微小即兴变化。",
  signals:["表演后走到粉丝席角落点头","走位有微小即兴变化","记住粉丝递信时的表情"]},
-{id:6,name:"柾佑",era:"K",stage:38,fans:62,cp:15,level:"F",stock:8.6,nemesis:true,bid:1,pulse:"weak",
- desc:"K组赎罪者。摆烂争议塌房。笑太用力——焦虑让他的外放看起来像在演。但笨拙是真的。外形柔美，常被误认为女生。",
+{id:6,name:"柾佑",era:"K",stage:38,fans:62,cp:15,level:"F",stock:18.6,nemesis:true,bid:1,pulse:"weak",
+ desc:"国内二线娱乐公司练习生。摆烂争议塌房。笑太用力——焦虑让他的外放看起来像在演。但笨拙是真的。外形柔美，常被误认为女生。",
  signals:["笑的幅度偏大太用力","签售时眼神不自觉看向镜头","偶尔展现意外的柔韧度"]},
-{id:7,name:"悠真",era:"J",stage:75,fans:70,cp:88,level:"C",stock:42.8,bid:2,pulse:"none",
- desc:"J组存在感最低。有人靠近时身体无意识转向2-3度。走位有呼吸感。",
+{id:7,name:"悠真",era:"K",stage:75,fans:70,cp:88,level:"C",stock:42.8,bid:2,pulse:"none",
+ desc:"国内二线娱乐公司练习生。有人靠近时身体无意识转向2-3度。走位有呼吸感。舞台强但存在感低压股价。",
  signals:["有人靠近时身体无意识转向","走位有呼吸感而非机械感","收到的信件仔细叠好保存"]},
 {id:8,name:"凪",era:"J",stage:48,fans:55,cp:68,level:"F",stock:6.4,nemesis:true,bid:1,pulse:"medium",
- desc:"J组赎罪者。消失事件塌房——演出前失联三天。在T组光暗边界站很久。说在看书，手里没有书。",
- signals:["在T组边缘长时间停留","给出不合逻辑的借口","灯光切换瞬间有一秒失神"]},
+ desc:"草台初创娱乐公司练习生。消失事件塌房——演出前失联三天。在光暗边界站很久。说在看书，手里没有书。",
+ signals:["在光暗边界长时间停留","给出不合逻辑的借口","灯光切换瞬间有一秒失神"]},
 {id:9,name:"Ban",era:"T",stage:90,fans:12,cp:20,level:"D",stock:28.5,nemesis:true,bid:1,pulse:"extreme",
- desc:"T组最危险。舞台表现惊人但粉丝回馈极低。灯光熄灭瞬间眼神从炽热变成完全空洞。暴力争议塌房。",
+ desc:"妈妈是经纪人的那种公司练习生。舞台表现惊人但粉丝回馈极低。灯光熄灭瞬间眼神从炽热变成完全空洞。暴力争议塌房。",
  signals:["灯光熄灭瞬间眼神归零","签售笑容不超0.3秒","无镜头时完全无视粉丝"]},
 {id:10,name:"Lin",era:"T",stage:85,fans:80,cp:82,level:"F",stock:3.8,nemesis:true,bid:2,pulse:"strong",
- desc:"T组赎罪者+本命候选。档案有涂黑记录。训练量全场最大。看起来最无害但出现在最危险的组。",
+ desc:"妈妈是经纪人的那种公司练习生+本命候选。档案有涂黑记录。训练量全场最大。各项都强但股价极低——神秘。",
  signals:["训练量全场最大","谢幕时认真鞠躬","面对攻击性粉丝时身体僵硬"]},
-{id:11,name:"小刘",era:"C",stage:88,fans:25,cp:55,level:"A",stock:84.0,bid:2,pulse:"medium",
- desc:"C组排名第二。走位精确到帧。对粉丝毫无感觉——签售动作持续时间完全相同。",
+{id:11,name:"小刘",era:"C",stage:88,fans:25,cp:55,level:"A",stock:84.0,bid:2,pulse:"none",
+ desc:"国际娱乐集团精密机器。走位精确到帧。对粉丝毫无感觉——签售动作持续时间完全相同。",
  signals:["签售动作完全标准化","无镜头时对粉丝无感知","只关注灯光角度和地板摩擦系数"]},
-{id:12,name:"阿猫",era:"C",stage:55,fans:60,cp:72,level:"B",stock:81.0,bid:2,pulse:"none",
- desc:"C组中等偏上。领口永远松开一颗——忘了扣。会注意到谁今天状态不好。",
+{id:12,name:"阿猫",era:"K",stage:55,fans:60,cp:72,level:"B",stock:71.0,bid:2,pulse:"none",
+ desc:"国内二线娱乐公司天赋型。领口永远松开一颗——忘了扣。会注意到谁今天状态不好。组内股价最高。",
  signals:["签售握手力度比标准轻","注意到其他人的状态变化","领口永远松开一颗"]},
-{id:13,name:"小王",era:"C",stage:62,fans:45,cp:50,level:"C",stock:52.3,bid:2,pulse:"none",
- desc:"C组最普通。没有突出能力，没有明显缺陷。总用叠得整齐的白色手帕擦汗。",
+{id:13,name:"小王",era:"K",stage:62,fans:45,cp:50,level:"C",stock:45.0,bid:2,pulse:"none",
+ desc:"国内二线娱乐公司平均型。没有突出能力，没有明显缺陷。总用叠得整齐的白色手帕擦汗。",
  signals:["练习间隙用叠好的手帕擦汗","走位精确但不会多付出","签售完成标准流程"]},
-{id:14,name:"小李",era:"C",stage:45,fans:75,cp:68,level:"B",stock:81.5,bid:2,pulse:"weak",
- desc:"C组唯一对粉丝好的人。记住粉丝的脸而非名字。签售时认真看着对方眼睛。",
+{id:14,name:"小李",era:"C",stage:45,fans:75,cp:68,level:"B",stock:81.5,bid:2,pulse:"none",
+ desc:"国际娱乐集团唯一对粉丝好的人。记住粉丝的脸而非名字。签售时认真看着对方眼睛。",
  signals:["记住粉丝的脸而非名字","签售时真实眼神交流","走位偶尔出错"]},
-{id:15,name:"小孙",era:"C",stage:35,fans:35,cp:45,level:"C",stock:38.3,bid:2,pulse:"none",
- desc:"C组存在感最低。会在人群中后退半步。默默记录每个人的训练时间但不为任何目的。",
+{id:15,name:"小孙",era:"K",stage:35,fans:35,cp:45,level:"C",stock:35.0,bid:2,pulse:"none",
+ desc:"国内二线娱乐公司低存在感。会在人群中后退半步。默默记录每个人的训练时间但不为任何目的。",
  signals:["人群中不自觉后退半步","默默记录每个人的训练时间","制服总显得空荡荡"]},
-{id:16,name:"小周",era:"C",stage:50,fans:30,cp:22,level:"D",stock:23.8,bid:2,pulse:"weak",
- desc:"C组下游。三个月前状态开始下滑，无人知原因。制服没有熨烫，领口松垮。曾经更好。",
+{id:16,name:"小周",era:"K",stage:50,fans:30,cp:22,level:"D",stock:23.8,bid:2,pulse:"none",
+ desc:"国内二线娱乐公司下滑型。三个月前状态开始下滑，无人知原因。曾经更高。制服没有熨烫，领口松垮。",
  signals:["制服没有熨烫","练习时眼神涣散","签售时像行尸走肉"]},
-{id:17,name:"阿雪",era:"C",stage:68,fans:42,cp:55,level:"C",stock:55.0,bid:2,pulse:"weak",
- desc:"C组唯一女相。银色短发，五官精致到中性。追求效率——签售时间精确控制，多一秒都不给。",
+{id:17,name:"阿雪",era:"K",stage:68,fans:42,cp:55,level:"C",stock:55.0,bid:2,pulse:"none",
+ desc:"国内二线娱乐公司效率型。银色短发，五官精致到中性。追求效率——签售时间精确控制，多一秒都不给。",
  signals:["签售时间精确控制","表演恰好卡在及格线","投入产出比思维"]},
-{id:18,name:"智勋",era:"K",stage:72,fans:58,cp:52,level:"B",stock:78.9,bid:2,pulse:"medium",
- desc:"K组舞台之王。镜头前光芒四射，下台后能量骤降60%。粉丝是观众不是连接。宽肩窄腰，舞台上的王者。",
+{id:18,name:"智勋",era:"C",stage:72,fans:58,cp:52,level:"B",stock:78.9,bid:2,pulse:"none",
+ desc:"国际娱乐集团舞台王。镜头前光芒四射，下台后能量骤降60%。粉丝是观众不是连接。宽肩窄腰。",
  signals:["下台后能量骤降","公开场合热情私下不主动","不会记住粉丝细节"]},
 {id:19,name:"道英",era:"K",stage:50,fans:65,cp:38,level:"C",stock:51.0,bid:2,pulse:"none",
- desc:"K组最朴素。开心就笑一下，难过就沉默一下。原尺寸情绪在K组格格不入。高个子，总穿卫衣，存在感不强。",
+ desc:"国内二线娱乐公司朴素型。开心就笑一下，难过就沉默一下。原尺寸情绪在组内格格不入。高个子，总穿卫衣。",
  signals:["情绪幅度是真实的原尺寸","每个粉丝得到同等待遇","不会区别对待粉丝"]},
-{id:20,name:"宥彬",era:"K",stage:60,fans:85,cp:48,level:"A",stock:96.5,bid:2,pulse:"medium",
- desc:"K组人气第二。凌晨两点回复粉丝私信，生病坚持直播。真心过度了——焦虑驱动的真心。虎牙，笑起来很灿烂。",
+{id:20,name:"宥彬",era:"C",stage:60,fans:85,cp:48,level:"A",stock:96.5,bid:2,pulse:"none",
+ desc:"国际娱乐集团真心型。凌晨两点回复粉丝私信，生病坚持直播。真心过度了——焦虑驱动的真心。虎牙，笑起来灿烂。",
  signals:["凌晨两点回复私信","生病坚持直播","无镜头时依然对粉丝好"]},
-{id:21,name:"恩杰",era:"K",stage:42,fans:48,cp:28,level:"D",stock:27.5,bid:2,pulse:"weak",
- desc:"K组下游。情绪失控——不该哭的时候哭。手指甲有咬过的痕迹。太真了以至于像假的。瘦高，咬指甲咬到出血。",
+{id:21,name:"恩杰",era:"J",stage:42,fans:48,cp:28,level:"D",stock:22.0,bid:2,pulse:"none",
+ desc:"草台初创娱乐公司不稳定型。情绪失控——不该哭的时候哭。手指甲有咬过的痕迹。太真了以至于像假的。瘦高。",
  signals:["情绪来的时机永远不对","手指甲有咬过的痕迹","状态好时爆发力强但不稳定"]},
-{id:22,name:"钟元",era:"K",stage:65,fans:35,cp:70,level:"C",stock:56.7,bid:2,pulse:"none",
- desc:"K组最不像K组。冷、不互动、只关心同事。签售冷淡但会观察谁在帮谁。穿纯黑色高领，寸头，眼神如刀。",
- signals:["签售冷淡只完成最低限度","会观察其他角色的状态","穿纯黑色高领不像K组"]},
-{id:23,name:"俊辉",era:"K",stage:30,fans:40,cp:25,level:"E",stock:15.8,bid:2,pulse:"none",
- desc:"K组垫底。天生一张对不起的脸。不会演也不想演。每天坚持训练即使进步微乎其微。",
+{id:22,name:"钟元",era:"K",stage:65,fans:35,cp:70,level:"C",stock:48.0,bid:2,pulse:"none",
+ desc:"国内二线娱乐公司冷面型。冷、不互动、只关心同事。签售冷淡但会观察谁在帮谁。纯黑色高领，寸头，眼神如刀。",
+ signals:["签售冷淡只完成最低限度","会观察其他角色的状态","穿纯黑色高领不像同组人"]},
+{id:23,name:"俊辉",era:"J",stage:30,fans:40,cp:25,level:"E",stock:15.8,bid:2,pulse:"none",
+ desc:"草台初创娱乐公司垫底。天生一张对不起的脸。不会演也不想演。每天坚持训练即使进步微乎其微。",
  signals:["脸上写着我不行","坚持训练但进步微乎其微","签售紧张但真诚"]},
-{id:24,name:"宰贤",era:"K",stage:78,fans:62,cp:48,level:"B",stock:81.5,bid:2,pulse:"none",
- desc:"K组唯一戴眼镜的。数据驱动——研究观众视线路径，计算最优走位。把情绪工程化了。",
+{id:24,name:"宰贤",era:"C",stage:78,fans:62,cp:48,level:"B",stock:81.5,bid:2,pulse:"none",
+ desc:"国际娱乐集团数据派。研究观众视线路径，计算最优走位。把情绪工程化了。金丝边眼镜学者气质。",
  signals:["金丝边眼镜学者气质","表演有设计感","互动高效但标准化"]},
-{id:25,name:"莲",era:"J",stage:70,fans:62,cp:78,level:"C",stock:70.0,bid:2,pulse:"none",
- desc:"J组中上。沉默中最有目的性的。会对悠真说今天的光不错——其实在说我注意到你在这里。",
+{id:25,name:"莲",era:"K",stage:70,fans:62,cp:78,level:"C",stock:65.0,bid:2,pulse:"none",
+ desc:"国内二线娱乐公司沉默型。沉默中最有目的性的。会对悠真说今天的光不错——其实在说我注意到你在这里。",
  signals:["偶尔主动说一句看似无关的话","认真读粉丝信后轻轻折好","手腕有旧烫伤疤"]},
-{id:26,name:"阳翔",era:"J",stage:40,fans:45,cp:60,level:"D",stock:33.8,bid:2,pulse:"none",
- desc:"J组下游。一个人时焦虑自言自语，有人在身边就安静。模仿莲的动作——延迟0.5秒的镜子。",
+{id:26,name:"阳翔",era:"J",stage:40,fans:45,cp:60,level:"D",stock:28.0,bid:2,pulse:"none",
+ desc:"草台初创娱乐公司焦虑型。一个人时焦虑自言自语，有人在身边就安静。模仿莲的动作——延迟0.5秒的镜子。组内股价最高。",
  signals:["一个人时焦虑自言自语","不自觉模仿莲动作","莲同队时表现提升"]},
-{id:27,name:"雪绪",era:"J",stage:35,fans:50,cp:42,level:"E",stock:21.2,bid:2,pulse:"none",
- desc:"J组垫底。沉默是空的不是留白。眼神经常失焦——真的什么都没在想。一切在褪色。瘦到骨头可见，长发遮住半张脸。",
+{id:27,name:"雪绪",era:"T",stage:35,fans:50,cp:42,level:"E",stock:21.2,bid:2,pulse:"none",
+ desc:"妈妈是经纪人的那种公司褪色型。沉默是空的不是留白。眼神经常失焦——真的什么都没在想。瘦到骨头可见，长发遮住半张脸。",
  signals:["眼神经常失焦","沉默让人想绕开","表演像执行程序"]},
-{id:28,name:"结城",era:"J",stage:55,fans:68,cp:45,level:"C",stock:56.0,bid:2,pulse:"weak",
- desc:"J组最高粉丝回馈。不说话但会听——听粉丝说话偶尔点一下头。围巾即使不冷也围着。天生阴阳眼——能看见阿飘。纤瘦，黑发及肩，气质空灵。",
+{id:28,name:"结城",era:"J",stage:55,fans:68,cp:45,level:"C",stock:12.0,bid:2,pulse:"none",
+ desc:"草台初创娱乐公司特殊型。不说话但会听——听粉丝说话偶尔点一下头。围巾即使不冷也围着。天生阴阳眼——能看见阿飘。公司小但粉丝回馈好。",
  signals:["签售时倾听多于说话","记住粉丝说话内容","围巾即使不冷也围着","有时会对着空气说话——别人以为他自言自语"],
  isMedium:true},
-{id:29,name:"New",era:"T",stage:82,fans:78,cp:75,level:"B",stock:101.8,bid:2,pulse:"strong",
- desc:"T组第5名本命。不极端、不断裂、不自毁。温和在极端环境中是倔强。所有人碎了，他没碎。",
- signals:["T组中最不极端的人","站在光暗交界处让两半融合","T组唯一不用危险形容的人"]},
-{id:30,name:"San",era:"T",stage:25,fans:72,cp:55,level:"E",stock:25.3,bid:2,pulse:"strong",
- desc:"T组垫底。舞台极差但粉丝回馈真心高。表演失误后跑到粉丝区道歉，签售时画简笔画。走错了组。",
+{id:29,name:"New",era:"C",stage:82,fans:78,cp:75,level:"B",stock:101.8,bid:2,pulse:"none",
+ desc:"国际娱乐集团均衡型。不极端、不断裂、不自毁。温和在极端环境中是倔强。所有人碎了，他没碎。",
+ signals:["同组中最不极端的人","站在光暗交界处让两半融合","唯一不用危险形容的人"]},
+{id:30,name:"San",era:"T",stage:25,fans:72,cp:55,level:"E",stock:25.3,bid:2,pulse:"none",
+ desc:"妈妈是经纪人的那种公司例外型。舞台极差但粉丝回馈真心高。表演失误后跑到粉丝区道歉，签售时画简笔画。走错了公司。",
  signals:["表演失误后主动道歉","签售时画简笔画","灯光切换时会愣住"]},
 ];
 
@@ -1298,7 +1313,7 @@ var CP_LINKS=[
 ];
 
 var ERA_C={C:"#5b9bd5",K:"#e8943a",J:"#4ec9b0",T:"#ff4466"};
-var ERA_N={C:"冷峻制服",K:"情绪特写",J:"沉默氛围",T:"极端光反差"};
+var ERA_N={C:"国际娱乐集团",K:"国内二线公司",J:"草台初创公司",T:"妈妈当经纪人的"};
 var PLV={none:"无",weak:"微弱",medium:"中等",strong:"强烈",extreme:"极强"};
 
 function charCode(c){
@@ -1316,17 +1331,17 @@ var LEVEL_STYLE={
   'F':{color:'#ff4466',label:'F级'},
 };
 
-var PULSE_TXT={
-weak:["脖子后面有点凉。","心跳漏了一拍。","肚子有点紧。"],
-medium:["脖子发凉了！手指发麻！","心跳变快了！脑子里有什么东西在动！","肚子紧了一下——这个画面好像见过！"],
-strong:["脖子像被针扎！！脑子里闪过一个画面：有人转过身，但看不清脸！！","全身汗毛竖起来了！！闪过一些碎片：一只手、一句话——然后什么都没了！！","肚子翻涌，腿软了！你被骗过！就在这种灯光下！！"],
-extreme:["全身像被电击！！！你看见了一个笑容！！跟害你的那个人一模一样！！你的身体在尖叫！！！","超强！！灯光、角度、转身的姿势——跟那天晚上一模一样！！你不只是在回忆——你在重新经历一次！！！","没法忽视了！！你的身体在用全力告诉你：就是他！！最后的画面正在和眼前的人重合！！！"],
+var HEARTBEAT_TXT={
+weak:["脸有点红了……","心跳好像快了一拍。","脸颊热热的。"],
+medium:["脸好红！心跳好快！","心里有什么东西在扑通扑通！","脸烫烫的——好像在哪里见过这张脸！"],
+strong:["脸烧起来了！！脑子里闪过一个画面：有人笑了一下，但看不清脸！！","全身发热！！闪过一些碎片：一只手、一句话——然后什么都没了！！","脸红到耳朵了，腿有点软！你被骗过！就在这种灯光下！！"],
+extreme:["脸红到要炸了！！！你看见了一个笑容！！跟害你的那个人一模一样！！你的身体在尖叫！！！","要命！！灯光、角度、转身的姿势——跟那天晚上一模一样！！你不只是脸红——你在重新经历一次！！！","没法忍了！！你的身体在用全力告诉你：就是他！！最后的画面正在和眼前的人重合！！！"],
 };
-var PULSE_LABELS={
-weak:{icon:'○',label:'有点感觉',color:'var(--text-dim)'},
-medium:{icon:'◐',label:'明显反应',color:'var(--orange)'},
-strong:{icon:'●',label:'很强',color:'var(--danger)'},
-extreme:{icon:'◉',label:'超级强！！',color:'var(--danger)'},
+var HEARTBEAT_LABELS={
+weak:{icon:'○',label:'有点脸红',color:'var(--text-dim)'},
+medium:{icon:'◐',label:'心跳加速',color:'var(--orange)'},
+strong:{icon:'●',label:'脸烧起来了',color:'var(--danger)'},
+extreme:{icon:'◉',label:'脸红到炸了！！',color:'var(--danger)'},
 };
 
 var BEHAVIOR={
@@ -1357,7 +1372,7 @@ var CPOS_SIG={
 5:"表演后走到粉丝席最角落点头——他在和被忽略的人打招呼",
 7:"有人靠近时身体无意识转向——他在等一个人但他自己不知道",
 10:"训练量全场最大但看起来最无害——他在赎不属于他的罪",
-29:"T组唯一不极端的人——所有人碎了，他没碎",
+29:"妈妈是经纪人的那种公司唯一不极端的人——所有人碎了，他没碎",
 };
 
 // --- Navigation helpers (all go through these, always set S.page then render) ---
@@ -1377,15 +1392,19 @@ function newGame(){
   else{cPos=cPool[Math.floor(Math.random()*cPool.length)];}
 
   S.G={
-    phase:1,week:1,day:1,supportPoints:5000,cognitionDissonance:0,
-    pulseSensitivity:100,confrontationChances:3,selfReflectionUses:0,maxSelfReflect:3,
+    phase:1,week:1,day:1,supportPoints:5000+getCarryover().bonus,
+    heartbeatSensitivity:100,confrontationChances:3,
     nemesisId:nemesis.id,cPositionId:cPos.id,convictionPoints:0,
     mediumId:28,mediumFound:false,
     eliminated:[],observed:{},suspectList:[],evidenceBoard:{},
     photocards:{},practiceCards:{},cpCards:{},tickets:[],vipTicketWeek:null,
     confrontationHistory:[],gameEnded:false,endingType:null,
-    actionsToday:0,maxActions:5,charBatch:0,
+    actionsToday:0,maxActions:3,charBatch:0,
     nemesisConfronted:false,sparedNemesis:null,votedCPosition:null,eventSeen:false,performanceSeen:false,
+    pulseSeenOnce:{},danmakuSentToday:0,sideJobDoneToday:false,
+    weeklyAppraisalUsed:false,weeklyBuzzUsed:false,
+    eliminationBet:null,protectionBet:null,
+    hiddenFragments:[],stockHistory:{},
   };
   S.subPage=0;
   S.page='world_intro';
@@ -1396,14 +1415,14 @@ function newGame(){
 // World Intro
 // ============================================================
 var INTRO_PAGES=[
-{title:"录影棚",html:'<p>有一个超级大的录影棚！没有窗户！</p><p>里面关了30个大男生。要关整整8个星期！</p><p>8个星期后，只留<span style="color:var(--green);font-weight:700">11个人</span>！其他19个直接走人！</p><p>你不是选手。不是观众。你是一个<strong style="color:var(--accent)">阿飘</strong>——就是鬼！！！你飘在天花板下面。没有人看得见你！好惨啊！</p>'},
-{title:"阿飘",html:'<p>你死了！！！</p><p>上辈子你是粉丝。钱全砸在一个选手身上了。结果他翻车了！钱全没了！人也死了！</p><p>但是你气啊！太气了！气到走不掉！你就一直飘在录影棚里。</p><p><strong style="color:var(--danger)">30个人从你身边走过去。没有！一个！人！看你！</strong></p><p>你说话没人听见。你伸手——直接穿过去了！好气啊！你只能看。只能听。什么都不能做！</p><p class="thought">但是！100个人里大概有2个人天生能看见鬼！30个人里面可能有一个！ta能帮你说话！在找到ta之前——你什么都不是！</p>'},
-{title:"半记忆脉冲",html:'<p>你的记忆碎了！你不记得是谁害死你的！只知道那个人就在这30个人里面！</p><p>但是！当你飘到那个人附近——你的身体会有反应！会发抖！会变冷！这就是<strong style="color:var(--danger)">半记忆脉冲</strong>！</p><p style="display:flex;gap:8px;margin:8px 0"><span style="color:var(--text-dim)">○ 有点感觉</span><span style="color:var(--orange)">◐ 明显反应</span><span style="color:var(--danger)">● 很强</span><span style="color:var(--danger);font-weight:700">◉ 超级强！！</span></p><p class="thought">但是脉冲会骗人！有些人明明不是坏人，你也会有反应！还有更坑的——你替坏人找借口的时候，感觉会变弱！你是鬼，但鬼也会骗自己！好离谱啊！</p>'},
-{title:"坑豆与C位",html:'<p>你有两件事要做。先做一件，再做一件。</p><div style="border:1px solid var(--danger);border-radius:4px;padding:12px;margin:12px 0;background:rgba(255,68,102,.04)"><p style="font-size:16px;color:var(--danger);margin:0 0 4px"><strong>① 找出害你的那个人！！</strong></p><p style="color:var(--text-dim);margin:0;font-size:14px">就在这30人里面！找到能看见鬼的人帮你指认！</p><p style="margin:6px 0 0;font-size:14px"><span style="color:var(--green)">只有3次机会！</span> 猜对=可以投胎 · 3次全错=永远困在这里！</p></div><div style="border:1px solid var(--gold);border-radius:4px;padding:12px;margin:12px 0;background:rgba(255,215,0,.04)"><p style="font-size:16px;color:var(--gold);margin:0 0 4px"><strong>② 找到真正的C位</strong></p><p style="color:var(--text-dim);margin:0;font-size:14px">5个人里有一个是真正值得信的人。找出坏人之后选对C位=<span style="color:var(--gold)">最好结局！！</span></p></div>'},
-{title:"投胎",html:'<p>找出害你的人之后——你就可以投胎了！投胎变成什么？看你的<strong>分数</strong>！</p><div style="margin:12px 0;padding:12px;background:var(--bg);border-radius:4px;font-size:14px"><div style="color:#ffd700;margin-bottom:4px">S级·营销号 — 说什么都有人信！超厉害！</div><div style="color:#5b9bd5;margin-bottom:4px">A级·选管组长 — 什么档案都能看！</div><div style="color:#4ec9b0;margin-bottom:4px">B级·唯一的姐 — 有钱！能打钱也能搞塌房！</div><div style="color:#777">C级·私生 — 只能跟踪偷拍……被所有人讨厌……</div></div><p class="thought">你上辈子是粉丝。这辈子是鬼。找出坏人之后你会变成什么？看你这8周干了什么！</p>'},
-{title:"开始",html:'<p>好了！30个人在下面集合了！你是鬼！没有人看得见你！</p><p class="thought">不要相信任何人！！但是最后——你要学会相信对的那个人。</p><p style="margin-top:16px;color:var(--text-dim);font-size:14px;letter-spacing:2px">第1周 · 第1天</p><p style="color:var(--gold);font-size:18px">你开始飘了！！</p>'},
+{title:"三年前",html:'<p>你是一个秀芬！那场万人空巷的101！！你孤注一掷——全部身家砸进去了！就为了送他出道！</p><p style="color:var(--danger);font-weight:700">那一夜——他居然发了一条微博——他有一对双胞胎孩子！！！</p><p>那条微博化作一把匕首——捅在了你心上。那一刻——你人没了。</p>'},
+{title:"此刻",html:'<p>你醒了。但你已经不是人了。你飘在天花板下面。低头——没有脚！！</p><p>瞳孔上浮现出一行字——像投影一样打在你眼球上：</p><p style="color:var(--danger);font-size:22px;font-weight:700;text-align:center;letter-spacing:4px">「任务：复仇。」</p>'},
+{title:"任务",html:'<p>你本来可以好好重生。但重生失败了——因为你有未了的执念。</p><p>化解执念的唯一办法——做一个福报：</p><p style="color:var(--danger);font-weight:700">2周内找到害你的人。曝光他。逼他退赛。否则——你将错失最后一轮投胎的DDL。</p><p>现在——你穿越到了当年那场比赛。30强。第三轮公演。</p><p class="thought">你也发誓——不能再让其他秀芬受伤害。</p>'},
+{title:"失忆",html:'<p>但是——你有点失忆了。</p><p style="color:var(--danger);font-weight:700;font-size:18px">靠！！气死你了！！完全想不起来这个人到底是谁！！</p><p>你只知道——他就在这30个人里面。</p>'},
+{title:"脸红心跳",html:'<p>系统知道你很急，为了帮你快点找到那个捅你刀子的"坑豆"——</p><p>你被赋予了一个超能力！！！</p><p style="color:var(--danger);font-size:22px;font-weight:700;text-align:center;letter-spacing:4px">「脸红心跳」！！！</p><p>就是！！你飘到"嫌疑坑豆"附近时——<br>你的身体会有反应！！会发抖！！会变冷！！脸会红！！！</p><p style="color:var(--orange);font-weight:700">但是但是但是！！！</p><p>因为你刚穿越回来，而且你是秀芬，离帅哥近的时候不保证脸红是因为超能力还是因为真的脸红！</p><p class="thought">系统只能帮你到这儿了，接下来靠你自己了</p>'},
+{title:"破案开始",html:'<p style="font-size:18px">现在30强在你眼前集合了！！</p><p>不过因为你是阿飘，所以没人看见你！！！</p><p style="color:var(--danger);font-weight:700">好了。别废话了。</p><p style="font-size:20px;color:var(--danger)">去找他。去。</p><p style="font-size:24px;font-weight:700;text-align:center;color:var(--gold);letter-spacing:2px">破案开始！！！</p>'},
 ];
-var ERA_INTRO_PAGE={title:"四组人",html:'<p>这30个人分成了4组！</p><p><span class="era-tag" style="background:'+ERA_C.C+';color:#000">C组</span> <span style="color:var(--text-dim);font-size:12px">10人</span>　穿一样的衣服！扣子扣到最上面！不笑不哭！看着像机器人——但是小赵脖子后面有一滴汗！</p><p><span class="era-tag" style="background:'+ERA_C.K+';color:#000">K组</span> <span style="color:var(--text-dim);font-size:12px">10人</span>　超爱笑！超爱哭！泰烈笑起来眼睛弯弯的——但他谢幕的时候摸了一下耳朵后面。太熟练了吧！</p><p><span class="era-tag" style="background:'+ERA_C.J+';color:#000">J组</span> <span style="color:var(--text-dim);font-size:12px">6人</span>　坐在一起，不说话。悠真在膝盖上画圈，凪看窗外，莲把帽子压低。他们在交流！但你听不到！</p><p><span class="era-tag" style="background:'+ERA_C.T+';color:#000">T组</span> <span style="color:var(--text-dim);font-size:12px">4人</span>　站在灯光里。灯一灭——你看见Ban在笑！！灯一亮——他就不笑了！！这组人最危险！真假切换比灯还快！！</p>'};
+var ERA_INTRO_PAGE={title:"四组人",html:'<p>这30个人来自4种不同的公司！！公司大小决定资源、训练、曝光——但决定不了真心！！！</p><p><span class="era-tag" style="background:'+ERA_C.C+';color:#000">国际娱乐集团</span> <span style="color:var(--text-dim);font-size:12px">10人</span>　社保缴纳人数>1000人！！顶级资源！顶级训练！股价最高！！但是——容易造出程式化偶像！！笑容像编程过的一样！！粉丝是资源堆出来的！！</p><p><span class="era-tag" style="background:'+ERA_C.K+';color:#000">国内二线娱乐公司</span> <span style="color:var(--text-dim);font-size:12px">10人</span>　社保缴纳人数<50人！！资源一般！有个性但曝光少！！股价中等——但偶尔出天才！！真性情的人多在这里！！</p><p><span class="era-tag" style="background:'+ERA_C.J+';color:#000">草台初创娱乐公司</span> <span style="color:var(--text-dim);font-size:12px">6人</span>　社保缴纳人数<5人！！没钱！没资源！股价最低！！但是有原始天赋！！练得最苦的都在这里！！</p><p><span class="era-tag" style="background:'+ERA_C.T+';color:#000">妈妈是经纪人的那种公司</span> <span style="color:var(--text-dim);font-size:12px">4人</span>　社保缴纳人数1~2人！！独立运营！！极其不稳定！！！有人炸裂有人拉胯——方差最大的一组！！股价 unpredictable！！</p><p class="thought">注意！！公司影响股价和业务能力——但不是绝对的！！国际娱乐集团也有程式化废柴！！小公司也有隐藏天才！！不要只看标签！！！</p>'}
 
 var PROLOGUE=[
 '<p class="narrator" style="color:var(--blue)">三年前</p><p>你是一个选手的粉丝。钱全砸在他身上了！</p><p>你相信他会出道！你相信他不会骗你！</p>',
@@ -1415,23 +1434,26 @@ var PROLOGUE=[
 // Game Logic
 // ============================================================
 var SCHEDULE=[
-  {w:1,d:1,type:'start',label:'入营日',icon:'◉',desc:'30名练习生入营。无公演。',phase:1},
+  {w:1,d:1,type:'start',label:'穿越到达·三公30强',icon:'◉',desc:'你穿越到了三公。30人集合。',phase:1},
   {w:1,d:2,type:'practice',label:'分组训练',icon:'○',desc:'C/K/J/T四组分别训练。'},
-  {w:1,d:5,type:'practice',label:'首次评级测试',icon:'○',desc:'内部评级，不公开结果。'},
-  {w:2,d:3,type:'practice',label:'自由练习',icon:'○',desc:'自由组队练习。'},
-  {w:2,d:7,type:'performance',label:'【第1次公演】等级评价战',icon:'★',desc:'30人按组出场。评级A-F正式公布。淘汰末位E/F级部分选手。',phase:1},
-  {w:3,d:1,type:'practice',label:'P2开启·分组抽签',icon:'◉',desc:'Phase 2开始。跨组混合分组。'},
-  {w:3,d:4,type:'performance',label:'【第2次公演】分组对战',icon:'★',desc:'混合组对抗。输的组全员危险区。'},
-  {w:4,d:2,type:'practice',label:'CP主题训练',icon:'○',desc:'CP羁绊值影响公演加分。'},
-  {w:4,d:7,type:'performance',label:'【第3次公演】CP主题战',icon:'★',desc:'双人舞台。CP默契度决定排名。'},
-  {w:5,d:3,type:'practice',label:'个人技准备',icon:'○',desc:'个人舞台准备。'},
-  {w:5,d:6,type:'performance',label:'【第4次公演】个人技展示',icon:'★',desc:'单人舞台。三轴真心值直接影响票数。'},
-  {w:6,d:4,type:'practice',label:'半决赛准备',icon:'○',desc:'只剩15人左右。压力开始显现。'},
-  {w:6,d:7,type:'performance',label:'【第5次公演】半决赛',icon:'★',desc:'淘汰至11人。出道线确定。'},
-  {w:7,d:1,type:'practice',label:'P3开启·总决赛准备',icon:'◉',desc:'Phase 3开始。半记忆强烈觉醒。'},
-  {w:7,d:5,type:'performance',label:'【第6次公演】总决赛前夜',icon:'★',desc:'11人最终舞台。最后一次观察机会。'},
-  {w:8,d:3,type:'practice',label:'出道日倒计时',icon:'○',desc:'媒体采访、粉丝应援最后冲刺。'},
-  {w:8,d:7,type:'final',label:'【总决赛】出道投票',icon:'☆',desc:'11人出道。你的C位选择决定结局。',phase:3},
+  {w:1,d:3,type:'practice',label:'评级测试',icon:'○',desc:'内部评级。结城在这天出现。'},
+  {w:1,d:4,type:'practice',label:'自由练习',icon:'○',desc:'自由组队练习。'},
+  {w:2,d:1,type:'practice',label:'CP主题训练',icon:'○',desc:'CP羁绊值影响公演加分。'},
+  {w:2,d:2,type:'practice',label:'个人技准备',icon:'○',desc:'个人舞台准备。'},
+  {w:2,d:3,type:'practice',label:'赛前调整',icon:'○',desc:'最后一练。'},
+  {w:2,d:4,type:'performance',label:'【三公】等级评价战',icon:'★',desc:'30人按组出场。淘汰4人。当晚投胎。',phase:1},
+  {w:3,d:1,type:'practice',label:'投胎后·四公准备',icon:'◉',desc:'Phase 2开始。新身份新能力。投胎后第一周。'},
+  {w:3,d:2,type:'practice',label:'分组训练',icon:'○',desc:'混合组训练。'},
+  {w:3,d:3,type:'practice',label:'赛前调整',icon:'○',desc:'最后一练。'},
+  {w:3,d:4,type:'performance',label:'【四公】分组对战',icon:'★',desc:'混合组对抗。淘汰5人。'},
+  {w:4,d:1,type:'practice',label:'个人技准备',icon:'○',desc:'个人舞台准备。'},
+  {w:4,d:2,type:'practice',label:'半决赛准备',icon:'○',desc:'压力开始显现。'},
+  {w:4,d:3,type:'practice',label:'赛前调整',icon:'○',desc:'最后一练。'},
+  {w:4,d:4,type:'performance',label:'【半决赛】',icon:'★',desc:'淘汰5人。出道线逼近。'},
+  {w:5,d:1,type:'practice',label:'总决赛准备',icon:'◉',desc:'Phase 3开始。'},
+  {w:5,d:2,type:'practice',label:'总决赛前夜',icon:'○',desc:'11人最终舞台准备。'},
+  {w:5,d:3,type:'practice',label:'出道日倒计时',icon:'○',desc:'媒体采访、粉丝应援最后冲刺。'},
+  {w:5,d:4,type:'final',label:'【总决赛】出道投票',icon:'☆',desc:'淘汰5人。你的C位选择决定结局。',phase:3},
 ];
 
 function getTodaySchedule(){
@@ -1443,45 +1465,45 @@ function getTodaySchedule(){
 function getNextPerformance(){
   var G=S.G;
   if(!G) return null;
-  var cur=(G.week-1)*7+G.day;
-  var next=SCHEDULE.filter(function(s){return s.type==='performance'&&((s.w-1)*7+s.d)>=cur;});
+  var cur=(G.week-1)*4+G.day;
+  var next=SCHEDULE.filter(function(s){return s.type==='performance'&&((s.w-1)*4+s.d)>=cur;});
   return next.length>0?next[0]:null;
 }
 
 var PERFORMANCES={
   perf1:{
-    label:'第1次公演·等级评价战',
+    label:'【三公】等级评价战',
     stage:'stage_perf1',
     narrative:[
       '录影棚的穹顶灯全亮了。你飘在看台的角落，看着练习生们站上真正的舞台——不是练习室的地板，是有灯光、有镜头、有观众席的正式舞台。',
-      'C组率先登场。十个人穿着统一的黑色制服，走位精确到毫米。小赵站在中央，他的冷不是表演——是骨子里的。你从看台上飘过，凑近了看他的瞳孔——在灯光下没有变化。对舞台的热忱是真的，对观众的漠然也是真的。',
-      'K组的出场让全场温度升了五度。泰烈第一个开口，他的声音像蜂蜜浇在热面包上——你知道这种声音会让多少人沦陷。你飘到他正前方，没有人察觉。你的注意力在他的手：他谢幕时摸了一下耳后。那个动作……你的雾在震荡。',
-      'J组安静得像一幅画。悠真只唱了一句，但那一句让整个观众席屏住了呼吸。凪站在角落，几乎隐形——但你在他转身的瞬间看到了一个不该出现的笑容。你飘到他身边，想看清——他打了个寒颤，像感觉到了什么。但他只是裹紧了外套。',
-      'T组最后登场。光和暗的切割像刀。Ban的爆发力让前排尖叫，但他的眼神扫过观众时像在看猎物。Lin站在他旁边，稳得像一座桥。San在最后排，但他的存在感不输给任何人。',
+      '国际娱乐集团率先登场。十个人穿着统一的黑色制服，走位精确到毫米。小赵站在中央，他的冷不是表演——是骨子里的。你从看台上飘过，凑近了看他的瞳孔——在灯光下没有变化。对舞台的热忱是真的，对观众的漠然也是真的。',
+      '国内二线娱乐公司的出场让全场温度升了五度。泰烈第一个开口，他的声音像蜂蜜浇在热面包上——你知道这种声音会让多少人沦陷。你飘到他正前方，没有人察觉。你的注意力在他的手：他谢幕时摸了一下耳后。那个动作……你的雾在震荡。',
+      '草台初创娱乐公司安静得像一幅画。悠真只唱了一句，但那一句让整个观众席屏住了呼吸。凪站在角落，几乎隐形——但你在他转身的瞬间看到了一个不该出现的笑容。你飘到他身边，想看清——他打了个寒颤，像感觉到了什么。但他只是裹紧了外套。',
+      '妈妈是经纪人的那种公司最后登场。光和暗的切割像刀。Ban的爆发力让前排尖叫，但他的眼神扫过观众时像在看猎物。Lin站在他旁边，稳得像一座桥。San在最后排，但他的存在感不输给任何人。',
       '评级结果出来了。A级3人、B级5人、C级9人、D级6人、E级3人、F级4人。F级的四人站在淘汰线上。你飘到小陈身边——他的嘴角抽了一下，只有0.2秒。他不知道你在。你看着他的脸，你的雾在浓。'
     ],
     observationHint:'公演中你可以专注观察一个人的舞台表现，获得平时看不到的线索。',
     resultText:'等级公布。F级4人进入危险区。下周若无人退赛，末位淘汰。',
-    eliminateCount:2,
+    eliminateCount:4,
     eliminateFilter:function(c){return c.level==='E'||c.level==='F';}
   },
   perf2:{
-    label:'第2次公演·分组对战',
+    label:'【四公】分组对战',
     stage:'stage_perf2',
     narrative:[
       '跨组混合分组。舞台被分成了三个区域——红、蓝、白。每组占据一区，对抗开始。',
       '第一组的表现中规中矩，但你能看到有人在做"安全表演"——不犯错也不出彩。小刘的走位依然完美，但他的队友跟不上他的节奏。差距太明显了。',
-      '第二组让全场沸腾。小赵被分到了和宥彬一组——C组和K组的碰撞。小赵的冷和宥彬的热形成了一种奇妙的张力。但你的视线被另一个人抓住了：阿狗在另一组，他的笑容在舞台上格外灿烂——灿烂到不真实。',
+      '第二组让全场沸腾。小赵被分到了和宥彬一组——国际娱乐集团和国内二线娱乐公司的碰撞。小赵的冷和宥彬的热形成了一种奇妙的张力。但你的视线被另一个人抓住了：阿狗在另一组，他的笑容在舞台上格外灿烂——灿烂到不真实。',
       '第三组出了意外。San在表演中失误了，掉了道具。但他没有停，直接即兴接上，反而比原编排更好。你在他眼里看到了真正的火焰——不是愤怒，是求生欲。',
       '输的那组全员进入危险区。你注意到有人在那组的表情——不是沮丧，是计算。在算自己还有多少筹码可以翻盘。'
     ],
     observationHint:'分组对战中，角色间的配合暴露了CP羁绊的真实强度。',
     resultText:'输组全员危险区。危险区票数最低者下周淘汰。',
-    eliminateCount:2,
-    eliminateFilter:function(c){return !c.id===1;}
+    eliminateCount:5,
+    eliminateFilter:function(c){return c.stock<20;}
   },
   perf3:{
-    label:'第3次公演·CP主题战',
+    label:'【半决赛】',
     stage:'stage_perf3',
     narrative:[
       '今晚的主题是"双人舞台"。CP组合站在一起，灯光只打在他们两个人身上。整个录影棚像一座巨大的暗室，只有舞台中央是亮的。',
@@ -1492,7 +1514,7 @@ var PERFORMANCES={
     ],
     observationHint:'CP主题战中，你可以看到谁在真心配合，谁在利用对方。',
     resultText:'CP默契度最高的前三组获得加票。最后一名组内CP羁绊较低者危险。',
-    eliminateCount:2,
+    eliminateCount:5,
     eliminateFilter:function(c){return c.stock<15;}
   },
   perf4:{
@@ -1538,7 +1560,7 @@ var PERFORMANCES={
       '你睁开眼。舞台上是11个人。你的C位就在其中。你知道是谁吗？你的脉搏知道。你的证据板知道。你的日记本知道。',
       '明天，你要做出选择。最后一个选择。'
     ],
-    observationHint:'总决赛前夜。如果你还没窥忆——这是最后的机会。如果你已经窥忆——专注观察你的C位候选。',
+    observationHint:'总决赛前夜。如果你还没拼命想——这是最后的机会。如果你已经拼命想——专注观察你的C位候选。',
     resultText:'今晚的表演是最后的观察窗口。明天是最终投票。',
     eliminateCount:0,
     eliminateFilter:null
@@ -1550,12 +1572,12 @@ function getPerformance(){
   if(!G) return null;
   var key='perf';
   var idx=0;
-  if(G.week===2&&G.day===7) idx=1;
+  if(G.week===2&&G.day===4) idx=1;
   else if(G.week===3&&G.day===4) idx=2;
-  else if(G.week===4&&G.day===7) idx=3;
-  else if(G.week===5&&G.day===6) idx=4;
-  else if(G.week===6&&G.day===7) idx=5;
-  else if(G.week===7&&G.day===5) idx=6;
+  else if(G.week===4&&G.day===4) idx=3;
+  
+  
+  
   else return null;
   return PERFORMANCES['perf'+idx];
 }
@@ -1568,22 +1590,20 @@ function getDayEra(){
   return cycle[(G.week-1)%4];
 }
 
-function checkPulse(charId){
+function checkHeartbeat(charId){
   var G=S.G;
   var char=CHARACTERS.find(function(c){return c.id===charId;});
   if(!char||char.pulse==="none") return null;
+  if(!char.nemesis) return null;
+  if(charId!==G.nemesisId&&G.pulseSeenOnce[charId]) return null;
   var lvl=char.pulse;
   if(charId===G.nemesisId){
     var up={weak:"medium",medium:"strong",strong:"extreme",extreme:"extreme"};
     lvl=up[lvl]||lvl;
   }
-  if(G.phase===1){var d={extreme:"strong",strong:"medium",medium:"weak",weak:"weak"};lvl=d[lvl]||lvl;}
   if(G.phase===3){var up2={weak:"medium",medium:"strong",strong:"extreme",extreme:"extreme"};lvl=up2[lvl]||lvl;}
-  var eff=G.pulseSensitivity-G.cognitionDissonance;
-  if(eff<30&&lvl==="weak") lvl="none";
-  if(eff<15&&lvl!=="extreme"){var d2={extreme:"strong",strong:"medium",medium:"weak",weak:"none"};lvl=d2[lvl]||lvl;}
   if(lvl==="none") return null;
-  var txts=PULSE_TXT[lvl]||PULSE_TXT.medium;
+  var txts=HEARTBEAT_TXT[lvl]||HEARTBEAT_TXT.medium;
   return{level:lvl,text:txts[Math.floor(Math.random()*txts.length)]};
 }
 
@@ -1606,7 +1626,8 @@ function handleChoice(action){
   else if(action==='card_collection'){ go('card_collection'); }
   else if(action==='schedule'){ go('schedule'); }
   else if(action==='ticket_market'){ go('ticket_market'); }
-  else if(action==='self_reflect'){ doSelfReflect(); }
+  else if(action==='xianyu_market'){ go('xianyu_market'); }
+
   else if(action==='end_day'){ endDay(); }
   else if(action==='skip_to_final'){
     var G=S.G;
@@ -1661,7 +1682,7 @@ function chooseDailyEvent(choiceIdx){
   // Trigger pulse if specified
   if(eff.pulse_char){
     var pid=eff.pulse_char;
-    var pulse=checkPulse(pid);
+    var pulse=checkHeartbeat(pid);
     if(pulse){
       if(!G.suspectList.includes(pid)) G.suspectList.push(pid);
       if(!G.evidenceBoard[pid]) G.evidenceBoard[pid]={confidence:0,clues:[]};
@@ -1704,7 +1725,7 @@ function doOverview(id){
   var G=S.G;
   var char=CHARACTERS.find(function(c){return c.id===id;});
   G.actionsToday++;
-  var pulse=checkPulse(id);
+  var pulse=checkHeartbeat(id);
   if(!G.observed[id]) G.observed[id]={count:0,signals:[]};
   G.observed[id].count++;
   G.observed[id].lastDay='W'+G.week+'D'+G.day;
@@ -1766,7 +1787,7 @@ function doObserve(id){
       G.convictionPoints++;
     }
   }
-  var pulse=checkPulse(id);
+  var pulse=checkHeartbeat(id);
   if(pulse){
     if(!G.suspectList.includes(id)) G.suspectList.push(id);
     if(!G.evidenceBoard[id]) G.evidenceBoard[id]={confidence:0,clues:[]};
@@ -1792,7 +1813,7 @@ function doQuickScan(){
   var results=[];
   CHARACTERS.forEach(function(c){
     if(G.eliminated.includes(c.id)) return;
-    var pulse=checkPulse(c.id);
+    var pulse=checkHeartbeat(c.id);
     if(pulse){
       results.push({char:c,pulse:pulse});
       if(!G.suspectList.includes(c.id)) G.suspectList.push(c.id);
@@ -2108,17 +2129,6 @@ function hasTicketForPerformance(){
   return tc.total>0;
 }
 
-function doSelfReflect(){
-  var G=S.G;
-  if(G.selfReflectionUses>=G.maxSelfReflect||G.cognitionDissonance<5||G.supportPoints<100) return;
-  G.selfReflectionUses++;
-  G.cognitionDissonance=Math.max(0,G.cognitionDissonance-15);
-  G.supportPoints-=100;
-  G.actionsToday++;
-  autoSave();
-  S.page='self_reflect_result';
-  render();
-}
 
 function endDay(){
   autoSave();
@@ -2138,10 +2148,10 @@ function goToSleep(){
   }
   G.day++;
   var newWeek=false;
-  if(G.day>7){G.day=1;G.week++;newWeek=true;}
-  if(G.week>8){ triggerEnding("black_rerun"); return; }
-  // 第四周结束强制投胎
-  if(newWeek&&G.week>=5&&!G.reincarnationId){
+  if(G.day>4){G.day=1;G.week++;newWeek=true;}
+  if(G.week>5){ triggerEnding("black_rerun"); return; }
+  // 第二周结束强制投胎
+  if(newWeek&&G.week>=3&&!G.reincarnationId){
     S.pendingReincarnation=true;
     autoSave();
     S.page='reincarnation_event';
@@ -2156,6 +2166,12 @@ function goToSleep(){
   G.actionsToday=0;
   G.eventSeen=false;
   G.performanceSeen=false;
+  G.danmakuSentToday=0;
+  G.sideJobDoneToday=false;
+  if(newWeek){
+    G.weeklyAppraisalUsed=false;
+    G.weeklyBuzzUsed=false;
+  }
   S.dailyCard=getDailySelfieCard();
   autoSave();
   S.page='daily_card';
@@ -2177,18 +2193,12 @@ function executeConfront(id){
   if(G.confrontationChancesUsed===undefined) G.confrontationChancesUsed=0;
   G.confrontationChancesUsed++;
   var isNemesis=(id===G.nemesisId);
-  var eb=G.evidenceBoard[id]||{confidence:0,clues:[]};
-  var hitChance=Math.min(85,eb.confidence/100*85);
-  if(G.phase===3) hitChance+=10;
-  var hit=isNemesis&&(Math.random()<hitChance);
-  var result=isNemesis?(hit?"hit":"miss"):"wrong";
+  var result=isNemesis?"hit":"wrong";
   G.confrontationHistory.push({charId:id,result:result,day:"W"+G.week+"D"+G.day});
   S.confrontResult={char:char,result:result};
   if(result==="hit"){
     G.nemesisConfronted=true;
     G.supportPoints+=3000;
-  } else {
-    G.cognitionDissonance+=result==="wrong"?15:10;
   }
   autoSave();
   S.page='confront_result';
@@ -2204,7 +2214,7 @@ function afterConfront(){
     S.page='day_morning';
     render();
   } else {
-    // 三把钥匙用完，未命中坑豆
+    // 三瓶记忆喷雾用完，未命中坑豆
     if(G.eliminated.includes(G.nemesisId)){
       // 坑豆已被赛制淘汰 - 被动胜利，等第四周结束投胎
       S.page='day_morning';
@@ -2249,6 +2259,26 @@ function triggerEnding(type){
 // Save System
 // ============================================================
 var SAVE_KEY="donttrust_saves_v3";
+var BONUS_KEY="donttrust_carryover";
+
+function getCarryover(){
+  try{
+    var raw=localStorage.getItem(BONUS_KEY);
+    if(!raw) return {bonus:0,playCount:0,lastEnding:null};
+    return JSON.parse(raw);
+  }catch(e){ return {bonus:0,playCount:0,lastEnding:null}; }
+}
+
+function saveCarryover(endingType){
+  var cur=getCarryover();
+  var bonus=0;
+  if(endingType==='gold') bonus=500;
+  else if(endingType&&endingType.indexOf('silver')===0) bonus=300;
+  else bonus=100;
+  var data={bonus:bonus,playCount:cur.playCount+1,lastEnding:endingType};
+  localStorage.setItem(BONUS_KEY,JSON.stringify(data));
+  return data;
+}
 
 function getSaves(){
   try{
@@ -2264,8 +2294,8 @@ function serializeGame(){
   if(!G) return null;
   return JSON.stringify({
     phase:G.phase,week:G.week,day:G.day,supportPoints:G.supportPoints,
-    cognitionDissonance:G.cognitionDissonance,pulseSensitivity:G.pulseSensitivity,
-    confrontationChances:G.confrontationChances,selfReflectionUses:G.selfReflectionUses,
+    heartbeatSensitivity:G.heartbeatSensitivity,
+    confrontationChances:G.confrontationChances,
     nemesisId:G.nemesisId,cPositionId:G.cPositionId,convictionPoints:G.convictionPoints,
     mediumId:G.mediumId,mediumFound:G.mediumFound,
     confrontationChancesUsed:G.confrontationChancesUsed,
@@ -2276,7 +2306,7 @@ function serializeGame(){
     confrontationHistory:G.confrontationHistory,gameEnded:G.gameEnded,
     endingType:G.endingType,nemesisConfronted:G.nemesisConfronted,sparedNemesis:G.sparedNemesis,
     votedCPosition:G.votedCPosition,actionsToday:G.actionsToday,eventSeen:G.eventSeen,
-    maxActions:G.maxActions,maxSelfReflect:G.maxSelfReflect,charBatch:G.charBatch,
+    maxActions:G.maxActions,charBatch:G.charBatch,
     performanceSeen:G.performanceSeen
   });
 }
@@ -2294,7 +2324,7 @@ function deserializeGame(str){
   if(!S.G.suspectList) S.G.suspectList=[];
   if(S.G.sparedNemesis===undefined) S.G.sparedNemesis=null;
   if(S.G.maxActions===undefined) S.G.maxActions=5;
-  if(S.G.maxSelfReflect===undefined) S.G.maxSelfReflect=3;
+  if(S.3===undefined) S.3=3;
   if(S.G.performanceSeen===undefined) S.G.performanceSeen=false;
   if(S.G.mediumId===undefined) S.G.mediumId=28;
   if(S.G.mediumFound===undefined) S.G.mediumFound=false;
@@ -2380,7 +2410,7 @@ function render(){
     if(S.subPage<INTRO_PAGES.length-1){
       html+='<button class="btn btn-primary choice-btn" onclick="nextIntro()">继续 →</button>';
     } else {
-      html+='<button class="btn btn-primary choice-btn" onclick="startPrologue()">翻开第一页 →</button>';
+      html+='<button class="btn btn-primary choice-btn" onclick="startGame()">开始第1天 →</button>';
     }
     html+='</div>';
     app.innerHTML=html;
@@ -2472,14 +2502,20 @@ function render(){
     return;
   }
 
+  if(S.page==='xianyu_market'){
+    html+=renderXianyuMarket();
+    app.innerHTML=html;
+    return;
+  }
+
   if(S.page==='evidence'){
     html+=renderEvidence();
     app.innerHTML=html;
     return;
   }
 
-  if(S.page==='self_reflect_result'){
-    html+=renderSelfReflectResult();
+
+
     app.innerHTML=html;
     return;
   }
@@ -2568,6 +2604,12 @@ function render(){
     return;
   }
 
+  if(S.page==='medium_clue'){
+    html+=renderMediumClue();
+    app.innerHTML=html;
+    return;
+  }
+
   if(S.page==='use_ability'){
     html+=renderUseAbility();
     app.innerHTML=html;
@@ -2623,8 +2665,7 @@ function renderTopBar(){
   return '<div class="topbar">'+
     '<div class="stat">第<span>'+G.week+'</span>周·<span>'+G.day+'</span>天 · P<span>'+G.phase+'</span></div>'+
     '<div class="stat">彩头<span>'+G.supportPoints+'</span></div>'+
-    '<div class="stat'+(G.cognitionDissonance>40?' danger':'')+'">失调<span>'+G.cognitionDissonance+'</span></div>'+
-    '<div class="stat">窥忆<span>'+G.confrontationChances+'</span></div>'+
+    '<div class="stat">记忆喷雾<span>'+G.confrontationChances+'</span></div>'+
     ticketHtml+
   (G.nemesisConfronted&&G.reincarnationId?'<div class="stat" style="color:'+getReincarnationTier(G.reincarnationScore||0).color+'">投胎<span>'+getReincarnationTier(G.reincarnationScore||0).name+'</span></div>':'')+
     '<div class="menu-btn" onclick="go(\'save_menu\')">☰</div>'+
@@ -2635,21 +2676,21 @@ function renderTopBar(){
 function renderProgressBar(){
   var G=S.G;
   if(!G) return '';
-  var totalDays=56;
-  var currentDay=(G.week-1)*7+G.day;
+  var totalDays=20;
+  var currentDay=(G.week-1)*4+G.day;
   var pct=Math.round(currentDay/totalDays*100);
   var phaseNames={1:'等级评价期',2:'策略对战期',3:'总决赛'};
   var phaseShort={1:'P1·等级评价',2:'P2·策略对战',3:'P3·总决赛'};
-  var phaseRanges={1:[1,14],2:[15,42],3:[43,56]};
+  var phaseRanges={1:[1,8],2:[9,16],3:[17,20]};
   var pc='p'+G.phase;
   var mainDone=G.nemesisConfronted;
   var mainText=mainDone?('坑豆已确认'+(G.sparedNemesis?'·放过':'·不放过')):'坑豆未找到';
 
   var markers='';
   var milestones=[
-    {day:1,label:'W1'},{day:14,label:'P2',phaseChange:true},
-    {day:28,label:'W4'},{day:42,label:'P3',phaseChange:true},
-    {day:50,label:'W8'},{day:56,label:'终'}
+    {day:1,label:'W1'},{day:9,label:'P2',phaseChange:true},
+    {day:9,label:'P2'},{day:17,label:'P3',phaseChange:true},
+    {day:17,label:'P3'},{day:20,label:'终'}
   ];
   milestones.forEach(function(m){
     var cls='';
@@ -2721,20 +2762,17 @@ function renderDayMorning(){
     "今天的风从练习室尽头吹来。你感觉到了什么——说不清。",
     "闹钟响了三遍。没人能关掉它，也没人能真正醒来。"
   ];
-  var morningDesc=morningDescs[((G.week-1)*7+G.day-1)%morningDescs.length];
+  var morningDesc=morningDescs[((G.week-1)*4+G.day-1)%morningDescs.length];
 
   var phaseNote="";
   if(G.week===3&&G.day===1&&G.phase===1){
     G.phase=2;
-    phaseNote='<p class="thought" style="color:var(--accent)">Phase 2开始。记忆碎片更清晰了——脉冲变得更易辨认。</p>';
+    phaseNote='<p class="thought" style="color:var(--accent)">Phase 2开始。记忆碎片更清晰了——脸红心跳变得更易辨认。</p>';
   }
-  if(G.week===7&&G.day===1&&G.phase===2){
+  if(G.week===5&&G.day===1&&G.phase===2){
     G.phase=3;
-    phaseNote='<p class="thought" style="color:var(--danger)">Phase 3开始。半记忆觉醒——脉冲形成清晰的记忆碎片。</p>';
-    if(G.cognitionDissonance<30){
-      G.pulseSensitivity=Math.min(100,G.pulseSensitivity+20);
-      phaseNote+='<p class="thought" style="color:var(--green)">认知失调值低，半记忆完全觉醒。脉冲灵敏度提升。</p>';
-    }
+    phaseNote='<p class="thought" style="color:var(--danger)">Phase 3开始。半记忆觉醒——脸红心跳形成清晰的记忆碎片。</p>';
+    
   }
 
   if(G.week>1&&G.day===1){
@@ -2746,7 +2784,7 @@ function renderDayMorning(){
     }
   }
 
-  if(G.week===8&&G.day===7){
+  if(G.week===5&&G.day===4){
     S.page='final_vote';
     return renderFinalVote();
   }
@@ -2777,7 +2815,7 @@ function renderDayMorning(){
   var nextPerf=getNextPerformance();
   var nextPerfText='';
   if(nextPerf){
-    var daysUntil=((nextPerf.w-1)*7+nextPerf.d)-((G.week-1)*7+G.day);
+    var daysUntil=((nextPerf.w-1)*7+nextPerf.d)-((G.week-1)*4+G.day);
     nextPerfText='<p class="thought" style="color:var(--text-dim);font-size:11px">下一场公演：第'+nextPerf.w+'周第'+nextPerf.d+'天 '+nextPerf.label+'（还有'+daysUntil+'天）</p>';
   }
 
@@ -2798,14 +2836,14 @@ function renderDayMorning(){
 
 function renderSchedule(){
   var G=S.G;
-  var curDay=(G.week-1)*7+G.day;
+  var curDay=(G.week-1)*4+G.day;
   var phaseColors={1:'var(--accent)',2:'var(--gold)',3:'var(--danger)'};
   var html='<p class="narrator">赛季日程表</p>'+
-    '<p class="thought">8周·56天·6场公演·1场总决赛</p>';
+    '<p class="thought">5周·56天·6场公演·1场总决赛</p>';
 
   var prevPhase=0;
   SCHEDULE.forEach(function(s){
-    var sDay=(s.w-1)*7+s.d;
+    var sDay=(s.w-1)*4+s.d;
     var isPast=sDay<curDay;
     var isToday=sDay===curDay;
     var cls='';
@@ -2844,7 +2882,7 @@ function renderDiaryNight(){
     "凌晨两点。有人在翻来覆去。有人在梦话。你飘在走廊里，听着。",
     "夜风从没关好的窗户吹进来。你什么都感觉不到——阿飘没有体温。"
   ];
-  var nightDesc=nightDescs[((G.week-1)*7+G.day-1)%nightDescs.length];
+  var nightDesc=nightDescs[((G.week-1)*4+G.day-1)%nightDescs.length];
 
   var lines=[];
   lines.push('第'+G.week+'周·第'+G.day+'天结束了。你飘回了日记本旁边。');
@@ -2874,7 +2912,7 @@ function renderDiaryNight(){
     });
     lines.push('你的嫌疑人名单上有'+susNames.length+'个人：'+susNames.join('、')+'。');
   } else {
-    lines.push('你还没有找到任何嫌疑人。脉冲还没响过——或者你还没靠近对的人。');
+    lines.push('你还没有找到任何嫌疑人。脸红心跳还没响过——或者你还没靠近对的人。');
   }
 
   var ebKeys=Object.keys(G.evidenceBoard);
@@ -2939,9 +2977,9 @@ var DAILY_EVENTS=[
 // Week 1 events - Phase 1, confusion
 {week:1,day:1,text:"走廊尽头的公告栏贴出了第一张排名表。你挤进人群——密密麻麻的名字和数字。你不知道该看谁。但你的眼睛在扫过某个名字时停了一下。哪个名字？你记不清了。你的脉搏刚刚跳了一下。",choices:[
   {text:"回去翻翻排名表的照片",effect:{support:-50,result:"你回到看台翻出手机里的照片。放大——你看到了那个让你停顿的名字，但照片太模糊了。你记住了大概的位置：中游偏下。",pulse_hint:true}},
-  {text:"不管了，先去练习室看看",effect:{support:0,result:"你决定不纠结。直觉会再来的。"}},
+  {text:"不管了，先看监控碎片",effect:{support:0,result:"你决定不纠结。直觉会再来的。"}},
 ]},
-{week:1,day:2,text:"午餐时间。餐厅里三十个人分成几桌。你注意到C组和K组的人坐得很远——像两种动物在同一个笼子里。有人在你旁边的位置坐下了。",choices:[
+{week:1,day:2,text:"午餐时间。餐厅里三十个人分成几桌。你注意到国际娱乐集团和国内二线娱乐公司的人坐得很远——像两种动物在同一个笼子里。有人在你旁边的位置坐下了。",choices:[
   {text:"看一眼是谁",effect:{support:0,result:"是小李。他朝你点了点头，然后低头吃饭。他没有说话——但你注意到他的餐盘里多了一份水果，是食堂标准之外的东西。有人给他额外的好处。",observe:14}},
   {text:"低头假装没看到",effect:{support:0,result:"你低头扒饭。那个人的脚步声走远了。你没有看清是谁。"}},
 ]},
@@ -2957,9 +2995,9 @@ var DAILY_EVENTS=[
   {text:"继续盯着看",effect:{support:0,result:"你死死盯着那几张卡片。泰烈的笑容温暖、标准、完美。每一个粉丝得到同样的温暖——一模一样的弧度，一模一样的力度。你的脉搏开始跳了。",pulse_char:4}},
   {text:"强迫自己移开目光",effect:{support:0,result:"你闭上眼。不是他。不能这么快下结论。上一世的人太多了。"}},
 ]},
-{week:1,day:6,text:"今天的训练结束后，你看到Lin一个人在练习室加练。T组的人很少主动加练——他们更倾向于即兴和破坏。但Lin在重复同一组动作，一遍又一遍。像是在赎罪。",choices:[
+{week:1,day:6,text:"今天的训练结束后，你看到Lin一个人在练习室加练。妈妈是经纪人的那种公司的人很少主动加练——他们更倾向于即兴和破坏。但Lin在重复同一组动作，一遍又一遍。像是在赎罪。",choices:[
   {text:"留下来观察他",effect:{support:0,result:"他练了很久。汗水浸透了T恤。在灯光熄灭的间隙——你看到了——他的眼神从专注变成了空洞。0.1秒。然后恢复。这个眼神你见过。在上一世的最后。",pulse_char:10}},
-  {text:"他去T组的，跟你无关",effect:{support:0,result:"你离开了。但那个重复练习的身影在脑中挥之不去。"}},
+  {text:"他去妈妈是经纪人的那种公司的，跟你无关",effect:{support:0,result:"你离开了。但那个重复练习的身影在脑中挥之不去。"}},
 ]},
 {week:1,day:7,text:"第一周结束了！！你在日记本上写：「7天了！还是不知道是谁！但我确定了三件事：1 有人在我面前会装！2 我的身体不会无缘无故发抖！3 这一次我不会再被骗了！！」还剩7周！！",choices:[
   {text:"继续写",effect:{support:0,result:"你开始写这30个人分成4组的事。"}},
@@ -2970,25 +3008,25 @@ var DAILY_EVENTS=[
   {text:"去观察小周",effect:{support:0,result:"你飘到小周。他坐在角落里发呆。制服皱巴巴的，领口松垮。你飘近的时候他抬头看了你一眼——眼神空洞。他在自言自语。「还好。」「还好」。但他没有看你。",observe:16}},
   {text:"不管他",effect:{support:0,result:"每个赛季都有掉队的人。你没有时间同情所有人。"}},
 ]},
-{week:2,day:2,text:"你在休息室听到San在和人争论。他的声音很大：「我不需要你们的设计！我要自己来！」T组的人很少这么激动——通常他们用沉默和断裂表达情绪。San的愤怒是热的，不像T组。",choices:[
+{week:2,day:2,text:"你在休息室听到San在和人争论。他的声音很大：「我不需要你们的设计！我要自己来！」妈妈是经纪人的那种公司的人很少这么激动——通常他们用沉默和断裂表达情绪。San的愤怒是热的，不像妈妈是经纪人的那种公司。",choices:[
   {text:"走近看看",effect:{support:0,result:"San在和编导争执。他的走位设计被否决了。编导说他「不够极端」。San的眼睛红了——他不是在发脾气，他是在保护自己的东西。你注意到他的粉丝回馈极高，但舞台评分很低。走错了组的人。",observe:30}},
-  {text:"不掺和",effect:{support:0,result:"你飘开了。T组的事情和你无关——至少现在。"}},
+  {text:"不掺和",effect:{support:0,result:"你飘开了。妈妈是经纪人的那种公司的事情和你无关——至少现在。"}},
 ]},
 {week:2,day:3,text:"今天的直播环节。宥彬又在凌晨回复粉丝私信了。你在看台上看直播——他的黑眼圈很明显，但笑容完美。弹幕在刷「哥哥太辛苦了」。你在想：他是真的爱粉丝，还是怕被遗忘？",choices:[
   {text:"去观察宥彬",effect:{support:0,result:"直播结束后你飘到了他。他在后台吃胃药。看到你来，他把药藏到了身后。「没事！吃维生素而已！」他的笑容切换得太快了——0.1秒从疲惫到元气。这种切换速度让你想起上一世的某个人。",pulse_char:20}},
   {text:"记下，不去接近",effect:{support:0,result:"你在日记本上记了一笔：宥彬，过度真心，可能是焦虑驱动。"}},
 ]},
-{week:2,day:4,text:"今天发生了一件大事。Ban在训练中突然停下，走到角落，面壁站了三分钟。没有人敢问他怎么了。T组的人本来就让人害怕——但Ban不是在发怒。他像是在——等待什么。",choices:[
+{week:2,day:4,text:"今天发生了一件大事。Ban在训练中突然停下，走到角落，面壁站了三分钟。没有人敢问他怎么了。妈妈是经纪人的那种公司的人本来就让人害怕——但Ban不是在发怒。他像是在——等待什么。",choices:[
   {text:"趁这个机会观察Ban",effect:{support:0,result:"你远远看着Ban。他面壁站着，双手握拳。灯光切换的瞬间——他的背影轮廓和记忆碎片里那个画面重合了。那个毁了你一切的人，也曾经这样站着。你的脉搏剧烈跳动。",pulse_char:9}},
-  {text:"远离他",effect:{support:0,result:"你转身离开。T组的人太危险了。你不想靠近Ban。"}},
+  {text:"远离他",effect:{support:0,result:"你转身离开。妈妈是经纪人的那种公司的人太危险了。你不想靠近Ban。"}},
 ]},
 {week:2,day:5,text:"午饭时智勋坐到了你旁边。他下台后的样子和舞台上完全不一样——没有光环，没有能量，像一个被拔掉电源的灯。他问你要不要一起去便利店买水。",choices:[
   {text:"跟他去",effect:{support:-30,result:"便利店的灯很亮。智勋在货架前站了很久，最后只买了一瓶矿泉水。他说：「舞台上的智勋是假的。但这个是真的。」你不知道该怎么回答。花了30彩头请他喝水。",observe:18}},
   {text:"婉拒",effect:{support:0,result:"你飘在旁边。智勋自言自语「在忙啊」，走了。他的背影看起来比舞台上小了两号。"}},
 ]},
-{week:2,day:6,text:"你在走廊里第一次看到Lin和Ban站在一起。CP关系——T组的赎罪者和最危险的人。他们在说什么。Lin的表情很紧张，Ban背对着你。",choices:[
+{week:2,day:6,text:"你在走廊里第一次看到Lin和Ban站在一起。CP关系——妈妈是经纪人的那种公司的赎罪者和最危险的人。他们在说什么。Lin的表情很紧张，Ban背对着你。",choices:[
   {text:"偷偷靠近听",effect:{support:0,result:"你贴近墙壁。「你不用替我背。」Ban的声音。「我说了我愿意。」Lin的声音。然后他们发现了你。Ban的眼神在0.05秒内从正常变成——冰冷的空白。你转身跑了。",pulse_char:9}},
-  {text:"走开",effect:{support:0,result:"你绕道走了。T组的CP关系太复杂了。你不想卷进去。"}},
+  {text:"走开",effect:{support:0,result:"你绕道走了。妈妈是经纪人的那种公司的CP关系太复杂了。你不想卷进去。"}},
 ]},
 {week:2,day:7,text:"第二周结束了！你在日记本上写：「两周了！我开始能看出一些东西了！有些人的笑是假的！有些人的冷漠是保护自己！但害我的那个人——他装得比我想的更深！我需要更多证据！」",choices:[
   {text:"继续写",effect:{support:0,result:"你写了很久。关于谁是真心的，谁在演。关于你的脉搏为谁跳过。下周开始，观察的成本会降低。你要加快速度了。"}},
@@ -3003,49 +3041,49 @@ var DAILY_EVENTS=[
 ]},
 {week:3,day:3,text:"你在练习室走廊飘过。胜宇靠在墙上，看到你路过——不，他看的是你身后的镜子。但他说了一句：「新来的站姐？你看起来很累。」他是对着镜子说的。但你觉得他在说你。",choices:[
   {text:"和他聊聊",effect:{support:0,result:"胜宇带你在走廊的长椅上坐下。他说：「这里的人大多在演。但你能分辨的。对吧？」你听着。他说。他说：「因为你的眼神和我不一样。你在找一个人。」他没有再说了。你记住了胜宇。",observe:5}},
-  {text:"谢过他，走开",effect:{support:0,result:"你点了点头，走了。你不知道该不该信他。K组的人也许都在演。"}},
+  {text:"谢过他，走开",effect:{support:0,result:"你点了点头，走了。你不知道该不该信他。国内二线娱乐公司的人也许都在演。"}},
 ]},
 {week:3,day:4,text:"今天你做了一个梦。梦里你回到了上一世塌房的那一夜。你看到了一只手——很长——递给你一杯水。然后那只手收回了。灯光暗下来。你听到了一个声音说：「对不起。」但你看不到脸。",choices:[
   {text:"努力看清脸",effect:{support:0,result:"你在梦里拼命睁大眼。脸的轮廓浮上来——但只有一瞬间。然后你醒了。枕头湿了。你在日记本上写下：「长手指。对不起。灯光暗下来。」这是到目前为止最清晰的碎片。"}},
   {text:"强迫自己醒来",effect:{support:0,result:"你睁开眼。太痛了。你不想看那张脸。至少现在不想。"}},
 ]},
-{week:3,day:5,text:"你在公告栏看到排名变动。小刘的排名超过了小赵，成为C组第一。你翻看小刘的签售记录——动作标准化，时间精确，对粉丝零感知。他完美，但完美得像个机器。",choices:[
+{week:3,day:5,text:"你在公告栏看到排名变动。小刘的排名超过了小赵，成为国际娱乐集团第一。你翻看小刘的签售记录——动作标准化，时间精确，对粉丝零感知。他完美，但完美得像个机器。",choices:[
   {text:"去观察小刘",effect:{support:0,result:"你飘到练习室，看到小刘。他正在对着镜子调整走位——精确到帧。你飘近的时候他没有回头。你站在他身后看了三分钟。他没有动过。你怀疑他是否知道你在。然后他突然说：「你的呼吸声打乱了我的节奏。」你退后了。",observe:11}},
-  {text:"记下，以后再看",effect:{support:0,result:"你在日记本上记了一笔。小刘。C组。完美但冰冷。"}},
+  {text:"记下，以后再看",effect:{support:0,result:"你在日记本上记了一笔。小刘。国际娱乐集团。完美但冰冷。"}},
 ]},
-{week:3,day:6,text:"你在一个无人的角落翻看笔记本。突然发现有一个名字你一直忽略了——钟元。他穿纯黑色高领，不像K组。他签售冷淡但会观察别人。他到底在做什么？",choices:[
+{week:3,day:6,text:"你在一个无人的角落翻看笔记本。突然发现有一个名字你一直忽略了——钟元。他穿纯黑色高领，不像国内二线娱乐公司。他签售冷淡但会观察别人。他到底在做什么？",choices:[
   {text:"去找钟元",effect:{support:0,result:"你飘到了钟元。他坐在休息室的角落，手里拿着一本笔记本——和你一样。你在他身边坐下。他看了你一眼说：「你也在找人。」不是问句。你想问，但你说不出话。他没有回答。",observe:22}},
   {text:"以后再说",effect:{support:0,result:"你合上了日记本。太多人了。你不能同时追所有人。"}},
 ]},
 {week:3,day:7,text:"第三周结束了！你在日记本上写：「记忆越来越清楚了！我知道那个人的手很长！他在灯暗下来之前说了对不起！也许他不是故意的？不——不能这么想！不要替坏人找借口！你的直觉是对的！」",choices:[
-  {text:"继续写",effect:{support:0,result:"你翻看证据板。有些人的信心值在上升。有些人的脉冲在变强。你在靠近真相了。"}},
+  {text:"继续写",effect:{support:0,result:"你翻看证据板。有些人的信心值在上升。有些人的脸红心跳在变强。你在靠近真相了。"}},
 ]},
 // Week 4 events
-{week:4,day:1,text:"第四周。你在训练间隙看到莲走到悠真身边，说了一句什么。悠真的身体无意识地转向了莲——2-3度。莲没有看悠真，但他在悠真身边坐下了。J组的交流方式。",choices:[
+{week:4,day:1,text:"第四周。你在训练间隙看到莲走到悠真身边，说了一句什么。悠真的身体无意识地转向了莲——2-3度。莲没有看悠真，但他在悠真身边坐下了。草台初创娱乐公司的交流方式。",choices:[
   {text:"观察他们的互动",effect:{support:0,result:"莲和悠真坐在一起，没有说话。但你能感觉到他们之间有什么——一种沉默的共鸣。莲的手腕露出来了，有一道旧疤。悠真看到了，没有问。你记住了这一幕。",observe:25}},
-  {text:"不打扰他们",effect:{support:0,result:"你飘开了。J组的关系太安静了，你读不懂。"}},
+  {text:"不打扰他们",effect:{support:0,result:"你飘开了。草台初创娱乐公司的关系太安静了，你读不懂。"}},
 ]},
 {week:4,day:2,text:"今天有人在你的看台座位上放了一封信。没有署名。信上写：「我知道你是谁。你也在找谁。小心。」你猛地抬头四处看——没有人在。",choices:[
   {text:"分析这封信",effect:{support:0,result:"你飘在信旁边看了又看。字迹工整但用力不均——写字的人手在抖。纸张是练习室的标准用纸。有人在监视你。但谁？为什么？"}},
   {text:"收好信，假装没收到",effect:{support:0,result:"信夹进了日记本。你知道有人在看你。但你不知道是敌是友。"}},
 ]},
-{week:4,day:3,text:"你决定在训练结束后多留一会儿。灯光全部关闭——只剩下应急灯的微光。你听到练习室里有声音。有人在黑暗中训练。T组的人。",choices:[
-  {text:"飘进去看",effect:{support:0,result:"你飘到开练习室的门。New站在极端的光暗交界处——他没有在训练。他在站着。看着黑暗。你飘近的时候他转过身——他的表情是温和的。在T组。极端的环境中。他是温和的。这让你困惑。",observe:29}},
-  {text:"关上门离开",effect:{support:0,result:"你不想在黑暗中面对T组的人。你关上了门。"}},
+{week:4,day:3,text:"你决定在训练结束后多留一会儿。灯光全部关闭——只剩下应急灯的微光。你听到练习室里有声音。有人在黑暗中训练。妈妈是经纪人的那种公司的人。",choices:[
+  {text:"飘进去看",effect:{support:0,result:"你飘到开练习室的门。New站在极端的光暗交界处——他没有在训练。他在站着。看着黑暗。你飘近的时候他转过身——他的表情是温和的。在妈妈是经纪人的那种公司。极端的环境中。他是温和的。这让你困惑。",observe:29}},
+  {text:"关上门离开",effect:{support:0,result:"你不想在黑暗中面对妈妈是经纪人的那种公司的人。你关上了门。"}},
 ]},
-{week:4,day:4,text:"今天智勋在直播中突然哭了。弹幕炸了——「哥哥怎么了」「是不是太累了」。你看着直播画面，你不确定——那泪水是真的还是设计好的。K组的人太擅长这个了。",choices:[
+{week:4,day:4,text:"今天智勋在直播中突然哭了。弹幕炸了——「哥哥怎么了」「是不是太累了」。你看着直播画面，你不确定——那泪水是真的还是设计好的。国内二线娱乐公司的人太擅长这个了。",choices:[
   {text:"去后台找智勋",effect:{support:0,result:"你飘到后台，看到智勋。他已经不哭了。在看手机。屏幕上是自己的直播回放。他在回看自己的哭泣画面。他在自言自语。「还好。」：「我刚才哭得好看吗？」你说不出话。",observe:18}},
-  {text:"在直播间看",effect:{support:0,result:"你在看台上继续看。智勋的哭泣持续了2分47秒。然后他笑了。切换的速度是0.3秒。K组标准。"}},
+  {text:"在直播间看",effect:{support:0,result:"你在看台上继续看。智勋的哭泣持续了2分47秒。然后他笑了。切换的速度是0.3秒。国内二线娱乐公司标准。"}},
 ]},
 {week:4,day:5,text:"你在走廊遇到泰烈。他停下来对你笑了笑——温暖的、标准的那种。然后他说：「站姐，你最近是不是在调查什么？」你的心跳停了一拍。",choices:[
   {text:"反问他什么意思",effect:{support:0,result:"泰烈的笑容不变。「没什么。只是注意到你看人的眼神不一样。」他拍了拍你的肩膀走了。那个触碰让你浑身发冷。他知道。他知道你在找人。",pulse_char:4}},
   {text:"装傻",effect:{support:0,result:"你飘在旁边。泰烈自言自语「随便看看啊」。泰烈笑了。「那就好。」他走了。但他的笑容在你脑子里挥之不去。"}},
 ]},
-{week:4,day:6,text:"你发现San在签售会上给每个粉丝画简笔画——不同的人画不同的东西。有一个粉丝收到了一只猫，另一个收到了一朵花。他认真地画，像这是世界上最重要的事。T组垫底的人，在做最温柔的事。",choices:[
+{week:4,day:6,text:"你发现San在签售会上给每个粉丝画简笔画——不同的人画不同的东西。有一个粉丝收到了一只猫，另一个收到了一朵花。他认真地画，像这是世界上最重要的事。妈妈是经纪人的那种公司垫底的人，在做最温柔的事。",choices:[
   {text:"排队要一张",effect:{support:-50,result:"你排在队伍最后。轮到你的时候San抬头看了你一眼——然后他画了一只鸟。展翅飞的鸟。他说：「你看起来像需要飞的人。」花了50彩头。但你觉得值。",observe:30}},
-  {text:"远远看着",effect:{support:0,result:"你看着San画了二十多张简笔画。每个粉丝离开时都在笑。T组垫底的人给了最多人快乐。"}},
+  {text:"远远看着",effect:{support:0,result:"你看着San画了二十多张简笔画。每个粉丝离开时都在笑。妈妈是经纪人的那种公司垫底的人给了最多人快乐。"}},
 ]},
-{week:4,day:7,text:"第四周结束了！！你在日记本上写：「有人知道我在干什么了！！泰烈——他一定感觉到了什么！！或者他就是那个人！！我不能再犹豫了！！下周开始用钥匙！！3把！不能浪费！！」",choices:[
+{week:4,day:7,text:"第四周结束了！！你在日记本上写：「有人知道我在干什么了！！泰烈——他一定感觉到了什么！！或者他就是那个人！！我不能再犹豫了！！下周开始用记忆喷雾！！3瓶！不能浪费！！」",choices:[
   {text:"继续写",effect:{support:0,result:"你看了眼证据板。信心值最高的人——那可能就是你的坑豆。也可能是假阳性。但你现在必须做出判断了。"}},
 ]},
 // Week 5-6 events - intensifying
@@ -3054,15 +3092,15 @@ var DAILY_EVENTS=[
   {text:"不动它们",effect:{support:0,result:"你不能信任匿名信息。谁知道是谁贴的。"}},
 ]},
 {week:5,day:2,text:"今天你在练习室走廊看到了一个你不想看到的画面。Ban在训斥Lin。Lin低着头不说话。Ban说：「你以为替我背了就能改变什么？」Lin说：「至少你的出道不会因为我受影响。」",choices:[
-  {text:"偷听",effect:{support:0,result:"Ban转身走了。Lin还站在原地。你看到了他的手——在抖。T组最危险的人在对一个替他背罪的人发火。你不知道该同情谁。",pulse_char:9,observe:10}},
-  {text:"走开",effect:{support:0,result:"你不想卷入T组的恩怨。转身走了。"}},
+  {text:"偷听",effect:{support:0,result:"Ban转身走了。Lin还站在原地。你看到了他的手——在抖。妈妈是经纪人的那种公司最危险的人在对一个替他背罪的人发火。你不知道该同情谁。",pulse_char:9,observe:10}},
+  {text:"走开",effect:{support:0,result:"你不想卷入妈妈是经纪人的那种公司的恩怨。转身走了。"}},
 ]},
 {week:5,day:3,text:"你在休息室飘过，遇到了钟元。他主动坐到你旁边，说：「我观察了你五周。你不是普通站姐。」你没有问。他自己说了下去。他说：「你和我一样。你在找一个人。我也在找。但我找的人不是你的坑豆。」",choices:[
   {text:"问他在找谁",effect:{support:0,result:"钟元犹豫了一下，说：「我在找这一轮真正的C位。不是排名最高的人——是三轴真心值都最高的人。我在找值得我押全部应援的人。」他看了你一眼：「你在找的，是毁了你的人。」",observe:22}},
-  {text:"不信任他",effect:{support:0,result:"你站起来走了。K组的人说的话你能信几分？"}},
+  {text:"不信任他",effect:{support:0,result:"你站起来走了。国内二线娱乐公司的人说的话你能信几分？"}},
 ]},
-{week:5,day:4,text:"你在整理证据板的时候突然意识到一件事。你触发过脉冲的几个人——他们的脉冲模式有相似之处，但也有细微差别。坑豆的脉冲应该是最强的、最持久的。而假阳性的脉冲是短暂的、一次性的。",choices:[
-  {text:"重新分析脉冲记录",effect:{support:0,result:"你翻看所有脉冲记录。最强的几次脉冲——那些让你的手在抖、膝盖发软的——集中在两三个人身上。其他人只是微弱的波动。你缩小了范围。"}},
+{week:5,day:4,text:"你在整理证据板的时候突然意识到一件事。你触发过脸红心跳的几个人——他们的脸红心跳模式有相似之处，但也有细微差别。坑豆的脸红心跳应该是最强的、最持久的。而假阳性的脸红心跳是短暂的、一次性的。",choices:[
+  {text:"重新分析脸红心跳记录",effect:{support:0,result:"你翻看所有脸红心跳记录。最强的几次脸红心跳——那些让你的手在抖、膝盖发软的——集中在两三个人身上。其他人只是微弱的波动。你缩小了范围。"}},
   {text:"等Phase 3再说",effect:{support:0,result:"你还不想下结论。Phase 3的半记忆会更清晰。"}},
 ]},
 {week:5,day:5,text:"今天发生了让你措手不及的事。小周突然宣布退赛。不是被淘汰——是主动退出。他说「我不适合这里」。你还没来得及观察他。他走了。",choices:[
@@ -3074,38 +3112,38 @@ var DAILY_EVENTS=[
   {text:"记下，不接近",effect:{support:0,result:"你不想打草惊蛇。记下了。"}},
 ]},
 {week:5,day:7,text:"第五周结束了！！日记本越来越厚了！你写：「越来越接近了！！那个人——不管他是谁——他也知道我在接近他了！！有人给我送了匿名信！泰烈在搞什么！有人在暗中帮我！时间不多了！！」",choices:[
-  {text:"继续写",effect:{support:0,result:"你合上日记本。还剩三周。三把记忆钥匙。你必须做对了。"}},
+  {text:"继续写",effect:{support:0,result:"你合上日记本。还剩三周。三把记忆喷雾。你必须做对了。"}},
 ]},
 // Week 6
 {week:6,day:1,text:"第六周。你在公告栏上看到了新的排名。大洗牌。有人升了，有人降了。你注意到你的C位候选人的排名——还不错，但不在第一。你需要更多的彩头来推他上去。",choices:[
   {text:"看看排名",effect:{support:0,result:"你仔细看了排名。前十一名的竞争很激烈。你的C位候选人在中游。如果不加大投入，他可能进不了出道位。"}},
 ]},
-{week:6,day:2,text:"今天你飘到练习室。New站在窗边——T组里唯一不极端的人。他掏出一个旧MP3，自言自语：「要不要听听音乐？……算了，没人听。」他把一只耳机塞进耳朵，另一只悬在空中。你飘到他旁边。",choices:[
-  {text:"接过耳机",effect:{support:0,result:"耳机里是一首很老的歌。你不知道名字，但旋律让你平静。New说：「T组的人用极端的光来掩盖真相。但音乐不需要光。」你看着他——在极端的环境中，他是唯一没有碎的人。",observe:29}},
+{week:6,day:2,text:"今天你飘到练习室。New站在窗边——妈妈是经纪人的那种公司里唯一不极端的人。他掏出一个旧MP3，自言自语：「要不要听听音乐？……算了，没人听。」他把一只耳机塞进耳朵，另一只悬在空中。你飘到他旁边。",choices:[
+  {text:"接过耳机",effect:{support:0,result:"耳机里是一首很老的歌。你不知道名字，但旋律让你平静。New说：「妈妈是经纪人的那种公司的人用极端的光来掩盖真相。但音乐不需要光。」你看着他——在极端的环境中，他是唯一没有碎的人。",observe:29}},
   {text:"谢过他",effect:{support:0,result:"你飘在旁边。New点了点头，收起MP3走了。"}},
 ]},
 {week:6,day:3,text:"今天你在走廊收到了第二封匿名信。这次信上写着：「他知道了你在找他。小心泰烈。他在安排退路。」你的手在抖。泰烈？还是有人在引导你怀疑泰烈？",choices:[
   {text:"去验证泰烈",effect:{support:0,result:"你飘到了泰烈的练习记录——他最近在大量抛售自己的股份。像是在准备退路。一个即将出道的人为什么要抛售自己的股份？除非他知道什么。",pulse_char:4}},
-  {text:"也许是陷阱",effect:{support:0,result:"匿名信不能信。也许有人想让你窥忆泰烈——错杀——浪费记忆钥匙。你决定自己验证。"}},
+  {text:"也许是陷阱",effect:{support:0,result:"匿名信不能信。也许有人想让你拼命想泰烈——错杀——浪费记忆喷雾。你决定自己验证。"}},
 ]},
 {week:6,day:4,text:"深夜。你在看台上整理证据。突然——你的半记忆猛烈地涌上来。不是模糊的碎片了。是一段完整的画面。",choices:[
   {text:"闭上眼，让记忆流过",effect:{support:0,result:"你看到了。那天晚上。塌房之前。一个人递给你一杯水。手指很长。你喝了。然后——一切开始摇晃。你的彩头在消失。股价在暴跌。他站在你面前，说了一声「对不起」。然后他转身走了。灯光暗下来。他走进黑暗里。你想追——但你的腿不听使唤。你倒下了。"}},
   {text:"强迫自己睁开眼",effect:{support:0,result:"太痛了。你睁开了眼。但碎片已经刻在脑子里了。"}},
 ]},
 {week:6,day:5,text:"你决定去找Lin。他的档案有涂黑记录。训练量全场最大。他说「我愿意替他背」。你飘到练习室，看到他。他看到你，停下了动作。",choices:[
-  {text:"直接问他",effect:{support:0,result:"你飘在Lin旁边。Lin说：「你替谁背了什么？」他沉默了很久。然后说：「Ban做了不好的事。但Ban有才华。我没有才华，但我有赎罪的能力。所以我替他背了。」你听着。他说Lin摇了摇头：「我不能说。但我求你——如果你飘到了那个人——不要轻易窥忆。也许他也有苦衷。」",observe:10}},
+  {text:"直接问他",effect:{support:0,result:"你飘在Lin旁边。Lin说：「你替谁背了什么？」他沉默了很久。然后说：「Ban做了不好的事。但Ban有才华。我没有才华，但我有赎罪的能力。所以我替他背了。」你听着。他说Lin摇了摇头：「我不能说。但我求你——如果你飘到了那个人——不要轻易拼命想。也许他也有苦衷。」",observe:10}},
   {text:"只观察不问",effect:{support:0,result:"你远远看着Lin训练。他的动作认真、标准，但没有Ban的爆发力。他在用训练赎不属于他的罪。你记住了这一点。"}},
 ]},
 {week:6,day:6,text:"你收到了第三封匿名信。这次只有一行字：「明天他会行动。」没有署名。没有说谁。明天——第七周第一天？谁会行动？",choices:[
   {text:"加强警惕",effect:{support:0,result:"你决定明天格外小心。也许坑豆感觉到了你在逼近，准备做最后的伪装。也许他在准备退路。无论如何——明天是关键的一天。"}},
-  {text:"这是陷阱",effect:{support:0,result:"你不能被匿名信牵着鼻子走。也许有人想让你明天冲动窥忆——然后错杀。你决定冷静。"}},
+  {text:"这是陷阱",effect:{support:0,result:"你不能被匿名信牵着鼻子走。也许有人想让你明天冲动拼命想——然后错杀。你决定冷静。"}},
 ]},
 {week:6,day:7,text:"第六周结束。Phase 2即将结束。你写了：「还剩两周。我的半记忆已经几乎完全觉醒了。我知道那个人的手很长。他说过对不起。他在灯光暗下来之前转身走了。他也许有苦衷——但Lin的话不能成为我放弃的理由。我必须找到他。这是我来这里的唯一目的。」",choices:[
   {text:"继续写",effect:{support:0,result:"你看了眼证据板。信心值最高的人——那就是你的目标。Phase 3开始后，半记忆会给你最后的确认。"}},
 ]},
 // Week 7 - Phase 3, climax
 {week:7,day:1,text:"第七周。Phase 3。半记忆完全觉醒。你闭上眼就能看到那个夜晚——清晰的、完整的画面。你看到了他的手。他的笑容。他转身走进黑暗。你知道他是谁了——你的身体在尖叫。但你的理性还在犹豫。你必须确认。",choices:[
-  {text:"查看证据板做最终判断",effect:{support:0,result:"你翻开证据板。所有的脉冲记录、行为线索、应激反应——全部指向同一个人。你不再犹豫了。你准备好了。",go_evidence:true}},
+  {text:"查看证据板做最终判断",effect:{support:0,result:"你翻开证据板。所有的脸红心跳记录、行为线索、应激反应——全部指向同一个人。你不再犹豫了。你准备好了。",go_evidence:true}},
   {text:"再等一天",effect:{support:0,result:"你还不确定。也许明天更清晰。也许你需要最后一条线索。"}},
 ]},
 {week:7,day:2,text:"今天的训练中，你注意到一个微小的细节。那个你怀疑的人——他的一个手势和半记忆里的画面完全重合。不是相似。是完全一致。像是时间倒流了。",choices:[
@@ -3113,15 +3151,15 @@ var DAILY_EVENTS=[
   {text:"再确认一次",effect:{support:0,result:"你决定再做最后一次观察。确保万无一失。"}},
 ]},
 {week:7,day:3,text:"你在走廊遇到了那个你一直在怀疑的人。他停在你面前。看着你。他好像知道了一切。然后他微微一笑——那个笑容和半记忆里的一模一样。",choices:[
-  {text:"现在就窥忆",effect:{support:0,result:"你的手在抖。你的脉搏在尖叫。是时候了。",go_confront:true}},
+  {text:"现在就拼命想",effect:{support:0,result:"你的手在抖。你的脉搏在尖叫。是时候了。",go_confront:true}},
   {text:"忍住，去证据板确认",effect:{support:0,result:"你转身走了。你需要冷静。你需要在证据板上确认最后的信心值。",go_evidence:true}},
 ]},
 {week:7,day:4,text:"你做了一个梦。梦里你回到了上一世。你在看台上。那个人站在舞台上。他朝你笑了。然后他说了一句话。你听不清——但你在梦里拼命地听。终于听清了。他说的是——「对不起。但我不后悔。」",choices:[
   {text:"醒来",effect:{support:0,result:"你猛地坐起来。枕头湿了。「我不后悔」——他不是无意中伤害你的。他是故意的。然后他说了对不起。但他不后悔。你的手握紧了日记本。"}},
 ]},
-{week:7,day:5,text:"时间不多了。第七周快结束了。你必须在最终投票之前完成窥忆。如果你还没窥忆——现在是时候了。如果你已经窥忆命中——你该全力推你的C位了。",choices:[
+{week:7,day:5,text:"时间不多了。第七周快结束了。你必须在最终投票之前完成拼命想。如果你还没拼命想——现在是时候了。如果你已经拼命想命中——你该全力推你的C位了。",choices:[
   {text:"查看证据板",effect:{support:0,result:"你翻开证据板。时间到了。",go_evidence:true}},
-  {text:"去小卡交易所管理收藏",effect:{support:0,result:"你翻了翻你的小卡收藏。该卖掉一些换彩头了。",go_stock:true}},
+  {text:"去某鱼管理小卡收藏",effect:{support:0,result:"你翻了翻你的小卡收藏。该卖掉一些换彩头了。",go_stock:true}},
 ]},
 {week:7,day:6,text:"倒数第二天。录影棚的气氛变了。每个人都在做最后的准备。你在走廊里遇到了几个人——他们的眼神和你一样疲惫。你翻开日记本最后一页。",choices:[
   {text:"写最后的话",effect:{support:0,result:"你写：「不管结局是什么。我来过。我找过。我没有放弃。这就够了。」你合上日记本。明天是最后一天。"}},
@@ -3154,10 +3192,7 @@ function renderDayChoices(){
   }
   
   if(aliveChars.length>0 && G.actionsToday<G.maxActions){
-    mainChoices.push({text:'去练习室看看',hint:'今天有'+aliveChars.length+'人可以观察',action:'pick_char'});
-  }
-  if(G.actionsToday<G.maxActions){
-    mainChoices.push({text:'快速扫一眼全部30人的状态',hint:'1次行动 · 看看谁触发了脉冲',action:'quick_scan'});
+    mainChoices.push({text:'看监控碎片',hint:'今天有'+aliveChars.length+'人 · 看看谁让你脸红心跳',action:'pick_char'});
   }
   
   // === SECONDARY ACTIONS (situational) ===
@@ -3174,22 +3209,16 @@ function renderDayChoices(){
     }
   }
   
-  // Medium (通灵者)
+  // Medium (通灵者) - W1D3后必定出现，不消耗行动次数
   if(G.mediumFound && !G.eliminated.includes(G.mediumId)){
     var med=CHARACTERS.find(function(c){return c.id===G.mediumId;});
-    secondaryChoices.push({text:'去找'+med.name+'（通灵者）说话',hint:'唯一能看见你的人 · 对话/线索',action:'medium_talk'});
-  } else if(!G.mediumFound && G.actionsToday<G.maxActions){
-    if((G.week>1||G.day>=3) && Math.random()<0.4){
-      secondaryChoices.push({text:'飘去练习室走廊转转',hint:'也许有人能看到你...?',action:'find_medium'});
-    }
+    secondaryChoices.push({text:'去找'+med.name+'（通灵者）说话',hint:'唯一能看见你的人 · 对话/传话/线索',action:'medium_talk'});
+  } else if(!G.mediumFound && (G.week>1||G.day>=3)){
+    secondaryChoices.push({text:'走廊转转',hint:'有人能看到你...?',action:'find_medium'});
   }
-  
-  if(G.cognitionDissonance>=10 && G.selfReflectionUses<G.maxSelfReflect && G.supportPoints>=100){
-    secondaryChoices.push({text:'找个安静的地方自省',hint:'消耗100彩头 · 认知失调-15',action:'self_reflect'});
-  }
-  
-  // Week 8: skip to final vote
-  if(G.week===8 && G.day<7){
+
+  // Week 5: skip to final vote
+  if(G.week===5 && G.day<4){
     secondaryChoices.push({text:'跳到最终投票日',hint:'跳过剩余天数 · 直接进入总决赛',action:'skip_to_final'});
   }
   
@@ -3200,8 +3229,7 @@ function renderDayChoices(){
   var utilityItems=[
     {icon:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',label:'赛程进度',action:'schedule'},
     {icon:'<svg viewBox="0 0 24 24"><rect x="5" y="4" width="12" height="16" rx="2"/><rect x="8" y="7" width="8" height="5" rx="1"/><path d="M8 15h6"/></svg>',label:'我的小卡',action:'card_collection'},
-    {icon:'<svg viewBox="0 0 24 24"><path d="M7 7h13M7 7l4-4M7 7l4 4"/><path d="M17 17H4M17 17l-4-4M17 17l-4 4"/></svg>',label:'小卡交易所',action:'card_exchange'},
-    {icon:'<svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4z"/><path d="M12 6v12"/></svg>',label:'黄牛票市',action:'ticket_market'},
+    {icon:'<svg viewBox="0 0 24 24"><path d="M3 12l2-2h4l2-2h6l4 4v4a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2H10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2H3z"/><circle cx="17" cy="16" r="1.5"/><circle cx="8" cy="16" r="1.5"/></svg>',label:'某鱼',action:'xianyu_market'},
     {icon:'<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16 16l4 4M11 8v6M8 11h6"/></svg>',label:'我的备忘录',action:'evidence'},
     {icon:'<svg viewBox="0 0 24 24"><path d="M5 3h10l4 4v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M15 3v4h4M9 13h6M9 17h4"/></svg>',label:'保存进度',action:'save_menu'}
   ];
@@ -3229,18 +3257,13 @@ function renderDayChoices(){
   }
   
   // Utility bar
-  html+='<div class="dc-utility">';
+  html+='<div class="dc-section-label" style="margin-top:14px">我的</div><div class="dc-utility">';
   utilityItems.forEach(function(u){
     var clickFn = u.action==='save_menu' ? "go('save_menu')" : "handleChoice('"+u.action+"')";
     html+='<button class="dc-utility-item" onclick="'+clickFn+'">'+
       '<span class="dcu-icon">'+u.icon+'</span>'+u.label+'</button>';
   });
   html+='</div>';
-  
-  // Debug
-  if(!G.nemesisConfronted){
-    html+='<div class="dc-debug"><button onclick="handleChoice(\'debug_post\')">[测试] 跳到投胎页面</button></div>';
-  }
   
   html+='</div>';
   return html;
@@ -3256,7 +3279,7 @@ function renderCharSelect(){
   var start=batch*batchSize;
   var pageChars=chars.slice(start,start+batchSize);
 
-  var html='<p class="narrator">练习室</p>'+
+  var html='<p class="narrator">监控碎片</p>'+
     '<p class="thought">第'+(batch+1)+'/'+totalPages+'波 · 选择要观察的人。</p>'+
     '</div><div class="char-pick">';
   pageChars.forEach(function(c){
@@ -3313,7 +3336,7 @@ function renderDailyEventResult(){
     html+=ERA_INTRO_PAGE.html;
   }
   if(r.pulse){
-    var pl=PULSE_LABELS[r.pulse.level]||PULSE_LABELS.medium;
+    var pl=HEARTBEAT_LABELS[r.pulse.level]||HEARTBEAT_LABELS.medium;
     html+='<div class="pulse"><span style="display:inline-block;font-size:14px;font-weight:700;color:'+pl.color+';background:rgba(255,68,102,.08);padding:2px 8px;border-radius:3px;margin-bottom:6px">'+pl.icon+' '+pl.label+'</span>\n'+r.pulse.text+'</div>';
   }
   html+='</div><div class="choices">';
@@ -3353,13 +3376,13 @@ function renderCharDetail(){
 
   html+='</div><div class="choices">'+
     '<button class="btn choice-btn" onclick="doOverview('+id+')"'+(G.actionsToday>=G.maxActions?' disabled':'')+
-      '>概览（'+(ovrCost===0?'免费':ovrCost+'彩头')+'）<span class="choice-hint">快速查看 · 是否触发脉冲</span></button>'+
+      '>概览（'+(ovrCost===0?'免费':ovrCost+'彩头')+'）<span class="choice-hint">快速查看 · 是否脸红心跳了</span></button>'+
     '<button class="btn btn-primary choice-btn" onclick="doObserve('+id+')"'+(G.actionsToday>=G.maxActions||G.supportPoints<obsCost?' disabled':'')+
       '>观察（'+(obsCost===0?'免费':obsCost+'彩头')+'）<span class="choice-hint">详细行为描写 + 信号细节</span></button>'+
     '<button class="btn choice-btn" onclick="go(\'card_exchange\')">小卡：'+((G.photocards[id]||0)+(G.practiceCards[id]||0))+'张<span class="choice-hint">去交易所</span></button>';
   var confCost=G.phase===1?500:G.phase===2?2000:5000;
   if(G.confrontationChances>0&&!G.nemesisConfronted&&G.supportPoints>=confCost){
-    html+='<button class="btn btn-danger choice-btn" onclick="startConfront('+id+')">窥忆（'+confCost+'彩头）<span class="choice-hint">⚠ 不可逆 · 剩余'+G.confrontationChances+'次</span></button>';
+    html+='<button class="btn btn-danger choice-btn" onclick="startConfront('+id+')">拼命想（'+confCost+'彩头）<span class="choice-hint">⚠ 不可逆 · 剩余'+G.confrontationChances+'次</span></button>';
   } else if(G.confrontationChances>0&&!G.nemesisConfronted&&G.supportPoints<confCost){
     var need=confCost-G.supportPoints;
     html+='<p class="thought" style="color:var(--orange);font-size:12px">彩头不足（差'+need+'），去<a onclick="go(\'card_exchange\')" style="color:var(--gold);cursor:pointer;text-decoration:underline">交易所</a>卖卡换彩头</p>';
@@ -3376,7 +3399,7 @@ function renderObserveResult(){
   var html='<p class="narrator">'+char.name+' · '+r.mode+'</p>';
   html+=r.text.split('\n').map(function(l){return l.trim()?'<p>'+l+'</p>':'';}).join('');
   if(r.pulse){
-    var pl=PULSE_LABELS[r.pulse.level]||PULSE_LABELS.medium;
+    var pl=HEARTBEAT_LABELS[r.pulse.level]||HEARTBEAT_LABELS.medium;
     html+='<div class="pulse"><span style="display:inline-block;font-size:14px;font-weight:700;color:'+pl.color+';background:rgba(255,68,102,.08);padding:2px 8px;border-radius:3px;margin-bottom:6px">'+pl.icon+' '+pl.label+'</span>\n'+r.pulse.text+'</div>';
   }
   if(r.vip){
@@ -3410,9 +3433,9 @@ function renderQuickScan(){
   var G=S.G;
   var html='<p class="narrator">快速扫描</p><p>你快速扫过全部'+(30-G.eliminated.length)+'人的今日状态。</p>';
   if(S.quickScanResults.length===0){
-    html+='<p class="thought">没有脉冲触发。今天没有人让你的心跳加速。</p>';
+    html+='<p class="thought">没有脸红心跳触发。今天没有人让你的心跳加速。</p>';
   } else {
-    html+='<p class="thought">以下'+S.quickScanResults.length+'人触发了脉冲：</p>';
+    html+='<p class="thought">以下'+S.quickScanResults.length+'人触发了脸红心跳：</p>';
     S.quickScanResults.forEach(function(r){
       html+='<div class="pulse"><strong>'+r.char.name+'</strong>（'+PLV[r.pulse.level]+'）\n'+r.pulse.text+'</div>';
     });
@@ -3428,6 +3451,30 @@ function renderQuickScan(){
     }
   }
   html+='</div><div class="choices"><button class="btn btn-primary choice-btn" onclick="go(\'day_choices\')">继续 →</button></div>';
+  return html;
+}
+
+function renderXianyuMarket(){
+  var G=S.G;
+  var normalCount=Object.values(G.photocards||{}).reduce(function(a,b){return a+b;},0);
+  var practiceCount=Object.values(G.practiceCards||{}).reduce(function(a,b){return a+b;},0);
+  var cpCount=Object.values(G.cpCards||{}).reduce(function(a,b){return a+b;},0);
+  var cardCount=normalCount+practiceCount+cpCount;
+  var ticketCount=(G.tickets||[]).length;
+
+  var html='<p class="narrator">某鱼</p>'+
+    '<p class="thought">二手交易平台！！啥都有！！小卡、门票、啥都能卖！！</p>'+
+    '<div class="choices">'+
+      '<button class="btn choice-btn" onclick="go(\'card_exchange\')">'+
+        '小卡交易所'+
+        '<span class="choice-hint">持有'+cardCount+'张 · 卖卡换彩头</span>'+
+      '</button>'+
+      '<button class="btn choice-btn" onclick="go(\'ticket_market\')">'+
+        '黄牛票市'+
+        '<span class="choice-hint">持有'+ticketCount+'张门票 · 买卖门票</span>'+
+      '</button>'+
+      '<button class="btn choice-btn" onclick="go(\'day_morning\')">返回 ←</button>'+
+    '</div>';
   return html;
 }
 
@@ -3672,9 +3719,9 @@ function renderTicketMarket(){
 
 function renderEvidence(){
   var G=S.G;
-  var html='<p class="narrator">证据板</p><p class="thought">你翻开日记本的证据页。上面自动记录了你触发过的脉冲和观察到的线索。</p>';
+  var html='<p class="narrator">证据板</p><p class="thought">你翻开日记本的证据页。上面自动记录了你触发过的脸红心跳和观察到的线索。</p>';
   if(Object.keys(G.evidenceBoard).length===0){
-    html+='<p class="thought">还没有收集到任何证据。去观察角色，触发脉冲。</p>';
+    html+='<p class="thought">还没有收集到任何证据。去观察角色，脸红心跳了。</p>';
   } else {
     var sorted=Object.entries(G.evidenceBoard).sort(function(a,b){return b[1].confidence-a[1].confidence;});
     html+='<div class="evidence-panel">';
@@ -3689,7 +3736,7 @@ function renderEvidence(){
         char.name+
         '<span class="ev-conf">'+conf+'%<span class="conf-bar"><span class="conf-fill" style="width:'+conf+'%;background:'+cColor+'"></span></span></span></div>';
       eb.clues.forEach(function(cl){
-        var t=cl.type==='pulse'?'脉冲':cl.type==='behavior'?'行为':'应激';
+        var t=cl.type==='pulse'?'脸红心跳':cl.type==='behavior'?'行为':'应激';
         html+='<span class="ev-clue '+cl.type+'">['+cl.day+'] '+t+' · '+cl.text+'</span>';
       });
       html+='</div>';
@@ -3699,54 +3746,53 @@ function renderEvidence(){
   var confCost=G.phase===1?500:G.phase===2?2000:5000;
   html+='</div><div class="choices"><button class="btn choice-btn" onclick="go(\'day_choices\')">← 返回</button>';
   if(G.confrontationChances>0&&!G.nemesisConfronted&&G.supportPoints>=confCost){
-    html+='<button class="btn btn-danger choice-btn" onclick="go(\'confront_select\')">使用记忆钥匙（'+confCost+'彩头）→</button>';
+    html+='<button class="btn btn-danger choice-btn" onclick="go(\'confront_select\')">使用记忆喷雾（'+confCost+'彩头）→</button>';
   } else if(G.confrontationChances>0&&!G.nemesisConfronted&&G.supportPoints<confCost){
     var need=confCost-G.supportPoints;
-    html+='<p class="thought" style="color:var(--orange)">彩头不足，还需'+need+'。去<a onclick="go(\'card_exchange\')" style="color:var(--gold);cursor:pointer;text-decoration:underline">小卡交易所</a>卖卡或<a onclick="go(\'ticket_market\')" style="color:var(--gold);cursor:pointer;text-decoration:underline">黄牛门票市场</a>换彩头。</p>';
+    html+='<p class="thought" style="color:var(--orange)">彩头不足，还需'+need+'。去<a onclick="go(\'xianyu_market\')" style="color:var(--gold);cursor:pointer;text-decoration:underline">某鱼</a>卖卡或换票搞彩头。</p>';
   }
   html+='</div>';
   return html;
 }
 
-function renderSelfReflectResult(){
-  var G=S.G;
-  return '<p class="narrator">自省</p>'+
-    '<p>你飘到一个没有人的走廊角落。阿飘没有眼皮，但你学着闭上了意识。</p>'+
-    '<p class="thought">你在回忆。不是回忆那个人是谁——是回忆那种被骗的感觉。你的雾在抖。但你强迫自己停下来。</p>'+
-    '<p class="thought">「不要为任何人找借口。你的怨念是对的。」</p>'+
-    '<p>你的雾淡了一些。认知失调降低了。脉冲灵敏度回升了。</p>'+
-    '<p class="thought">认知失调：'+G.cognitionDissonance+' · 自省剩余'+(G.maxSelfReflect-G.selfReflectionUses)+'次</p>'+
-    '</div><div class="choices">'+
-    '<button class="btn btn-primary choice-btn" onclick="go(\'day_choices\')">继续 →</button></div>';
-}
+
+
+
+
+
+
+
+
+
+
+
 
 function renderConfrontConfirm(){
   var G=S.G;
   var char=CHARACTERS.find(function(c){return c.id===S.confrontTarget;});
   var eb=G.evidenceBoard[S.confrontTarget]||{confidence:0,clues:[]};
   var conf=Math.min(99.999999,eb.confidence);
-  var hitChance=Math.min(85,conf/100*85);
-  if(G.phase===3) hitChance+=10;
   return '<div class="confront-box">'+
-    '<h2>窥忆</h2>'+
-    '<p>你要对 <strong style="color:var(--danger)">'+char.name+'</strong> 使用记忆钥匙。</p>'+
+    '<h2>拼命想</h2>'+
+    '<p>你要对 <strong style="color:var(--danger)">'+char.name+'</strong> 喷记忆喷雾！！</p>'+
+    '<p class="thought">喷下去的一瞬间！！全想起来了！！！就是他！！！没跑了！！！</p>'+
     '<p>你目前掌握的证据：</p>'+
     '<div style="text-align:left;margin:12px 0;padding:12px;background:var(--bg);border-radius:2px;font-size:13px">'+
       '<div>信心值：'+conf+'%</div>'+
       '<div>行为线索：'+eb.clues.filter(function(c){return c.type==='behavior';}).length+'条</div>'+
-      '<div>脉冲记录：'+eb.clues.filter(function(c){return c.type==='pulse';}).length+'条</div>'+
+      '<div>脸红心跳记录：'+eb.clues.filter(function(c){return c.type==='pulse';}).length+'条</div>'+
       '<div>应激反应：'+eb.clues.filter(function(c){return c.type==='reaction';}).length+'条</div>'+
-      '<div style="margin-top:4px">预估命中概率：约'+Math.round(hitChance)+'%</div>'+
+      '<div style="margin-top:4px;color:var(--green)">选对了=100%命中！选错了=100%白喷！</div>'+
     '</div>'+
     '<div style="display:flex;gap:6px;margin:10px 0">'+
-      (function(){var keys='';for(var i=0;i<3;i++){keys+='<span style="font-size:18px;opacity:'+(i<G.confrontationChances?'1':'.25')+'">钥匙</span> ';}return keys;})()+
-      '<span style="color:var(--text-dim);font-size:12px;align-self:center">剩余'+G.confrontationChances+'/3</span>'+
+      (function(){var sp='';for(var i=0;i<3;i++){sp+='<span style="font-size:16px;opacity:'+(i<G.confrontationChances?'1':'.25')+'">🧴</span> ';}return sp;})()+
+      '<span style="color:var(--text-dim);font-size:12px;align-self:center">剩余'+G.confrontationChances+'/3瓶</span>'+
     '</div>'+
-    '<div class="warning">⚠ 窥忆不可逆。一旦开始无法回到此刻。</div>'+
+    '<div class="warning">⚠ 拼命想不可逆。一旦开始无法回到此刻。</div>'+
     '<div class="warning" style="border-color:var(--danger);margin-top:8px">⚠ 全用完未命中=复仇失败，只能投胎进入买股C位。</div>'+
     '</div>'+
     '<div class="choices">'+
-      '<button class="btn btn-danger choice-btn" onclick="executeConfront('+S.confrontTarget+')">确认窥忆</button>'+
+      '<button class="btn btn-danger choice-btn" onclick="executeConfront('+S.confrontTarget+')">确认拼命想</button>'+
       '<button class="btn choice-btn" onclick="pickChar('+S.confrontTarget+')">再想想</button>'+
     '</div>';
 }
@@ -3756,7 +3802,7 @@ function renderConfrontResult(){
   var r=S.confrontResult;
   var med=CHARACTERS.find(function(c){return c.id===G.mediumId;});
   var medName=med?med.name:'通灵者';
-  var html='<p class="narrator">窥忆</p>';
+  var html='<p class="narrator">拼命想</p>';
   if(r.result==="hit"){
     html+='<p>结城走到'+r.char.name+'面前。</p>'+
       '<p>他开口了——但说的不是他自己的话！是你的！！你的怨念穿过他的嘴，变成了这句话：</p>'+
@@ -3785,7 +3831,7 @@ function renderConfrontResult(){
           '<p style="color:var(--green)"><strong>你选择了放过</strong></p>'+
           '<p>你没有追上去。你飘在半空，看着'+r.char.name+'走出练习室的门。结城替你说了最后一句话："走吧。"</p>'+
           '<p class="thought">某种东西在你心里松开了。不是原谅——是放下。</p>'+
-          '<p class="thought" style="color:var(--green)">脉冲灵敏度+15。超越状态——你的怨念化为了清明。</p>'+
+          '<p class="thought" style="color:var(--green)">心跳灵敏度+15。超越状态——你的怨念化为了清明。</p>'+
         '</div>';
       } else {
         html+='<div class="pulse" style="border-color:var(--danger);margin-top:16px">'+
@@ -3801,20 +3847,20 @@ function renderConfrontResult(){
   } else if(r.result==="miss"){
     html+='<p>你飘到'+r.char.name+'面前。「我知道你是谁。」</p>'+
       '<p>他看起来好困惑。然后什么都没有。他不是那个人！！</p>'+
-      '<div style="border:1px solid var(--danger);border-radius:4px;padding:10px;margin:10px 0;background:rgba(255,68,102,.06)"><p style="color:var(--danger);font-size:15px;margin:0"><strong>✗ 猜错了！！</strong> '+r.char.name+'不是害你的人！</p><p class="thought" style="margin:4px 0 0">记忆钥匙-1（剩余'+G.confrontationChances+'）· 认知失调+10</p></div>';
+      '<div style="border:1px solid var(--danger);border-radius:4px;padding:10px;margin:10px 0;background:rgba(255,68,102,.06)"><p style="color:var(--danger);font-size:15px;margin:0"><strong>✗ 猜错了！！</strong> '+r.char.name+'不是害你的人！</p><p class="thought" style="margin:4px 0 0">记忆喷雾-1（剩余'+G.confrontationChances+'）· 认知+10</p></div>';
     if(G.confrontationChances>0){
-      html+='<p class="thought" style="color:var(--orange)">还剩'+G.confrontationChances+'把！全用完还没猜对=复仇失败！只能投胎了！</p>';
+      html+='<p class="thought" style="color:var(--orange)">还剩'+G.confrontationChances+'瓶！全用完还没猜对=复仇失败！只能投胎了！</p>';
     }
   } else {
     html+='<p>你飘到'+r.char.name+'面前。「我知道你是谁。」</p>'+
       '<p>他困惑，然后生气了！你冤枉了一个好人！！</p>'+
-      '<div style="border:1px solid var(--danger);border-radius:4px;padding:10px;margin:10px 0;background:rgba(255,68,102,.06)"><p style="color:var(--danger);font-size:15px;margin:0"><strong>⚠ 错杀好人！！</strong> '+r.char.name+'不是害你的人！</p><p class="thought" style="margin:4px 0 0">记忆钥匙-1（剩余'+G.confrontationChances+'）· 认知失调+15</p></div>';
+      '<div style="border:1px solid var(--danger);border-radius:4px;padding:10px;margin:10px 0;background:rgba(255,68,102,.06)"><p style="color:var(--danger);font-size:15px;margin:0"><strong>⚠ 错杀好人！！</strong> '+r.char.name+'不是害你的人！</p><p class="thought" style="margin:4px 0 0">记忆喷雾-1（剩余'+G.confrontationChances+'）· 认知+15</p></div>';
     if(G.confrontationChances>0){
-      html+='<p class="thought" style="color:var(--orange)">还剩'+G.confrontationChances+'把！全用完还没猜对=复仇失败！只能投胎了！</p>';
+      html+='<p class="thought" style="color:var(--orange)">还剩'+G.confrontationChances+'瓶！全用完还没猜对=复仇失败！只能投胎了！</p>';
     }
   }
   if(G.confrontationChances<=0&&!G.nemesisConfronted){
-    html+='<div style="border:1px solid var(--danger);border-radius:4px;padding:10px;margin:10px 0;background:rgba(255,68,102,.06)"><p style="color:var(--danger);margin:0"><strong>🔒 3把钥匙全用完了！！复仇失败！！</strong></p></div>';
+    html+='<div style="border:1px solid var(--danger);border-radius:4px;padding:10px;margin:10px 0;background:rgba(255,68,102,.06)"><p style="color:var(--danger);margin:0"><strong>🔒 3瓶记忆喷雾全用完了！！复仇失败！！</strong></p></div>';
     if(G.eliminated.includes(G.nemesisId)){
       html+='<div style="border:1px solid var(--gold);border-radius:4px;padding:10px;margin:10px 0;background:rgba(255,215,0,.06)"><p style="color:var(--gold);margin:0"><strong>但是！！害你的人已经被节目淘汰了——你赢了！！</strong></p></div>';
     }
@@ -3828,7 +3874,7 @@ function spareNemesis(spare){
   G.sparedNemesis=spare;
   G.eliminated.push(G.nemesisId);
   if(spare){
-    G.pulseSensitivity=Math.min(100,G.pulseSensitivity+15);
+    G.heartbeatSensitivity=Math.min(100,G.heartbeatSensitivity+15);
   } else {
     G.supportPoints+=1000;
   }
@@ -3933,7 +3979,7 @@ function useAbilityOn(charId){
       G.evidenceBoard[charId].clues.push({type:'ability',text:'舆论曝光'+axisNames[axis]+'='+axisVals[axis],day:'W'+G.week+'D'+G.day});
     } else {
       resultText='你发了一条推送。但风向没变——反而有人开始质疑你。你制造的假象反弹回来了。';
-      G.cognitionDissonance+=5;
+      0+=5;
       resultType='backfire';
     }
   } else if(abName==='控评'){
@@ -3977,7 +4023,7 @@ function useAbilityOn(charId){
     if(collapse){
       resultText='你给'+c.name+'打了一大笔钱。股价+15。但三天后——塌房信号泄露了。有人开始查他的账。';
       resultType='risk';
-      G.cognitionDissonance+=5;
+      0+=5;
     } else {
       resultText='你给'+c.name+'打了一大笔钱。股价+15。他似乎没有受到太大影响——也许他是真的。';
       resultType='boost';
@@ -4067,23 +4113,23 @@ function renderFindMedium(){
 
   var scenes=[
     '<p class="narrator">练习室走廊</p>'+
-    '<p>你飘过练习室走廊。一个人从你身边走过——穿过去了。没有人感觉到你。你是空气。你是虚无。</p>'+
-    '<p>走廊尽头有一个人坐在地上。J组的练习生。他围着围巾，即使走廊并不冷。他在看手机。</p>'+
-    '<p class="thought">你从他身边飘过。不抱希望。没有人看得见你。</p>'+
+    '<p>你飘过走廊。一个人从你身边穿过——穿过去了。没有人感觉到你。</p>'+
+    '<p>走廊尽头有人坐在地上。草台初创娱乐公司的练习生。围着围巾。即使走廊并不冷。</p>'+
+    '<p>你从他身边飘过。不抱希望。没有人看得见你。</p>'+
     '<p>然后他抬头了。</p>'+
     '<p>他看着你。</p>'+
     '<p class="thought" style="color:var(--danger)">他看着你。</p>',
 
-    '<p>你的阿飘形态在震荡。有人——在看你？</p>'+
-    '<p>"你是……"他开口了。声音很轻，像怕吓跑一只蝴蝶。"你是那个……飘着的吗？"</p>'+
-    '<p>你退后了一步。不，你飘退了一步。</p>'+
-    '<p>"别走。"他站起来。围巾松了一截。"我叫结城。我能看见你。从小就能。"</p>'+
-    '<p class="thought">他看着你的方式不是看空气。是看一个人。你不知道多久没有被人这样看过了。</p>'+
+    '<p>"你能看见我？！"你飘退了一步。</p>'+
+    '<p>"从小就能。"结城站起来。围巾松了一截。"我叫结城。阴阳眼。看得见阿飘。"</p>'+
+    '<p>"我也是来攒福报的。"他从口袋里掏出三个小瓶子。"记忆喷雾——你飘到嫌疑人身边，喷一下，拼命想，你就知道是不是他了。"</p>'+
+    '<p>三个瓶子。他放在地上让你飘过去拿。你的手穿过去了——但瓶子能碰到你的怨念。</p>'+
+    '<p class="thought" style="color:var(--gold)">获得记忆喷雾×3！</p>',
 
-    '<p>"你死在这里的，对不对？"结城说。他的声音没有恐惧，只有一种安静的确认。"录影棚。很多人不知道。但我知道。"</p>'+
-    '<p>"我能帮你。"他说。"但我不能替你做什么——我只能替你传话。你是阿飘，你没有嘴。我有嘴。"</p>'+
-    '<p class="thought">你突然意识到——你有了嘴。不是你的。是他的。</p>'+
-    '<p>"找到害你的那个人了吗？"结城问。"如果你飘到了……我可以替你说话。但只有三次机会。"</p>'+
+    '<p>"还有——"结城指了指天花板。"你飘在上面的时候会看到弹幕。外面的粉丝在说话。有时候有用。有时候很吵。"</p>'+
+    '<p>"觉得吵了就关掉。按屏幕上面的开关就行。你也可以发弹幕——每天3条——能影响股价。"</p>'+
+    '<p class="thought" style="color:var(--text-dim)">提示：弹幕默认开启，可手动关闭。每天可发3条弹幕影响股价。</p>'+
+    '<p>"如果你需要我跟谁传话——来找我。我是你的嘴。"</p>'+
     '<p class="thought" style="color:var(--gold)">通灵者结城已加入。他是你在人间的嘴。</p>'
   ];
 
@@ -4111,8 +4157,8 @@ function renderFindMedium(){
 var MEDIUM_DIALOGUES=[
   {
     condition:function(G){return G.suspectList.length===0;},
-    text:'"你还没有找到可疑的人吗？"结城低头看着手机。"多去练习室看看。你的怨念会告诉你方向——你飘到对的人身边，你的雾会变浓。这是你唯一的能力。"',
-    hint:'去练习室观察角色，触发脉冲来发现嫌疑人'
+    text:'"你还没有找到可疑的人吗？"结城低头看着手机。"多看监控碎片。你的怨念会告诉你方向——你飘到对的人身边，你的雾会变浓。这是你唯一的能力。"',
+    hint:'看监控碎片观察角色，脸红心跳了来发现嫌疑人'
   },
   {
     condition:function(G){return G.suspectList.length>0&&G.suspectList.length<=2;},
@@ -4121,7 +4167,7 @@ var MEDIUM_DIALOGUES=[
   },
   {
     condition:function(G){return G.suspectList.length>=3;},
-    text:'"你的雾太浓了——你锁定了太多人。"结城皱眉。"这里面只有一个是真正的坑豆。其余是假阳性。你需要在证据板上区分——谁的信心值最高，谁的脉冲最强。"',
+    text:'"你的雾太浓了——你锁定了太多人。"结城皱眉。"这里面只有一个是真正的坑豆。其余是假阳性。你需要在证据板上区分——谁的信心值最高，谁的脸红心跳最强。"',
     hint:'去证据板查看信心值最高的嫌疑人'
   },
   {
@@ -4160,7 +4206,7 @@ function renderMediumTalk(){
   if(!med||G.eliminated.includes(G.mediumId)){
     return '<p class="narrator">通灵者不在了</p>'+
       '<p class="thought">结城被淘汰了。你失去了你唯一的嘴。</p>'+
-      '<p class="thought">没有他，你无法使用记忆钥匙。你只能祈祷坑豆被赛季淘汰——或者永远困在这里。</p>'+
+      '<p class="thought">没有他，你无法使用记忆喷雾。你只能祈祷坑豆被赛季淘汰——或者永远困在这里。</p>'+
       '</div><div class="choices"><button class="btn choice-btn" onclick="go(\'day_choices\')">← 返回</button></div>';
   }
 
@@ -4180,10 +4226,37 @@ function renderMediumTalk(){
   // Show confrontation option if suspects exist
   if(G.suspectList.length>0 && G.confrontationChances>0 && !G.nemesisConfronted){
     var cost=G.phase===1?500:G.phase===2?2000:5000;
-    html+='<p class="thought" style="color:var(--danger)">你有'+G.confrontationChances+'把记忆钥匙。用结城的记忆钥匙需要'+cost+'彩头。</p>';
+    html+='<p class="thought" style="color:var(--danger)">你有'+G.confrontationChances+'瓶记忆喷雾。拼命想需要'+cost+'彩头。</p>';
     html+='<div class="choices">'+
-      '<button class="btn btn-primary choice-btn" onclick="go(\'confront_select\')">使用记忆钥匙（结城的钥匙）→</button>'+
+      '<button class="btn btn-primary choice-btn" onclick="go(\'confront_select\')">使用记忆喷雾 →</button>'+
     '</div>';
+  }
+
+  // 传话功能：让结城去找人搭话
+  if(G.actionsToday<G.maxActions && !G.nemesisConfronted){
+    html+='<div class="pulse" style="border-color:var(--gold);margin:8px 0">'+
+      '<p class="thought" style="color:var(--gold)">让结城帮你传话——他去找人搭话，你能看到对方反应。消耗1次行动。</p>'+
+    '</div>';
+    html+='<div class="choices">';
+    var talkableChars=CHARACTERS.filter(function(c){
+      return !G.eliminated.includes(c.id) && c.id!==G.mediumId;
+    });
+    // Show suspects first, then non-suspects
+    var suspectChars=talkableChars.filter(function(c){return G.suspectList.includes(c.id);});
+    var otherChars=talkableChars.filter(function(c){return !G.suspectList.includes(c.id);});
+    if(suspectChars.length>0){
+      html+='<p class="thought" style="font-size:12px;margin:4px 0">嫌疑人：</p>';
+      suspectChars.forEach(function(c){
+        html+='<button class="btn choice-btn" onclick="mediumPassMessage('+c.id+')">'+c.name+'<span class="choice-hint">'+charCode(c)+'</span></button>';
+      });
+    }
+    if(otherChars.length>0){
+      html+='<p class="thought" style="font-size:12px;margin:4px 0">其他人：</p>';
+      otherChars.slice(0,10).forEach(function(c){
+        html+='<button class="btn choice-btn" onclick="mediumPassMessage('+c.id+')">'+c.name+'<span class="choice-hint">'+charCode(c)+'</span></button>';
+      });
+    }
+    html+='</div>';
   }
 
   // Show suspect info
@@ -4193,6 +4266,92 @@ function renderMediumTalk(){
 
   html+='<div class="choices">'+
     '<button class="btn choice-btn" onclick="go(\'day_choices\')">← 返回</button>'+
+  '</div>';
+  return html;
+}
+
+function mediumPassMessage(charId){
+  var G=S.G;
+  var c=CHARACTERS.find(function(x){return x.id===charId;});
+  if(!c) return;
+  if(G.actionsToday>=G.maxActions){
+    S.page='medium_talk'; render(); return;
+  }
+  G.actionsToday++;
+  var isNemesis=(charId===G.nemesisId);
+  var r=Math.random();
+  var clue='';
+  if(isNemesis){
+    if(r<0.5){
+      var killerClues=[
+        '结城路过他的行李——看到里面有婴儿奶瓶。他说那是"朋友的"。什么朋友会把奶瓶放你行李里？',
+        '他笑着说自己是母胎单身。但结城问"你手机壳后面夹的是什么？"——一张小孩的照片。他说是"侄子"。每个侄子都长得像你？',
+        '结城问"你有女朋友吗？"他眼神闪了一下。说"没有。从来没有。"然后立刻转移话题聊训练。',
+        '结城问"周末你们休息干嘛？"他说"练舞。"但室友说他每周末都请假外出。',
+        '结城靠近他时，他往后退了一步。结城只是问"你累不累"。他笑了笑——但笑不到眼睛。'
+      ];
+      clue=killerClues[Math.floor(Math.random()*killerClues.length)];
+    } else {
+      var hideClues=[
+        '他从来不近女色。手机里干干净净。社交媒体没有任何私人生活。太干净了。干净到不真实。',
+        '他对结城很热情。聊训练聊编曲。问什么都很放松。回答得天衣无缝。像排练过的。',
+        '他很完美。太完美了。问到什么都说"没有""从来不会""只爱舞台"。挑不出毛病。但挑不出毛病本身就是毛病。',
+        '他在练舞。很专注。结城跟他聊了很久。什么都聊。什么都没聊出来。他的社交圈干净得像真空。'
+      ];
+      clue=hideClues[Math.floor(Math.random()*hideClues.length)];
+    }
+  } else {
+    if(r<0.15){
+      var falseClues=[
+        '结城靠近他时，他有点紧张。可能是结城的围巾让ta不安。',
+        '被问到女朋友时有点躲闪。其实是有暗恋的对象，怕公司知道。',
+        '他往后退了一步。不是心虚。是真的社恐。',
+        '结城问"你周末干嘛？"他顿了一下。可能在打游戏。不想让人知道。'
+      ];
+      clue=falseClues[Math.floor(Math.random()*falseClues.length)];
+    } else {
+      var normalClues=[
+        '很放松。跟结城聊了很久。聊的都是训练的事。没有任何紧张。',
+        '问结城为什么要围着围巾。结城说不冷。他笑了。',
+        '给结城倒了杯水。很热情。',
+        '在练舞。看到结城点了点头。继续练了。',
+        '跟结城聊了聊编曲。很投入。',
+        '听到有鬼的传闻，笑了。说"那得问问鬼愿不愿意跟我聊天"。',
+        '对结城很热情。聊了很久家乡的事。',
+        '在吃便当。看到结城分了他一双筷子。',
+        '很放松。"女朋友？没有啊。我妈天天催我。"然后掏出手机给结城看相亲软件。'
+      ];
+      clue=normalClues[Math.floor(Math.random()*normalClues.length)];
+    }
+  }
+  S.mediumClue={charId:charId, text:clue, isNemesis:isNemesis, suspicious:isNemesis?r<0.5:r<0.15};
+  autoSave();
+  S.page='medium_clue';
+  render();
+}
+
+function renderMediumClue(){
+  var G=S.G;
+  var r=S.mediumClue;
+  if(!r){ S.page='medium_talk'; render(); return ''; }
+  var c=CHARACTERS.find(function(x){return x.id===r.charId;});
+  var code=charCode(c);
+  var html='<p class="narrator">结城传话回来</p>'+
+    '<div style="display:flex;align-items:center;gap:8px;margin:8px 0">'+
+      '<div style="width:40px;height:40px;border-radius:50%;background:'+ERA_C[c.era]+';display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#000">'+c.name.charAt(0)+'</div>'+
+      '<div><span style="color:'+ERA_C[c.era]+';font-family:monospace;font-weight:700">'+code+'</span> '+c.name+'</div>'+
+    '</div>';
+  var borderColor=r.suspicious?'var(--danger)':'var(--text-dim)';
+  html+='<div class="pulse" style="border-color:'+borderColor+';margin:8px 0">'+
+    '<p>'+r.text+'</p>'+
+  '</div>';
+  if(r.suspicious){
+    html+='<p class="thought" style="color:var(--danger)">有点不对劲……记下来了。</p>';
+  } else {
+    html+='<p class="thought" style="color:var(--text-dim)">看起来很正常。</p>';
+  }
+  html+='<div class="choices">'+
+    '<button class="btn choice-btn" onclick="go(\'medium_talk\')">← 回去找结城</button>'+
   '</div>';
   return html;
 }
@@ -4231,7 +4390,7 @@ function renderPerformance(){
     if(tc.total===0){
       html+='<button class="btn choice-btn" onclick="finishPerformance()">离开剧场 →</button>';
     } else {
-      html+='<button class="btn choice-btn" onclick="finishPerformance()">不看了，去黄牛市场卖票 →</button>';
+      html+='<button class="btn choice-btn" onclick="finishPerformance()">不看了，去某鱼卖票 →</button>';
     }
     html+='</div>';
     return html;
@@ -4385,17 +4544,17 @@ function perfObserveChar(id){
     confGain=12;
   }
 
-  // Check pulse (阿飘阶段脉冲正常；投胎后前排脉冲正常，后排脉冲减弱)
+  // Check pulse (阿飘阶段脸红心跳正常；投胎后前排脸红心跳正常，后排脸红心跳减弱)
   var pulseResult=null;
   var pulseChanceMod=1;
-  if(ticketType==='back') pulseChanceMod=0.5; // 后排看不清，脉冲概率减半
+  if(ticketType==='back') pulseChanceMod=0.5; // 后排看不清，脸红心跳概率减半
   if(Math.random()<pulseChanceMod){
-    pulseResult=checkPulse(id);
+    pulseResult=checkHeartbeat(id);
   }
   var pulseText='';
   if(pulseResult){
     if(!G.suspectList.includes(id)) G.suspectList.push(id);
-    pulseText='<div class="pulse"><p style="color:var(--danger)"><strong>脉冲触发</strong></p>'+
+    pulseText='<div class="pulse"><p style="color:var(--danger)"><strong>脸红心跳触发</strong></p>'+
       '<p>'+pulseResult.text+'</p></div>';
   }
 
@@ -4421,7 +4580,7 @@ function renderPerfObserveResult(){
     html+='<p>'+s+'</p>';
   });
   if(r.pulse){
-    html+='<div class="pulse"><p style="color:var(--danger)"><strong>脉冲触发</strong></p><p>'+r.pulse.text+'</p></div>';
+    html+='<div class="pulse"><p style="color:var(--danger)"><strong>脸红心跳触发</strong></p><p>'+r.pulse.text+'</p></div>';
   }
   html+='<p class="thought">证据板信心值+'+r.confGain+'。'+(r.isWrong?'<span style="color:var(--danger)">（后排太远了，你不确定你看到的对不对……）</span>':'')+'</p>';
   html+='</div><div class="choices">'+
@@ -4441,7 +4600,7 @@ function finishPerformance(){
   var elimNote='';
   if(perf.eliminateCount>0&&perf.eliminateFilter){
     var cands=CHARACTERS.filter(function(c){
-      return !G.eliminated.includes(c.id)&&perf.eliminateFilter(c);
+      return !G.eliminated.includes(c.id)&&perf.eliminateFilter(c)&&c.id!==G.nemesisId;
     });
     // Sort by stock ascending
     cands.sort(function(a,b){return a.stock-b.stock;});
@@ -4481,7 +4640,7 @@ function renderPerformanceResult(){
   if(!G.nemesisConfronted&&G.eliminated.includes(G.nemesisId)){
     html+='<div class="pulse" style="border-color:var(--gold);margin:8px 0">'+
       '<p style="color:var(--gold)"><strong>被动胜利</strong></p>'+
-      '<p class="thought">你的坑豆在公演中被淘汰了。你没有主动窥忆——但他走了。</p>'+
+      '<p class="thought">你的坑豆在公演中被淘汰了。你没有主动拼命想——但他走了。</p>'+
       '<p class="thought">这是银色变体结局——不算完整的胜利，但也没输干净。</p>'+
     '</div>';
   }
@@ -4546,7 +4705,7 @@ function calcReincarnationScore(){
   score+=G.supportPoints*0.5;
   score+=(3-G.confrontationChancesUsed)*500;
   if(G.sparedNemesis) score+=800;
-  if(G.pulseSensitivity>80) score+=500;
+  if(G.heartbeatSensitivity>80) score+=500;
   var correctPulses=G.suspectList.filter(function(id){
     return id===G.nemesisId;
   }).length;
@@ -4610,9 +4769,9 @@ function renderReincarnationEvent(){
     html+='<div class="pulse" style="border-color:var(--danger);margin:12px 0">'+
       '<p style="color:var(--danger);font-size:15px"><strong>复仇失败</strong></p>';
     if(G.confrontationChances<=0){
-      html+='<p>三把记忆钥匙用完了。你没有找到你的坑豆。'+nem.name+'还在这三十个人里——他赢了。</p>';
+      html+='<p>三把记忆喷雾用完了。你没有找到你的坑豆。'+nem.name+'还在这三十个人里——他赢了。</p>';
     } else {
-      html+='<p>第四周结束了。你没有用完记忆钥匙，但时间到了。'+nem.name+'还在这三十个人里——你的复仇窗口关闭了。</p>';
+      html+='<p>第四周结束了。你没有用完记忆喷雾，但时间到了。'+nem.name+'还在这三十个人里——你的复仇窗口关闭了。</p>';
     }
     html+='<p class="thought">你的怨念没有消散。但你不能继续做阿飘了——时间到了。你必须带着未完成的怨念投胎。</p>'+
       '<p class="thought" style="color:var(--orange)">投胎分数降低（复仇失败惩罚）。</p>'+
@@ -4658,7 +4817,7 @@ function renderReincarnationEvent(){
     '<p class="thought" style="font-size:12px">· 彩头：'+G.supportPoints+'</p>'+
     '<p class="thought" style="font-size:12px">· 本周门票：前排'+tc.front+'张 · 后排'+tc.back+'张</p>'+
     (bonusTickets>0?'<p class="thought" style="font-size:12px;color:var(--gold)">· 早投胎奖励：+'+bonusTickets+'张额外门票</p>':'')+
-    '<p class="thought" style="font-size:12px">· 脉冲灵敏度：'+G.pulseSensitivity+'%</p>'+
+    '<p class="thought" style="font-size:12px">· 心跳灵敏度：'+G.heartbeatSensitivity+'%</p>'+
     (getTodaySchedule()?'<p class="thought" style="font-size:12px">· 今日：'+getTodaySchedule().label+'</p>':'')+
   '</div>';
 
@@ -4743,13 +4902,13 @@ function renderPostConfront(){
     '<p class="thought" style="font-size:12px">· 彩头：'+G.supportPoints+'</p>'+
     '<p class="thought" style="font-size:12px">· 本周门票：前排'+tc.front+'张 · 后排'+tc.back+'张</p>'+
     (bonusTickets>0?'<p class="thought" style="font-size:12px;color:var(--gold)">· 早投胎奖励：+'+bonusTickets+'张额外门票</p>':'')+
-    '<p class="thought" style="font-size:12px">· 脉冲灵敏度：'+G.pulseSensitivity+'%'+(G.sparedNemesis?'（超越状态）':'')+'</p>'+
+    '<p class="thought" style="font-size:12px">· 心跳灵敏度：'+G.heartbeatSensitivity+'%'+(G.sparedNemesis?'（超越状态）':'')+'</p>'+
     (getTodaySchedule()?'<p class="thought" style="font-size:12px">· 今日：'+getTodaySchedule().label+'</p>':'')+
   '</div>';
 
   var nextPerf=getNextPerformance();
   if(nextPerf){
-    var dUntil=((nextPerf.w-1)*7+nextPerf.d)-((G.week-1)*7+G.day);
+    var dUntil=((nextPerf.w-1)*7+nextPerf.d)-((G.week-1)*4+G.day);
     html+='<p class="thought" style="color:var(--gold);font-size:12px">下一场公演：'+nextPerf.label+'（还有'+dUntil+'天）</p>';
   }
 
@@ -4768,20 +4927,20 @@ function renderConfrontSelect(){
   var cost=G.phase===1?500:G.phase===2?2000:5000;
   var med=G.mediumFound?CHARACTERS.find(function(c){return c.id===G.mediumId;}):null;
   var medNote=med?'结城会替你传话——你是阿飘，你没有嘴，他是你的嘴。':'';
-  var html='<p class="narrator">使用记忆钥匙</p>'+
+  var html='<p class="narrator">使用记忆喷雾</p>'+
     '<div style="display:flex;gap:6px;margin:8px 0">'+
-      (function(){var keys='';for(var i=0;i<3;i++){keys+='<span style="font-size:18px;opacity:'+(i<G.confrontationChances?'1':'.25')+'">钥匙</span> ';}return keys;})()+
-      '<span style="color:var(--text-dim);font-size:12px;align-self:center">剩余'+G.confrontationChances+'/3</span>'+
+      (function(){var keys='';for(var i=0;i<3;i++){keys+='<span style="font-size:18px;opacity:'+(i<G.confrontationChances?'1':'.25')+'">🧴</span> ';}return keys;})()+
+      '<span style="color:var(--text-dim);font-size:12px;align-self:center">剩余'+G.confrontationChances+'/3瓶</span>'+
       '<span style="color:var(--text-dim);font-size:12px;align-self:center;margin-left:auto">彩头:'+G.supportPoints+'/'+cost+'</span>'+
     '</div>'+
-    (med?'<p class="thought" style="color:var(--gold)">'+medNote+'</p>':'<p class="thought" style="color:var(--danger)">你还没找到通灵者。没有他你无法窥忆。</p>')+
-    '<div class="warning" style="margin:10px 0">⚠ 3把钥匙全用完未命中坑豆=复仇失败，只能投胎进入买股C位。</div>'+
+    (med?'<p class="thought" style="color:var(--gold)">'+medNote+'</p>':'<p class="thought" style="color:var(--danger)">你还没找到通灵者。没有他你无法拼命想。</p>')+
+    '<div class="warning" style="margin:10px 0">⚠ 3瓶记忆喷雾全用完未命中坑豆=复仇失败，只能投胎进入买股C位。</div>'+
     '</div><div class="char-pick">';
   var suspects=G.suspectList.length>0?
     CHARACTERS.filter(function(c){return G.suspectList.includes(c.id)&&!G.eliminated.includes(c.id);}):
     CHARACTERS.filter(function(c){return !G.eliminated.includes(c.id)&&G.observed[c.id];});
   if(suspects.length===0){
-    html+='<p class="thought">你还没有观察过任何人。去观察角色收集证据后再来窥忆。</p>';
+    html+='<p class="thought">你还没有观察过任何人。去观察角色收集证据后再来拼命想。</p>';
   } else {
     suspects.forEach(function(c){
       var eb=G.evidenceBoard[c.id]||{confidence:0};
@@ -4797,7 +4956,7 @@ function renderConfrontSelect(){
 function renderFinalVote(){
   var G=S.G;
   var alive=CHARACTERS.filter(function(c){return !G.eliminated.includes(c.id);});
-  var html='<p class="narrator">第8周·最后一天</p>'+
+  var html='<p class="narrator">第5周·最后一天</p>'+
     '<p>最终投票日。</p>'+
     '<p class="thought">你的坑豆'+(G.nemesisConfronted?'已经被你飘到了——主线胜利':'还没有被找到——主线失败')+'</p>'+
     '<p class="thought">投出你全部的彩头。选出本轮的C位。</p>'+
@@ -4821,12 +4980,18 @@ function renderFinalVote(){
 
 function renderEnding(){
   var G=S.G;
+  if(G&&!G._carryoverSaved){
+    var carry=saveCarryover(G.endingType||'black_rerun');
+    G._carryoverSaved=true;
+    autoSave();
+  }
+  var carry=getCarryover();
   var endings={
-    gold:{t:"金色·改写命运",c:"ending-gold",d:"你飘到了坑豆，当面窥忆，命中。然后你把全部信任投给了对的人。上一世的灰烬里，你重新学会了信。这一次，你没有选错。"},
-    silver:{t:"银色·复仇的代价",c:"ending-silver",d:"你飘到了坑豆，窥忆命中。但最终投票时，你选错了C位。复仇成功了，但守护失败了。你赢了骨头，输了肉。"},
+    gold:{t:"金色·改写命运",c:"ending-gold",d:"你飘到了坑豆，当面拼命想，命中。然后你把全部信任投给了对的人。上一世的灰烬里，你重新学会了信。这一次，你没有选错。"},
+    silver:{t:"银色·复仇的代价",c:"ending-silver",d:"你飘到了坑豆，拼命想命中。但最终投票时，你选错了C位。复仇成功了，但守护失败了。你赢了骨头，输了肉。"},
     silver_variant:{t:"银色变体·被动胜利",c:"ending-silver",d:"你的坑豆被赛季机制淘汰了——你没有主动面对他，但至少他走了。你碰巧投对了C位。不算赢，但也没输干净。"},
     silver_variant_hollow:{t:"银色变体·空洞",c:"ending-silver",d:"坑豆被淘汰了，你没主动面对他。C位也投错了。你什么都没做到，只是看着一切结束了。"},
-    black_illusory:{t:"黑色·虚妄的救赎",c:"ending-black",d:"你没能找到坑豆——三次窥忆全部错杀。但你碰巧投对了C位。看起来你赢了，但你知道那不过是运气。你的判断力从未被校准。下一世，你可能还会选错。"},
+    black_illusory:{t:"黑色·虚妄的救赎",c:"ending-black",d:"你没能找到坑豆——三次拼命想全部错杀。但你碰巧投对了C位。看起来你赢了，但你知道那不过是运气。你的判断力从未被校准。下一世，你可能还会选错。"},
     black_rerun:{t:"黑色·重蹈覆辙",c:"ending-black",d:"你没能找到坑豆，也投错了C位。上一世你被骗到一无所有，这一世你什么都没改变。灰烬里没有重生，只有重复。"},
   };
   var e=endings[G?G.endingType:"black_rerun"]||endings.black_rerun;
@@ -4843,12 +5008,17 @@ function renderEnding(){
     '<div class="ed-desc">'+e.d+'</div>'+
     '<div class="ed-detail">'+
       '<p>坑豆：<strong style="color:var(--danger)">'+nem.name+'</strong> · C位：<strong style="color:var(--gold)">'+cPos.name+'</strong></p>'+
-      '<p>窥忆：'+(G?G.confrontationHistory.length:0)+'次 · 失调：'+(G?G.cognitionDissonance:0)+'</p>'+
+      '<p>拼命想：'+(G?G.confrontationHistory.length:0)+'次 · ：'+(G?0:0)+'</p>'+
       (tier?'<p>投胎：'+tier.tier+'级 · '+tier.name+' · '+G.reincarnationScore+'分</p>':'')+
       (G&&G.sparedNemesis!==null?'<p>最终选择：'+(G.sparedNemesis?'<span style="color:var(--green)">放过</span>':'<span style="color:var(--danger)">不放过</span>')+'</p>':'')+
     '</div>'+
+    '<div class="ed-carryover" style="margin:16px 0;padding:12px;border:1px dashed var(--accent);border-radius:4px;text-align:center">'+
+      '<p style="margin:0 0 4px;color:var(--accent);font-size:14px">这是你第 '+carry.playCount+' 次穿越</p>'+
+      '<p style="margin:0;color:var(--gold);font-size:16px;font-weight:700">下次重开将获得 '+carry.bonus+' 彩头起始资金！</p>'+
+      '<p style="margin:4px 0 0;color:var(--text-dim);font-size:12px">通关奖励：金色+500 / 银色+300 / 黑色+100</p>'+
+    '</div>'+
     '<div class="btn-group">'+
-      '<button class="btn btn-primary" onclick="newGame()">再玩一局</button>'+
+      '<button class="btn btn-primary" onclick="newGame()">再玩一局（带'+carry.bonus+'彩头）</button>'+
       '<button class="btn" onclick="S.page=\'title\';render()">回到标题</button>'+
     '</div></div>';
 }
@@ -4958,7 +5128,7 @@ window.tradePhotocard=tradePhotocard;
 window.sellTicket=sellTicket;
 window.usePerfTicket=usePerfTicket;
 window.doQuickScan=doQuickScan;
-window.doSelfReflect=doSelfReflect;
+
 window.endDay=endDay;
 window.goToSleep=goToSleep;
 window.startConfront=startConfront;
@@ -4985,8 +5155,8 @@ function debugJump(w,d){
   G.week=w; G.day=d; G.actionsToday=0;
   G.eventSeen=false; G.performanceSeen=false;
   G.phase=w>=7?3:(w>=3?2:1);
-  if(w>=3) G.pulseSensitivity=Math.max(G.pulseSensitivity,40);
-  if(w>=7) G.pulseSensitivity=Math.max(G.pulseSensitivity,70);
+  if(w>=3) G.heartbeatSensitivity=Math.max(G.heartbeatSensitivity,40);
+  if(w>=7) G.heartbeatSensitivity=Math.max(G.heartbeatSensitivity,70);
   autoSave();
   S.page='day_morning';
   render();
@@ -5001,7 +5171,7 @@ function debugPostConfront(){
   G.sparedNemesis=true;
   if(!G.eliminated.includes(G.nemesisId)) G.eliminated.push(G.nemesisId);
   G.supportPoints+=3000;
-  G.pulseSensitivity=Math.min(100,G.pulseSensitivity+15);
+  G.heartbeatSensitivity=Math.min(100,G.heartbeatSensitivity+15);
   G.confrontationHistory.push({charId:G.nemesisId,result:'hit',day:'W'+G.week+'D'+G.day});
   S.confrontResult={char:CHARACTERS.find(function(c){return c.id===G.nemesisId;}),result:'hit'};
   // Calculate reincarnation
