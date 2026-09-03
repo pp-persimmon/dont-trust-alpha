@@ -969,8 +969,10 @@ body::after{
 #danmaku-input-wrap{
   position:fixed;bottom:0;left:0;right:0;z-index:60;
   display:flex;gap:4px;padding:6px 8px;
+  padding-bottom:calc(6px + env(safe-area-inset-bottom,0px));
   background:rgba(10,10,14,.92);border-top:1px solid var(--border);
 }
+#app.dm-active{padding-bottom:calc(56px + env(safe-area-inset-bottom,0px))!important}
 #danmaku-input{
   flex:1;background:var(--bg-card);border:1px solid var(--border);
   color:var(--text);font-size:13px;padding:4px 8px;border-radius:2px;outline:none;
@@ -1078,16 +1080,19 @@ function toggleDanmaku(){
   var layer=document.getElementById('danmaku-layer');
   var toggle=document.getElementById('danmaku-toggle');
   var inputWrap=document.getElementById('danmaku-input-wrap');
+  var app=document.getElementById('app');
 
   if(DM_ON){
     layer.style.display='block';
     inputWrap.style.display='flex';
+    if(app) app.classList.add('dm-active');
     toggle.classList.add('on');
     toggle.textContent='✕';
     startDanmaku();
   } else {
     layer.style.display='none';
     inputWrap.style.display='none';
+    if(app) app.classList.remove('dm-active');
     toggle.classList.remove('on');
     toggle.textContent='弹';
     stopDanmaku();
@@ -1173,17 +1178,22 @@ function updateDanmakuUI(){
   var toggle=document.getElementById('danmaku-toggle');
   var layer=document.getElementById('danmaku-layer');
   var inputWrap=document.getElementById('danmaku-input-wrap');
+  var app=document.getElementById('app');
   if(S.G&&!S.G.gameEnded&&S.page!=='title'&&S.page!=='world_intro'&&S.page!=='prologue'){
     toggle.style.display='block';
     if(DM_ON){
       layer.style.display='block';
       inputWrap.style.display='flex';
+      if(app) app.classList.add('dm-active');
       toggle.classList.add('on');
       toggle.textContent='✕';
       startDanmaku();
+    } else {
+      if(app) app.classList.remove('dm-active');
     }
   } else {
     toggle.style.display='none';
+    if(app) app.classList.remove('dm-active');
     if(DM_ON){
       layer.style.display='none';
       inputWrap.style.display='none';
